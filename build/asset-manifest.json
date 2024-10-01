@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.49e97865.css",
-    "main.js": "/static/js/main.1936ee49.js",
+    "main.js": "/static/js/main.84290821.js",
     "static/media/bathroom23.jpg": "/static/media/bathroom23.12a42861ef122c4130fb.jpg",
     "static/media/bathroom2.jpg": "/static/media/bathroom2.a1f8e68ebbbfdcba607d.jpg",
     "static/media/living26.jpg": "/static/media/living26.a123691216a4eb481604.jpg",
@@ -132,10 +132,10 @@
     "static/media/fa-v4compatibility.woff2": "/static/media/fa-v4compatibility.6cfec8414be20e2c3426.woff2",
     "index.html": "/index.html",
     "main.49e97865.css.map": "/static/css/main.49e97865.css.map",
-    "main.1936ee49.js.map": "/static/js/main.1936ee49.js.map"
+    "main.84290821.js.map": "/static/js/main.84290821.js.map"
   },
   "entrypoints": [
     "static/css/main.49e97865.css",
-    "static/js/main.1936ee49.js"
+    "static/js/main.84290821.js"
   ]
 }

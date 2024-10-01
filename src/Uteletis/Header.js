@@ -4,13 +4,20 @@ import { NavLink } from 'react-router-dom';
 
 const Header = () => {
   const [expanded, setExpanded] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false); // New state for dropdown
 
   const handleToggle = () => {
     setExpanded(!expanded);
+    setDropdownOpen(false); // Close dropdown when main toggle is used
   };
 
   const handleNavItemClick = () => {
-    setExpanded(false); // This will close the navbar when a link is clicked
+    setExpanded(false); // Close the navbar when a link is clicked
+    setDropdownOpen(false); // Close the dropdown when a link is clicked
+  };
+
+  const handleDropdownToggle = (isOpen) => {
+    setDropdownOpen(isOpen); // Toggle dropdown state
   };
 
   return (
@@ -65,7 +72,8 @@ const Header = () => {
             <NavDropdown 
               title="Contact Us" 
               className="headerLink" 
-              onClick={handleNavItemClick}
+              show={dropdownOpen} // Control dropdown visibility
+              onToggle={handleDropdownToggle} // Toggle dropdown open state
             >
               <NavDropdown.Item 
                 as={NavLink} 
