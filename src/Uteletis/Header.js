@@ -9,6 +9,10 @@ const Header = () => {
     setExpanded(!expanded);
   };
 
+  const handleNavItemClick = () => {
+    setExpanded(false); // This will close the navbar when a link is clicked
+  };
+
   return (
     <Navbar expanded={expanded} expand="md" className="HeaderBar">
       <Container fluid className="d-flex align-items-center justify-content-between">
@@ -25,16 +29,72 @@ const Header = () => {
         {/* Navbar items collapse */}
         <Navbar.Collapse id="navbar-collapse">
           <Nav className="ms-auto">
-            <Nav.Link as={NavLink} to="/" className="headerLink">Home</Nav.Link>
-            <Nav.Link as={NavLink} to="/our-suppliers" className="headerLink">Our Suppliers</Nav.Link>
-            <Nav.Link as={NavLink} to="/services" className="headerLink">Services</Nav.Link>
-            <Nav.Link as={NavLink} to="/about" className="headerLink">About Us</Nav.Link>
+            <Nav.Link 
+              as={NavLink} 
+              to="/" 
+              className="headerLink" 
+              onClick={handleNavItemClick}
+            >
+              Home
+            </Nav.Link>
+            <Nav.Link 
+              as={NavLink} 
+              to="/our-suppliers" 
+              className="headerLink" 
+              onClick={handleNavItemClick}
+            >
+              Our Suppliers
+            </Nav.Link>
+            <Nav.Link 
+              as={NavLink} 
+              to="/services" 
+              className="headerLink" 
+              onClick={handleNavItemClick}
+            >
+              Services
+            </Nav.Link>
+            <Nav.Link 
+              as={NavLink} 
+              to="/about" 
+              className="headerLink" 
+              onClick={handleNavItemClick}
+            >
+              About Us
+            </Nav.Link>
             
-            <NavDropdown title="Contact Us" className="headerLink">
-              <NavDropdown.Item as={NavLink} to="/contact">Email Us</NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/quote">Free Quote</NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/home-assistance">Home Assistance</NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/request-call-back">Request a Call Back</NavDropdown.Item>
+            <NavDropdown 
+              title="Contact Us" 
+              className="headerLink" 
+              onClick={handleNavItemClick}
+            >
+              <NavDropdown.Item 
+                as={NavLink} 
+                to="/contact" 
+                onClick={handleNavItemClick}
+              >
+                Email Us
+              </NavDropdown.Item>
+              <NavDropdown.Item 
+                as={NavLink} 
+                to="/quote" 
+                onClick={handleNavItemClick}
+              >
+                Free Quote
+              </NavDropdown.Item>
+              <NavDropdown.Item 
+                as={NavLink} 
+                to="/home-assistance" 
+                onClick={handleNavItemClick}
+              >
+                Home Assistance
+              </NavDropdown.Item>
+              <NavDropdown.Item 
+                as={NavLink} 
+                to="/request-call-back" 
+                onClick={handleNavItemClick}
+              >
+                Request a Call Back
+              </NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
