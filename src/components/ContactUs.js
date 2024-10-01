@@ -110,8 +110,9 @@ const ContactUs = () => {
                   />
                   <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
                 </Form.Group>
+                <br></br>
               </Col>
-
+                
               <Col md={6}>
                 <Form.Group controlId="formEmail">
                   <Form.Label>Email address</Form.Label>
@@ -125,7 +126,10 @@ const ContactUs = () => {
                   />
                   <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
                 </Form.Group>
+                <br></br>
+
               </Col>
+
             </Row>
 
             <Row>
@@ -142,6 +146,8 @@ const ContactUs = () => {
                   />
                   <Form.Control.Feedback type="invalid">{errors.phone}</Form.Control.Feedback>
                 </Form.Group>
+                <br></br>
+
               </Col>
 
               <Col md={6}>
@@ -157,7 +163,10 @@ const ContactUs = () => {
                   />
                   <Form.Control.Feedback type="invalid">{errors.subject}</Form.Control.Feedback>
                 </Form.Group>
+                <br></br>
+
               </Col>
+
             </Row>
 
             <Form.Group controlId="formMessage">

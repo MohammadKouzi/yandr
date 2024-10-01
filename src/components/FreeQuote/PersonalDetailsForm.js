@@ -5,10 +5,10 @@ const PersonalDetailsForm = ({ formData, handleChange, errors }) => (
   <section className="quoteSection pb-4">
     <h2>Personal Details</h2>
     
-    <Row className="mb-3"> {/* Add margin-bottom class to the entire row */}
+    <Row>
       <Col md={6}>
-        <Form.Group controlId="formName">
-          <Form.Label className="mb-1">Name</Form.Label> {/* Reduced margin-bottom */}
+        <Form.Group controlId="formName" className="mb-3"> {/* Added margin-bottom class here */}
+          <Form.Label className="mb-1">Name</Form.Label> 
           <Form.Control 
             type="text" 
             name="name" 
@@ -22,8 +22,8 @@ const PersonalDetailsForm = ({ formData, handleChange, errors }) => (
       </Col>
 
       <Col md={6}>
-        <Form.Group controlId="formEmail">
-          <Form.Label className="mb-1">Email</Form.Label> {/* Reduced margin-bottom */}
+        <Form.Group controlId="formEmail" className="mb-3"> {/* Added margin-bottom class here */}
+          <Form.Label className="mb-1">Email</Form.Label> 
           <Form.Control 
             type="email" 
             name="email" 
@@ -37,10 +37,10 @@ const PersonalDetailsForm = ({ formData, handleChange, errors }) => (
       </Col>
     </Row>
 
-    <Row className="mb-3"> {/* Add margin-bottom class to the entire row */}
+    <Row>
       <Col md={6}>
-        <Form.Group controlId="formPhone">
-          <Form.Label className="mb-1">Phone</Form.Label> {/* Reduced margin-bottom */}
+        <Form.Group controlId="formPhone" className="mb-3"> {/* Added margin-bottom class here */}
+          <Form.Label className="mb-1">Phone</Form.Label> 
           <Form.Control 
             type="text" 
             name="phone" 
@@ -54,8 +54,8 @@ const PersonalDetailsForm = ({ formData, handleChange, errors }) => (
       </Col>
 
       <Col md={6}>
-        <Form.Group controlId="formPostcode">
-          <Form.Label className="mb-1">Postcode</Form.Label> {/* Reduced margin-bottom */}
+        <Form.Group controlId="formPostcode" className="mb-3"> {/* Added margin-bottom class here */}
+          <Form.Label className="mb-1">Postcode</Form.Label> 
           <Form.Control 
             type="text" 
             name="postcode" 
@@ -69,10 +69,10 @@ const PersonalDetailsForm = ({ formData, handleChange, errors }) => (
       </Col>
     </Row>
 
-    <Row className="mb-3"> {/* Add margin-bottom class to the entire row */}
+    <Row>
       <Col md={6}>
-        <Form.Group controlId="formInstallationDate">
-          <Form.Label className="mb-1">Installation Date</Form.Label> {/* Reduced margin-bottom */}
+        <Form.Group controlId="formInstallationDate" className="mb-3"> {/* Added margin-bottom class here */}
+          <Form.Label className="mb-1">Installation Date</Form.Label> 
           <Form.Control 
             type="date" 
             name="installationDate" 
