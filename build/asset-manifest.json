@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.49e97865.css",
-    "main.js": "/static/js/main.6a84abd2.js",
+    "main.js": "/static/js/main.1936ee49.js",
     "static/media/bathroom23.jpg": "/static/media/bathroom23.12a42861ef122c4130fb.jpg",
     "static/media/bathroom2.jpg": "/static/media/bathroom2.a1f8e68ebbbfdcba607d.jpg",
     "static/media/living26.jpg": "/static/media/living26.a123691216a4eb481604.jpg",
@@ -125,17 +125,17 @@
     "static/media/island.png": "/static/media/island.501a7b42135279d4f965.png",
     "static/media/neolith.png": "/static/media/neolith.cb61835c002ce6f8158f.png",
     "static/media/dekton.png": "/static/media/dekton.f69b04cfd728a90f0cf5.png",
-    "static/media/nextstone.png": "/static/media/nextstone.4380dd997c482c3bf24d.png",
     "static/media/artcut.png": "/static/media/artcut.61d49254a2492af96744.png",
+    "static/media/nextstone.png": "/static/media/nextstone.e0ed6d17a021423292a3.png",
     "static/media/artemistone.png": "/static/media/artemistone.5348b0e9c5d0acb5cf1a.png",
     "static/media/fa-v4compatibility.ttf": "/static/media/fa-v4compatibility.0f6cb412603527bda691.ttf",
     "static/media/fa-v4compatibility.woff2": "/static/media/fa-v4compatibility.6cfec8414be20e2c3426.woff2",
     "index.html": "/index.html",
     "main.49e97865.css.map": "/static/css/main.49e97865.css.map",
-    "main.6a84abd2.js.map": "/static/js/main.6a84abd2.js.map"
+    "main.1936ee49.js.map": "/static/js/main.1936ee49.js.map"
   },
   "entrypoints": [
     "static/css/main.49e97865.css",
-    "static/js/main.6a84abd2.js"
+    "static/js/main.1936ee49.js"
   ]
 }
