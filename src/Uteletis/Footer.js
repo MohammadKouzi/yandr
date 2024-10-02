@@ -43,19 +43,18 @@ const Footer = () => {
         </Row>
       </Container>
 
-      {/* New Footer Bottom Section for Contact Details */}
-     {/* New Footer Bottom Section for Contact Details */}
+{/* New Footer Bottom Section for Contact Details */}
 <div className="footer2-bottom">
   <Container>
-    <Row className="text-center">
+    <Row className="text-center mx-auto mb-4">
       {/* Contact Details Column */}
-      <Col xs={12} md={6} lg={4} className="mx-auto mb-4"> {/* Center the column with mx-auto */}
+      <Col xs={12} sm={10} md={8} lg={6} className="mx-auto"> {/* Responsive column */}
         <p className="contact-info">
-          <span className="contact-item">
+          <span className="contact-item d-block mb-3"> {/* Added margin for spacing */}
             <FontAwesomeIcon icon={faEnvelope} className="contact-icon" /> 
             <a href="mailto:example@example.com" className="contact-link">example@example.com</a>
           </span>
-          <span className="contact-item">
+          <span className="contact-item d-block"> {/* Ensure this is also d-block */}
             <FontAwesomeIcon icon={faPhoneAlt} className="contact-icon" /> 
             <span className="contact-link">+1234567890</span>
           </span>
@@ -64,6 +63,8 @@ const Footer = () => {
     </Row>
   </Container>
 </div>
+
+
 
 
       {/* Existing Footer Bottom Section for Copyright */}
