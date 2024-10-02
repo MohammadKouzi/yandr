@@ -223,6 +223,8 @@
   flex: 1;
 }
 
+ 
+
 .footer {
   background-color: #363636;
   color: #fff;
@@ -252,8 +254,7 @@
   margin-bottom: 20px;
 }
 
-.footer p,
-.footer-links li {
+.footer p, .footer-links li {
   font-size: 14px;
   color: #ccc;
   line-height: 1.6;
@@ -290,11 +291,11 @@
 .contact-item {
   display: flex;
   align-items: center;
-  gap: 10px; /* Space between icon and text */
+  gap: 10px;
 }
 
 .contact-icon {
-  margin-right: 10px; /* Adjusted margin for space between icon and text */
+  margin-right: 5px;
 }
 
 .contact-link {
@@ -308,18 +309,16 @@
 
 /* Footer Bottom Styling */
 .footer2-bottom {
-  background: linear-gradient(120deg,
-    rgb(59, 48, 10) 0%,   /* Darker gold */
-    rgb(191, 149, 10) 50%,  /* Mid-tone gold */
-    rgb(59, 48, 10) 100%   /* Darker gold */
-  );
-  height: 40px;
-}
+  background: linear-gradient(120deg, 
+  rgb(59, 48, 10) 0%,   /* Darker gold */
+  rgb(191, 149, 10) 50%,  /* Mid-tone gold */
+  rgb(59, 48, 10) 100%   /* Darker gold */);
+ height: 40px; }
 
 .footer-bottom {
   background-color: #222;
   padding: 15px 0;
-}
+ }
 
 .footer-bottom p {
   margin: 0;
@@ -344,18 +343,21 @@
     margin-bottom: 8px; /* Reduce margin between list items */
   }
 
+  
+
   .footer h3 {
     font-size: 18px; /* Reduce font size for headings */
     margin-bottom: 15px;
   }
 
-  .footer p,
-  .footer-links li {
+  .footer p, .footer-links li {
     font-size: 12px; /* Adjust font size for smaller devices */
   }
+
+ 
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768) {
   .footer-row {
     gap: 0px; /* Completely remove gap between columns on very small devices */
     justify-content: center; /* Ensure everything is centered */
@@ -371,16 +373,12 @@
     font-size: 16px; /* Further reduce heading size on very small devices */
   }
 
-  .footer p,
-  .footer-links li {
+  .footer p, .footer-links li {
     font-size: 11px; /* Smaller font size for very small screens */
   }
 
-  .contact-item {
-    flex-direction: row; /* Ensure items are in a single line */
-  }
+  
 }
-
 
 
 /* Sections */
