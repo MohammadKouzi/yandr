@@ -352,7 +352,7 @@
   }
 
    .contact-info {
-    gap: 60px; /* No gap between contact items on very small screens */
+    gap: 180px; /* No gap between contact items on very small screens */
     text-align: center; /* Ensure the "Contact Us" section is centered on very small screens */
   }
 }
