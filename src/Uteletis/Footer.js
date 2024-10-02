@@ -50,11 +50,11 @@ const Footer = () => {
       {/* Contact Details Column */}
       <Col xs={12} sm={10} md={8} lg={6} className="mx-auto"> {/* Responsive column */}
         <p className="contact-info">
-          <span className="contact-item d-block mb-3"> {/* Added margin for spacing */}
+          <span className="contact-item d-block mb-2"> {/* d-block for each item to stack vertically */}
             <FontAwesomeIcon icon={faEnvelope} className="contact-icon" /> 
             <a href="mailto:example@example.com" className="contact-link">example@example.com</a>
           </span>
-          <span className="contact-item d-block"> {/* Ensure this is also d-block */}
+          <span className="contact-item d-block"> {/* d-block for each item to stack vertically */}
             <FontAwesomeIcon icon={faPhoneAlt} className="contact-icon" /> 
             <span className="contact-link">+1234567890</span>
           </span>
@@ -63,8 +63,6 @@ const Footer = () => {
     </Row>
   </Container>
 </div>
-
-
 
 
       {/* Existing Footer Bottom Section for Copyright */}

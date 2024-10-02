@@ -380,7 +380,7 @@
   }
 
   .contact-info {
-    gap: 0px; /* No gap between contact items on very small screens */
+    gap: 24px; /* No gap between contact items on very small screens */
     text-align: center; /* Ensure the "Contact Us" section is centered */
   }
 
