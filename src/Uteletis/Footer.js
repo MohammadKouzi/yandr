@@ -43,7 +43,7 @@ const Footer = () => {
       </div>
 
       {/* New Footer Bottom Section for Contact Details */}
-      <div className="footer2-bottom">
+      <div className="footer2-bottom col-12 col-sm-12 col-md-4">
         <div className="container text-center">
           <p className="contact-info">
             <span className="contact-item">
