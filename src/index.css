@@ -325,6 +325,7 @@
 }
 
 /* Mobile Responsive behavior */
+/* Mobile Responsive behavior */
 @media (max-width: 768px) {
   .footer-row {
     flex-direction: column; /* Stack columns vertically */
@@ -336,6 +337,7 @@
   .footer-column {
     max-width: 100%; /* Allow full width on smaller screens */
     padding: 10px; /* Reduce padding for smaller screens */
+    text-align: center; /* Center text within the column */
   }
 
   .footer-links li {
@@ -351,9 +353,18 @@
     font-size: 12px; /* Adjust font size for smaller devices */
   }
 
-   .contact-info {
-    gap: 180px; /* No gap between contact items on very small screens */
-    text-align: center; /* Ensure the "Contact Us" section is centered on very small screens */
+  .contact-info {
+    gap: 30px; /* Reduced gap for better spacing between contact items */
+    text-align: center; /* Center the contact details */
+  }
+
+  .contact-icon {
+    margin-right: 8px; /* Add margin between the icon and text */
+    font-size: 16px; /* Adjust icon size for smaller screens */
+  }
+
+  .footer-bottom {
+    font-size: 12px; /* Adjust font size for footer copyright */
   }
 }
 
@@ -364,9 +375,13 @@
     align-items: center; /* Ensure everything is centered */
   }
 
+  .footer-column {
+    padding: 5px; /* Further reduce padding on very small screens */
+  }
+
   .contact-info {
     gap: 0px; /* No gap between contact items on very small screens */
-    text-align: center; /* Ensure the "Contact Us" section is centered on very small screens */
+    text-align: center; /* Ensure the "Contact Us" section is centered */
   }
 
   .footer h3 {
@@ -375,6 +390,14 @@
 
   .footer p, .footer-links li {
     font-size: 11px; /* Smaller font size for very small screens */
+  }
+
+  .contact-icon {
+    font-size: 14px; /* Adjust icon size for very small screens */
+  }
+
+  .footer-bottom {
+    font-size: 11px; /* Smaller font size for copyright text */
   }
 }
 
