@@ -328,7 +328,7 @@
 @media (max-width: 768px) {
   .footer-row {
     flex-direction: column; /* Stack columns vertically */
-    gap: 20px; /* Adjust gap between sections */
+    gap: 0px; /* Adjust gap between sections */
     justify-content: center; /* Center all sections horizontally on mobile */
     align-items: center; /* Center all sections horizontally */
   }

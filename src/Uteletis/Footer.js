@@ -2,24 +2,25 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faPhoneAlt } from '@fortawesome/free-solid-svg-icons'; // Import FontAwesome icons
- 
+import { Container, Row, Col } from 'react-bootstrap'; // Import Bootstrap components
+
 const Footer = () => {
   return (
     <footer className="footer">
-      <div className="container">
-        <div className="footer-row">
+      <Container>
+        <Row className="footer-row">
           {/* GlamStone Info Section */}
-          <div className="footer-column">
+          <Col xs={12} md={6} lg={4} className="footer-column mb-4">
             <h3>GlamStone</h3>
             <p>
               At GlamStone, we specialize in delivering precision-cut and expertly installed worktops,
               floor tiles, wall tiles, and vanities that elevate the design and functionality of kitchen spaces and beyond.
               Our reputation is built on a commitment to craftsmanship, ensuring that every project we undertake meets the highest standards of excellence.
             </p>
-          </div>
+          </Col>
 
           {/* Sections - Same as Header */}
-          <div className="footer-column">
+          <Col xs={10} md={6} lg={2} className="footer-column mb-4">
             <h3>Sections</h3>
             <ul className="footer-links">
               <li><Link to="/">Home</Link></li>
@@ -27,10 +28,10 @@ const Footer = () => {
               <li><Link to="/services">Services</Link></li>
               <li><Link to="/about">About Us</Link></li>
             </ul>
-          </div>
+          </Col>
 
           {/* Contact Us Section */}
-          <div className="footer-column">
+          <Col xs={12} md={6} lg={4} className="footer-column mb-4">
             <h3>Contact Us</h3>
             <ul className="footer-links">
               <li><Link to="/contact">Email Us</Link></li>
@@ -38,13 +39,13 @@ const Footer = () => {
               <li><Link to="/home-assistance">Home Assistance</Link></li>
               <li><Link to="/request-call-back">Request a Call Back</Link></li>
             </ul>
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Container>
 
       {/* New Footer Bottom Section for Contact Details */}
       <div className="footer2-bottom">
-        <div className="container text-center">
+        <Container className="text-center">
           <p className="contact-info">
             <span className="contact-item">
               <FontAwesomeIcon icon={faEnvelope} className="contact-icon" /> 
@@ -55,14 +56,14 @@ const Footer = () => {
               <span className="contact-link">+1234567890</span>
             </span>
           </p>
-        </div>
+        </Container>
       </div>
 
       {/* Existing Footer Bottom Section for Copyright */}
       <div className="footer-bottom">
-        <div className="container text-center">
+        <Container className="text-center">
           <p>© 2024 GlamStone. All rights reserved.</p>
-        </div>
+        </Container>
       </div>
     </footer>
   );
