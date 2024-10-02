@@ -44,20 +44,27 @@ const Footer = () => {
       </Container>
 
       {/* New Footer Bottom Section for Contact Details */}
-      <div className="footer2-bottom">
-        <Container className="text-center">
-          <p className="contact-info">
-            <span className="contact-item">
-              <FontAwesomeIcon icon={faEnvelope} className="contact-icon" /> 
-              <a href="mailto:example@example.com" className="contact-link">example@example.com</a>
-            </span>
-            <span className="contact-item">
-              <FontAwesomeIcon icon={faPhoneAlt} className="contact-icon" /> 
-              <span className="contact-link">+1234567890</span>
-            </span>
-          </p>
-        </Container>
-      </div>
+     {/* New Footer Bottom Section for Contact Details */}
+<div className="footer2-bottom">
+  <Container>
+    <Row className="text-center">
+      {/* Contact Details Column */}
+      <Col xs={12} md={6} lg={4} className="mx-auto mb-4"> {/* Center the column with mx-auto */}
+        <p className="contact-info">
+          <span className="contact-item">
+            <FontAwesomeIcon icon={faEnvelope} className="contact-icon" /> 
+            <a href="mailto:example@example.com" className="contact-link">example@example.com</a>
+          </span>
+          <span className="contact-item">
+            <FontAwesomeIcon icon={faPhoneAlt} className="contact-icon" /> 
+            <span className="contact-link">+1234567890</span>
+          </span>
+        </p>
+      </Col>
+    </Row>
+  </Container>
+</div>
+
 
       {/* Existing Footer Bottom Section for Copyright */}
       <div className="footer-bottom">
