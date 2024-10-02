@@ -188,7 +188,13 @@ const ContactUs = () => {
               variant="primary"
               type="submit"
               className="d-block mx-auto"
-              style={{ backgroundColor: 'darkgoldenrod', color: 'white' }}
+              style={{
+                backgroundColor: 'darkgoldenrod',
+                color: 'white',
+                padding: '12px',
+                borderRadius: '5px',
+                cursor: 'pointer',
+              }}
               disabled={isSending || !isFormValid()}
             >
               {isSending ? 'Sending...' : 'Send'}

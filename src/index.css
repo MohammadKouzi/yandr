@@ -15,93 +15,8 @@
   font-size: 24px;
   padding-top: px;
 }
-.footer {
-  background: #f8f9fa; /* Light background for the footer */
-  padding: 20px 0; /* Padding for spacing */
-}
-
-.footer2-bottom {
-  background: linear-gradient(120deg, 
-    rgb(59, 48, 10) 0%,   /* Darker gold */
-    rgb(191, 149, 10) 50%,  /* Mid-tone gold */
-    rgb(59, 48, 10) 100%   /* Darker gold */
-  ); 
-  display: flex;
-  justify-content: center; /* Center the items horizontally */
-  align-items: center;     /* Center the items vertically */
-  height: 40px;            /* Fixed height for the footer */
-  color: #ffffff;          /* White text color for contrast */
-  font-weight: bold;       /* Bold font for emphasis */
-  padding: 0 30px;         /* Add padding for better spacing */
-  position: relative;      /* Relative positioning for any additional elements */
-}
-/* Responsive styles */
-@media (max-width: 768px) {
-  .contact-info {
-    flex-direction: column; /* Stack items vertically on smaller screens */
-  }
-
-  .contact-item {
-    font-size: 14px; /* Smaller font size for mobile */
-  }
-}
-.contact-info {
-  display: flex;
-  justify-content: center; /* Center elements horizontally */
-  align-items: center;     /* Center elements vertically */
-  font-size: 16px;        /* Font size for better readability */
-}
-
-.contact-item {
-  display: flex;
-  align-items: center;     /* Align icon with text */
-  margin: 0 10px;         /* Add margin for spacing between items */
-}
-
-.contact-icon {
-  font-size: 18px;        /* Icon size */
-  margin-right: 5px;      /* Space between icon and text */
-  color: #ffffff;         /* Ensure icon is white */
-}
-
-.contact-link {
-  color: #ffffff;         /* Link color */
-  text-decoration: none;   /* Remove underline */
-}
-
  
-.footer-bottom {
-  background: #343a40;  /* Dark background for the copyright section */
-  color: #ffffff;        /* White text for copyright */
-  padding: 10px 0;      /* Padding for spacing */
-}
-
-/* Optional: Style for contact information */
-.contact-info {
-  display: flex;
-  flex-direction: row;      /* Arrange items in a row */
-  justify-content: center;   /* Center align */
-  align-items: center;       /* Center vertically */
-  font-size: 18px;          /* Increase font size for better visibility */
-}
-
-.contact-item {
-  display: flex;
-  align-items: center;      /* Center icons and text */
-  margin: 16px 16px 0px;          /* Add margin for spacing */
-}
-
-.contact-icon {
-  font-size: 20px;          /* Increase icon size */
-  margin-right: 16px;        /* Space between icon and text */
-  color: #ffffff;           /* Icon color */
-}
-
-.contact-link {
-  color: #ffffff;           /* Link color */
-  text-decoration: none;     /* Remove underline */
-}
-
+ 
 .HeaderBar {
   background: linear-gradient(120deg, #000000, #4b4b4b, #000000); /* Black to Grey gradient */
   display: flex;
@@ -310,46 +225,160 @@
 
  
 
-
-/* Footer Styles */
 .footer {
-  background-color: #343a40;
+  background-color: #363636;
   color: #fff;
-  padding: 50px 0 0;
+  padding: 24px 0px 0px 0px;
+  box-sizing: border-box; /* Ensure padding is included within element's width/height */
+}
+
+/* Flexbox layout for centering footer rows */
+.footer-row {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: flex-start; /* Top align all columns */
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+  gap: 80px; /* Flexible spacing between columns */
+}
+
+/* Footer column styling */
+.footer-column {
+  flex: 1;
+  max-width: 300px; /* Optional max-width for columns */
+  padding: 20px;
+  text-align: center; /* Center content inside columns */
 }
 
 .footer h3 {
   color: #fff;
+  margin-bottom: 20px;
 }
 
-.footer p {
+.footer p, .footer-links li {
+  font-size: 14px;
   color: #ccc;
+  line-height: 1.6;
 }
 
-.footer ul {
-  list-style-type: none;
+/* Footer Links Styling */
+.footer-links {
+  list-style: none;
   padding: 0;
 }
 
-.footer ul li {
+.footer-links li {
   margin-bottom: 10px;
 }
 
-.footer ul li a {
+.footer-links a {
   color: #ccc;
   text-decoration: none;
 }
 
-.footer ul li a:hover {
-  color: #fff;
+.footer-links a:hover {
+  text-decoration: underline;
 }
+
+/* Contact Information Section */
+.contact-info {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 10px 0;
+  text-align: center; /* Ensure the "Contact Us" section is centered */
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact-icon {
+  margin-right: 5px;
+}
+
+.contact-link {
+  color: #fff;
+  text-decoration: none;
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+}
+
+/* Footer Bottom Styling */
+.footer2-bottom {
+  background: linear-gradient(120deg, 
+  rgb(59, 48, 10) 0%,   /* Darker gold */
+  rgb(191, 149, 10) 50%,  /* Mid-tone gold */
+  rgb(59, 48, 10) 100%   /* Darker gold */);
+ height: 40px; }
 
 .footer-bottom {
-  background-color: #292b2c;
-  color: #fff;
-   padding: 10px 0;
+  background-color: #222;
+  padding: 15px 0;
+ }
+
+.footer-bottom p {
+  margin: 0;
+  color: #aaa;
 }
 
+/* Mobile Responsive behavior */
+@media (max-width: 768px) {
+  .footer-row {
+    flex-direction: column; /* Stack columns vertically */
+    gap: 0px; /* Remove gap between sections and columns */
+    justify-content: center; /* Center all sections horizontally on mobile */
+    align-items: center; /* Center all sections horizontally */
+  }
+
+  .footer-column {
+    max-width: 100%; /* Allow full width on smaller screens */
+    padding: 10px; /* Reduce padding for smaller screens */
+  }
+
+  .footer-links li {
+    margin-bottom: 8px; /* Reduce margin between list items */
+  }
+
+  
+
+  .footer h3 {
+    font-size: 18px; /* Reduce font size for headings */
+    margin-bottom: 15px;
+  }
+
+  .footer p, .footer-links li {
+    font-size: 12px; /* Adjust font size for smaller devices */
+  }
+
+ 
+}
+
+@media (max-width: 480px) {
+  .footer-row {
+    gap: 0px; /* Completely remove gap between columns on very small devices */
+    justify-content: center; /* Ensure everything is centered */
+    align-items: center; /* Ensure everything is centered */
+  }
+
+  .contact-info {
+    gap: 0px; /* No gap between contact items on very small screens */
+    text-align: center; /* Ensure the "Contact Us" section is centered on very small screens */
+  }
+
+  .footer h3 {
+    font-size: 16px; /* Further reduce heading size on very small devices */
+  }
+
+  .footer p, .footer-links li {
+    font-size: 11px; /* Smaller font size for very small screens */
+  }
+
+  
+}
 
 
 /* Sections */

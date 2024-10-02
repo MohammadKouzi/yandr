@@ -2,13 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faPhoneAlt } from '@fortawesome/free-solid-svg-icons'; // Import FontAwesome icons
- const Footer = () => {
+ 
+const Footer = () => {
   return (
     <footer className="footer">
       <div className="container">
-        <div className="row">
+        <div className="footer-row">
           {/* GlamStone Info Section */}
-          <div className="col-md-4">
+          <div className="footer-column">
             <h3>GlamStone</h3>
             <p>
               At GlamStone, we specialize in delivering precision-cut and expertly installed worktops,
@@ -18,7 +19,7 @@ import { faEnvelope, faPhoneAlt } from '@fortawesome/free-solid-svg-icons'; // I
           </div>
 
           {/* Sections - Same as Header */}
-          <div className="col-md-4">
+          <div className="footer-column">
             <h3>Sections</h3>
             <ul className="footer-links">
               <li><Link to="/">Home</Link></li>
@@ -29,7 +30,7 @@ import { faEnvelope, faPhoneAlt } from '@fortawesome/free-solid-svg-icons'; // I
           </div>
 
           {/* Contact Us Section */}
-          <div className="col-md-4">
+          <div className="footer-column">
             <h3>Contact Us</h3>
             <ul className="footer-links">
               <li><Link to="/contact">Email Us</Link></li>
@@ -59,12 +60,8 @@ import { faEnvelope, faPhoneAlt } from '@fortawesome/free-solid-svg-icons'; // I
 
       {/* Existing Footer Bottom Section for Copyright */}
       <div className="footer-bottom">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12 text-center">
-              <p>© 2024 GlamStone. All rights reserved.</p>
-            </div>
-          </div>
+        <div className="container text-center">
+          <p>© 2024 GlamStone. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -259,9 +259,10 @@ const HomeAssistance = () => {
                   />
                   <Form.Control.Feedback type="invalid">{errors.time}</Form.Control.Feedback>
                 </Form.Group>
+                <br />
               </Col>
             </Row>
-             <Button
+              <Button
               variant="primary"
               type="submit"
               className="d-block mx-auto"
