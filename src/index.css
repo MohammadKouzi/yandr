@@ -357,7 +357,7 @@
  
 }
 
-@media (max-width: 768) {
+@media (max-width: 480px) {
   .footer-row {
     gap: 0px; /* Completely remove gap between columns on very small devices */
     justify-content: center; /* Ensure everything is centered */

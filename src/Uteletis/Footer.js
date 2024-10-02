@@ -2,14 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faPhoneAlt } from '@fortawesome/free-solid-svg-icons'; // Import FontAwesome icons
- 
+
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="container">
-        <div className="footer-row">
+        <div className="footer-row row">
           {/* GlamStone Info Section */}
-          <div className="footer-column">
+          <div className="footer-column col-12 col-sm-12 col-md-4">
             <h3>GlamStone</h3>
             <p>
               At GlamStone, we specialize in delivering precision-cut and expertly installed worktops,
@@ -19,7 +19,7 @@ const Footer = () => {
           </div>
 
           {/* Sections - Same as Header */}
-          <div className="footer-column">
+          <div className="footer-column col-12 col-sm-12 col-md-4">
             <h3>Sections</h3>
             <ul className="footer-links">
               <li><Link to="/">Home</Link></li>
@@ -30,7 +30,7 @@ const Footer = () => {
           </div>
 
           {/* Contact Us Section */}
-          <div className="footer-column">
+          <div className="footer-column col-12 col-sm-12 col-md-4">
             <h3>Contact Us</h3>
             <ul className="footer-links">
               <li><Link to="/contact">Email Us</Link></li>
