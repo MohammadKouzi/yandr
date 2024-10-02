@@ -9,6 +9,8 @@ import ShapeSelection from './FreeQuote/ShapeSelection';
 import PersonalDetailsForm from './FreeQuote/PersonalDetailsForm';
 import Notes from './FreeQuote/Notes';
 import TermsAndSubmit from './FreeQuote/TermsAndSubmit';
+import { Helmet } from 'react-helmet'; // Import Helmet
+
 
 const initialFormState = {
   name: '',
@@ -190,6 +192,10 @@ const FreeQuote = () => {
 
   return (
     <div className="body">
+     <Helmet>
+        <title>GalmStone - Free Online Quote</title>
+        <meta name="description" content="Request a free quote for your kitchen project and enjoy expert guidance and competitive pricing." />
+        </Helmet>
       <Container style={{ paddingTop: '8px' }}>
         <Container className="py-5">
           <h2 className="hstyle text-center mb-4">Free Online Quote</h2>

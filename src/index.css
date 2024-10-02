@@ -69,7 +69,7 @@
   text-decoration: none;   /* Remove underline */
 }
 
-
+ 
 .footer-bottom {
   background: #343a40;  /* Dark background for the copyright section */
   color: #ffffff;        /* White text for copyright */
@@ -347,7 +347,7 @@
 .footer-bottom {
   background-color: #292b2c;
   color: #fff;
-  padding: 10px 0;
+   padding: 10px 0;
 }
 
 

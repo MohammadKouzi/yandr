@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
-import axios from 'axios';
+import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import emailjs from 'emailjs-com';
+import { Helmet } from 'react-helmet'; // Import Helmet
 
 const RequestCallBack = () => {
   const [formData, setFormData] = useState({
@@ -11,14 +12,20 @@ const RequestCallBack = () => {
     phone: '',
     date: '',
     time: '',
+    period: 'AM',
   });
 
-  const [errors, setErrors] = useState({});
-  const [isSending, setIsSending] = useState(false);
-  const [successMessage, setSuccessMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+    phone: '',
+    date: '',
+    time: '',
+  });
 
-  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/callBack';
+  const [isSending, setIsSending] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,20 +42,20 @@ const RequestCallBack = () => {
       case 'email':
         error = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? '' : 'Valid email is required';
         break;
+      case 'subject':
+        error = value.trim() ? '' : 'Subject is required';
+        break;
+      case 'message':
+        error = value.trim() ? '' : 'Message is required';
+        break;
       case 'phone':
         error = /^\+44\d{10}$/.test(value) ? '' : 'Valid UK phone number is required (Starting with +44)';
         break;
       case 'date':
-        const today = new Date();
-        const selectedDate = new Date(value);
-        error = selectedDate >= today ? '' : 'Date must be today or in the future';
+        error = value.trim() ? '' : 'Date is required';
         break;
       case 'time':
-        error = value ? '' : 'Time is required';
-        break;
-      case 'subject':
-      case 'message':
-        error = value.trim() ? '' : `${name.charAt(0).toUpperCase() + name.slice(1)} is required`;
+        error = value.trim() ? '' : 'Time is required';
         break;
       default:
         break;
@@ -56,7 +63,7 @@ const RequestCallBack = () => {
     setErrors((prevErrors) => ({ ...prevErrors, [name]: error }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!isFormValid()) {
@@ -65,154 +72,204 @@ const RequestCallBack = () => {
     }
 
     setIsSending(true);
-    setSuccessMessage('');
-    setErrorMessage('');
 
-    try {
-      await axios.post(API_URL, formData);
-      setSuccessMessage('Callback request sent successfully!');
-      setFormData({ name: '', email: '', subject: '', message: '', phone: '', date: '', time: '' });
-      setErrors({});
-    } catch (err) {
-      console.error('Error sending data to server:', err);
-      setErrorMessage(err.response?.data?.error || 'Failed to send callback request. Please try again later.');
-    } finally {
-      setIsSending(false);
-    }
+    const emailData = {
+      to_name: 'Recipient Name',
+      from_name: formData.name,
+      from_email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+      phone: formData.phone,
+      date: formData.date,
+      time: formData.time + ' ' + formData.period,
+    };
+
+    emailjs
+      .send(
+        process.env.REACT_APP_CONTACT_US_SERVICE_ID,
+        process.env.REACT_APP_CONTACT_US_TEMPLATE_ID,
+        emailData,
+        process.env.REACT_APP_CONTACT_US_USER_ID
+      )
+      .then((response) => {
+        console.log('SUCCESS!', response.status, response.text);
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+          phone: '',
+          date: '',
+          time: '',
+          period: 'AM',
+        });
+        setErrors({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+          phone: '',
+          date: '',
+          time: '',
+        });
+        alert('Email sent successfully!');
+      })
+      .catch((err) => {
+        console.error('EmailJS Error:', err);
+        alert('Failed to send email. Please try again later.');
+      })
+      .finally(() => setIsSending(false));
   };
 
   const isFormValid = () => {
-    const allFieldsFilled = Object.values(formData).every((value) => String(value).trim() !== '');
-    const noErrors = Object.values(errors).every((error) => error === '');
-    return allFieldsFilled && noErrors;
+    return (
+      Object.values(formData).every((value) => value.trim() !== '') &&
+      Object.values(errors).every((error) => error === '')
+    );
   };
 
   return (
     <div className="body">
+      <Helmet>
+        <title>GlamStone - Request a CallBack</title>
+        <meta name="description" content="Request a callback for consultations or quotes." />
+      </Helmet>
       <Container style={{ paddingTop: '56px' }}>
-        <h2 className="text-center mb-4">Request a Callback</h2>
-        {successMessage && <Alert variant="success">{successMessage}</Alert>}
-        {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
+        <Container className="text-center mb-4">
+          <h2 className='hstyle'>Request a CallBack</h2>
+          <p className="pstyle">
+            To schedule a consultation, request a quote, arrange a home visit, or have samples delivered right to your door, we’re here to assist you! Let us help turn your vision into reality at a time that’s most convenient for you. We can’t wait to collaborate with you!
+          </p>
+        </Container>
 
-        <Form onSubmit={handleSubmit}>
-          <Row>
-            <Col md={6}>
-              <Form.Group controlId="formName">
-                <Form.Label>Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter your name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  isInvalid={!!errors.name}
-                />
-                <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
-              </Form.Group>
-            </Col>
-
-            <Col md={6}>
-              <Form.Group controlId="formEmail">
-                <Form.Label>Email</Form.Label>
-                <Form.Control
-                  type="email"
-                  placeholder="Enter your email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  isInvalid={!!errors.email}
-                />
-                <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
-              </Form.Group>
-            </Col>
-          </Row>
-
-          <Row>
-            <Col md={6}>
-              <Form.Group controlId="formPhone">
-                <Form.Label>Phone Number</Form.Label>
-                <Form.Control
-                  type="tel"
-                  placeholder="Enter your phone number"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  isInvalid={!!errors.phone}
-                />
-                <Form.Control.Feedback type="invalid">{errors.phone}</Form.Control.Feedback>
-              </Form.Group>
-            </Col>
-
-            <Col md={6}>
-              <Form.Group controlId="formDate">
-                <Form.Label>Date</Form.Label>
-                <Form.Control
-                  type="date"
-                  name="date"
-                  value={formData.date}
-                  onChange={handleChange}
-                  isInvalid={!!errors.date}
-                />
-                <Form.Control.Feedback type="invalid">{errors.date}</Form.Control.Feedback>
-              </Form.Group>
-            </Col>
-          </Row>
-
-          <Row>
-            <Col md={6}>
-              <Form.Group controlId="formTime">
-                <Form.Label>Time</Form.Label>
-                <Form.Control
-                  type="time"
-                  name="time"
-                  value={formData.time}
-                  onChange={handleChange}
-                  isInvalid={!!errors.time}
-                />
-                <Form.Control.Feedback type="invalid">{errors.time}</Form.Control.Feedback>
-              </Form.Group>
-            </Col>
-
-            <Col md={6}>
-              <Form.Group controlId="formSubject">
-                <Form.Label>Subject</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter the subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  isInvalid={!!errors.subject}
-                />
-                <Form.Control.Feedback type="invalid">{errors.subject}</Form.Control.Feedback>
-              </Form.Group>
-            </Col>
-          </Row>
-
-          <Form.Group controlId="formMessage">
-            <Form.Label>Message</Form.Label>
-            <Form.Control
-              as="textarea"
-              rows={3}
-              placeholder="Enter your message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              isInvalid={!!errors.message}
-            />
-            <Form.Control.Feedback type="invalid">{errors.message}</Form.Control.Feedback>
-          </Form.Group>
-          <br></br>
-          <Button
-            variant="primary"
-            type="submit"
-            className="d-block mx-auto"
-            style={{ backgroundColor: 'darkgoldenrod', color: 'white' }}
-            disabled={isSending || !isFormValid()}
-          >
-            {isSending ? 'Sending...' : 'Send'}
-          </Button>
-        </Form>
+        <Container className="quoteSection p-4 rounded">
+          <h2 className="text-center mb-4 hstyle">Send Us a Message</h2>
+          <Form onSubmit={handleSubmit}>
+            <Row>
+              <Col md={6}>
+                <Form.Group controlId="formName">
+                  <Form.Label>Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter your name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    isInvalid={!!errors.name}
+                  />
+                  <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
+                </Form.Group>
+                <br /> {/* Added <br /> here */}
+              </Col>
+              <Col md={6}>
+                <Form.Group controlId="formEmail">
+                  <Form.Label>Email address</Form.Label>
+                  <Form.Control
+                    type="email"
+                    placeholder="Enter your email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    isInvalid={!!errors.email}
+                  />
+                  <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
+                </Form.Group>
+                <br /> {/* Added <br /> here */}
+              </Col>
+            </Row>
+            <Row>
+              <Col md={6}>
+                <Form.Group controlId="formPhone">
+                  <Form.Label>Phone Number</Form.Label>
+                  <Form.Control
+                    type="tel"
+                    placeholder="Enter your phone number"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    isInvalid={!!errors.phone}
+                  />
+                  <Form.Control.Feedback type="invalid">{errors.phone}</Form.Control.Feedback>
+                </Form.Group>
+                <br /> {/* Added <br /> here */}
+              </Col>
+              <Col md={6}>
+                <Form.Group controlId="formSubject">
+                  <Form.Label>Subject</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter the subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    isInvalid={!!errors.subject}
+                  />
+                  <Form.Control.Feedback type="invalid">{errors.subject}</Form.Control.Feedback>
+                </Form.Group>
+                <br /> {/* Added <br /> here */}
+              </Col>
+            </Row>
+            <Form.Group controlId="formMessage">
+              <Form.Label>Message</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                placeholder="Enter your message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                isInvalid={!!errors.message}
+              />
+              <Form.Control.Feedback type="invalid">{errors.message}</Form.Control.Feedback>
+            </Form.Group>
+            <br /> {/* Added <br /> here */}
+            <Row>
+              <Col md={6}>
+                <Form.Group controlId="formDate">
+                  <Form.Label>Date</Form.Label>
+                  <Form.Control
+                    type="date"
+                    name="date"
+                    value={formData.date}
+                    onChange={handleChange}
+                    isInvalid={!!errors.date}
+                  />
+                  <Form.Control.Feedback type="invalid">{errors.date}</Form.Control.Feedback>
+                </Form.Group>
+                <br /> {/* Added <br /> here */}
+              </Col>
+              <Col md={6}>
+                <Form.Group controlId="formTime">
+                  <Form.Label>Time</Form.Label>
+                  <Form.Control
+                    type="time"
+                    name="time"
+                    value={formData.time}
+                    onChange={handleChange}
+                    isInvalid={!!errors.time}
+                  />
+                  <Form.Control.Feedback type="invalid">{errors.time}</Form.Control.Feedback>
+                </Form.Group>
+                <br /> {/* Added <br /> here */}
+              </Col>
+            </Row>
+            <Button
+              variant="primary"
+              type="submit"
+              className="d-block mx-auto"
+              style={{
+                backgroundColor: 'darkgoldenrod',
+                color: 'white',
+                padding: '12px',
+                borderRadius: '5px',
+                cursor: 'pointer',
+              }}
+              disabled={isSending || !isFormValid()}
+            >
+              {isSending ? 'Sending...' : 'Send'}
+            </Button>
+          </Form>
+        </Container>
       </Container>
     </div>
   );

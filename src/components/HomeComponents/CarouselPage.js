@@ -1,5 +1,6 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
+import { Helmet } from 'react-helmet';  
 import Image1 from '../../Images/kitchen.png';
 import Image2 from '../../Images/livingroom.png';
 import Image3 from '../../Images/bathroom.png';
@@ -48,30 +49,44 @@ const carouselItems = [
 
 const CarouselPage = () => {
   return (
-    <Carousel
-      className="custom-carousel"
-      controls={true} // Enables left/right controls
-      indicators={true} // Enables navigation indicators
-      interval={4000} // Disable auto slide
-      fade={false} // Slide transition instead of fade
-      slide={true} // Smooth sliding animation
-    >
-      {carouselItems.map((item, index) => (
-        <Carousel.Item key={index}>
-          <div className="carousel-image-container">
-            <img
-              className="d-block w-100"
-              src={item.src}
-              alt={`Slide ${index + 1}`}
-            />
-            <div className="carousel-text-overlay">
-              {item.header}
-              {item.text}
+    <div>
+      {/* SEO using React Helmet */}
+      <Helmet>
+        <title>GlamStone Official Website</title>
+        <meta name="description" content="Explore our precision-cut worktops and expertly installed tiles for kitchens, living rooms, and bathrooms that blend style and practicality." />
+        <meta 
+          name="keywords" 
+          content="
+            kitchen worktops, living room tiles, bathroom vanities, home improvement, elegant spaces, custom solutions, luxury design, interior decor, expert craftsmanship, UK services
+          " 
+        />
+      </Helmet>
+
+      <Carousel
+        className="custom-carousel"
+        controls={true} // Enables left/right controls
+        indicators={true} // Enables navigation indicators
+        interval={4000} // Disable auto slide
+        fade={false} // Slide transition instead of fade
+        slide={true} // Smooth sliding animation
+      >
+        {carouselItems.map((item, index) => (
+          <Carousel.Item key={index}>
+            <div className="carousel-image-container">
+              <img
+                className="d-block w-100"
+                src={item.src}
+                alt={`Slide ${index + 1}`}
+              />
+              <div className="carousel-text-overlay">
+                {item.header}
+                {item.text}
+              </div>
             </div>
-          </div>
-        </Carousel.Item>
-      ))}
-    </Carousel>
+          </Carousel.Item>
+        ))}
+      </Carousel>
+    </div>
   );
 };
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import emailjs from 'emailjs-com';
+import { Helmet } from 'react-helmet'; // Import Helmet
 
 const HomeAssistance = () => {
   const [formData, setFormData] = useState({
@@ -129,6 +130,11 @@ const HomeAssistance = () => {
 
   return (
     <div className="body">
+     <Helmet>
+        <title>GlamStone - Home Assistance </title>
+        <meta name="description" content="Welcome to GlamStone. We specialize in delivering precision-cut worktops, floor tiles, wall tiles, and vanities with expert craftsmanship." />
+        <meta name="keywords" content="GlamStone, worktops, floor tiles, wall tiles, vanities" />
+      </Helmet>
       <Container style={{ paddingTop: '56px' }}>
         <Container className="text-center mb-4">
           <h2 className='hstyle'>Request a Home Assistance</h2>
@@ -156,6 +162,8 @@ const HomeAssistance = () => {
                   />
                   <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
                 </Form.Group>
+                <br></br>
+
               </Col>
               <Col md={6}>
                 <Form.Group controlId="formEmail">
@@ -170,6 +178,8 @@ const HomeAssistance = () => {
                   />
                   <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
                 </Form.Group>
+                <br></br>
+
               </Col>
             </Row>
             <Row>
@@ -186,6 +196,8 @@ const HomeAssistance = () => {
                   />
                   <Form.Control.Feedback type="invalid">{errors.phone}</Form.Control.Feedback>
                 </Form.Group>
+                <br></br>
+
               </Col>
               <Col md={6}>
                 <Form.Group controlId="formSubject">
@@ -200,6 +212,8 @@ const HomeAssistance = () => {
                   />
                   <Form.Control.Feedback type="invalid">{errors.subject}</Form.Control.Feedback>
                 </Form.Group>
+                <br></br>
+
               </Col>
             </Row>
             <Form.Group controlId="formMessage">
@@ -215,6 +229,8 @@ const HomeAssistance = () => {
               />
               <Form.Control.Feedback type="invalid">{errors.message}</Form.Control.Feedback>
             </Form.Group>
+            <br></br>
+
             <Row>
               <Col md={6}>
                 <Form.Group controlId="formDate">
@@ -228,6 +244,8 @@ const HomeAssistance = () => {
                   />
                   <Form.Control.Feedback type="invalid">{errors.date}</Form.Control.Feedback>
                 </Form.Group>
+                <br></br>
+
               </Col>
               <Col md={6}>
                 <Form.Group controlId="formTime">
@@ -243,8 +261,7 @@ const HomeAssistance = () => {
                 </Form.Group>
               </Col>
             </Row>
-            <br></br>
-            <Button
+             <Button
               variant="primary"
               type="submit"
               className="d-block mx-auto"

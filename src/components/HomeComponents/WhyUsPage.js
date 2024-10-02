@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Container, Card ,Col , Row} from 'react-bootstrap';
+import { Helmet } from 'react-helmet';  
+import { Container, Card, Col, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTools,
@@ -12,7 +13,7 @@ import {
   faMapMarkedAlt,
   faClock
 } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom'; // Import Link component
+import { Link } from 'react-router-dom';  
 
 // Data for cards
 const cardItems = [
@@ -76,27 +77,40 @@ const WhyUsPage = () => {
   };
 
   return (
-    <Container className="section2 text-center">
-    <h1 className="hstyle">Why Us</h1>
-    <br />
-    <Row>
-      {cardItems.map((item, index) => (
-        <Col key={index} xs={6} md={4} lg={4} className="mb-3"> {/* 2 cards per row on small screens, 3 on medium, 4 on large */}
-          <Card 
-            className={`custom-card ${expandedCard === index ? 'expanded' : 'pulsing'}`}
-            onClick={() => handleCardClick(index)}
-          >
-            <Card.Body>
-              <FontAwesomeIcon icon={item.icon} size="3x" className="mb-3" />
-              <Card.Title>{item.title}</Card.Title>
-              {expandedCard === index && <Card.Text>{item.text}</Card.Text>}
-            </Card.Body>
-          </Card>
-        </Col>
-      ))}
-    </Row>
-  </Container>
-  
+    <>
+      {/* SEO using React Helmet */}
+      <Helmet>
+        <title> GlamStone Official Website</title>
+        <meta name="description" content="Discover why we stand out in worktop, floor tile, and vanity installations with our specialized expertise, personalized service, and commitment to quality." />
+        <meta
+          name="keywords"
+          content="
+            specialized expertise, personalized service, high-end materials, cutting and installation, independent designers, builders collaboration, quality craftsmanship, worktops, vanities, walls, floors, home visit services, quotation options, online quote, home visit quote, sample delivery service, worktop samples, floor tile samples, wall tile samples, weekend availability, bank holiday availability, nationwide coverage, UK worktop services, timely execution, project timelines, home decoration, reliable services
+          "
+        />
+      </Helmet>
+
+      <Container className="section2 text-center">
+        <h1 className="hstyle">Why Us</h1>
+        <br />
+        <Row>
+          {cardItems.map((item, index) => (
+            <Col key={index} xs={6} md={4} lg={4} className="mb-3">
+              <Card 
+                className={`custom-card ${expandedCard === index ? 'expanded' : 'pulsing'}`}
+                onClick={() => handleCardClick(index)}
+              >
+                <Card.Body>
+                  <FontAwesomeIcon icon={item.icon} size="3x" className="mb-3" />
+                  <Card.Title>{item.title}</Card.Title>
+                  {expandedCard === index && <Card.Text>{item.text}</Card.Text>}
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      </Container>
+    </>
   );
 };
 

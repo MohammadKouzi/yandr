@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet'; // Import React Helmet for SEO
 import { Container, Row, Col, Tabs, Tab } from 'react-bootstrap';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import serviceImage from '../Images/service.jpg'; // مسار الصورة النسبي الصحيح
+import serviceImage from '../Images/service.jpg'; 
 
 const Services = () => {
   const [activeTab, setActiveTab] = useState('Precision Cutting');
 
-  // محتوى التابات حسب التاب النشط
+  // Render tab content based on the active tab
   const renderTabContent = () => {
     switch (activeTab) {
       case 'Precision Cutting':
@@ -35,13 +36,25 @@ const Services = () => {
 
   return (
     <div className='body'>
+      {/* SEO using React Helmet */}
+      <Helmet>
+        <title>GlamStone - Our Services </title>
+        <meta name="description" content="Explore the expert services offered by GlamStone, including precision cutting for quartz and porcelain, and professional installation for all your worktop and tile needs." />
+        <meta 
+          name="keywords" 
+          content="
+            precision cutting, quartz cutting, porcelain cutting, floor tiles, wall tiles, vanities, professional installation, home improvement, custom shapes, luxury kitchen design, durable materials, expert craftsmanship, UK services
+          " 
+        />
+      </Helmet>
+
       <Container className='section2'>
         <br />
         <h1 className="text-center hstyle">Our Services</h1>
         <br />
         <Row>
           <Col md={12}>
-            {/* التابات ومحتوى التاب */}
+            {/* Tabs and tab content */}
             <Tabs
               id="service-tabs"
               activeKey={activeTab}
@@ -57,10 +70,10 @@ const Services = () => {
         </Row>
 
         <Row>
-          {/* الصورة الثابتة ومحتوى التاب معاً */}
+          {/* Static image and tab content together */}
           <Col md={6}>
             <LazyLoadImage
-              src={serviceImage} // استخدام الصورة المستوردة
+              src={serviceImage} // Using the imported image
               alt="Service"
               className="service-image img-fluid p-0"
               effect="blur"
@@ -68,7 +81,7 @@ const Services = () => {
           </Col>
 
           <Col md={6}>
-            {/* عرض محتوى التاب حسب التاب النشط */}
+            {/* Display the active tab content */}
             {renderTabContent()}
           </Col>
         </Row>

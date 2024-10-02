@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
 import axios from 'axios';
+import { Helmet } from 'react-helmet'; // Import Helmet
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -81,6 +82,11 @@ const ContactUs = () => {
 
   return (
     <div className="body">
+      <Helmet>
+        <title>GlamStone - Email Us</title>
+        <meta name="description" content="Welcome to GlamStone. We specialize in delivering precision-cut worktops, floor tiles, wall tiles, and vanities with expert craftsmanship." />
+        <meta name="keywords" content="GlamStone, worktops, floor tiles, wall tiles, vanities" />
+      </Helmet>
       <Container style={{ paddingTop: '56px' }}>
         <Container className="text-center mb-4">
           <h2>Email us today</h2>
@@ -127,9 +133,7 @@ const ContactUs = () => {
                   <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
                 </Form.Group>
                 <br></br>
-
               </Col>
-
             </Row>
 
             <Row>
@@ -147,7 +151,6 @@ const ContactUs = () => {
                   <Form.Control.Feedback type="invalid">{errors.phone}</Form.Control.Feedback>
                 </Form.Group>
                 <br></br>
-
               </Col>
 
               <Col md={6}>
@@ -164,9 +167,7 @@ const ContactUs = () => {
                   <Form.Control.Feedback type="invalid">{errors.subject}</Form.Control.Feedback>
                 </Form.Group>
                 <br></br>
-
               </Col>
-
             </Row>
 
             <Form.Group controlId="formMessage">
