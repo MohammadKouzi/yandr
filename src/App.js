@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import WhatsAppTab from "./Uteletis/WhatsAppTab";
+import QuoteTab from "./Uteletis/QuoteTab"; // Import the QuoteTab component
 import HomePage from './components/HomePage';
 import AboutUs from './components/AboutUs';
 import ContactUs from './components/ContactUs';
@@ -12,7 +13,7 @@ import Bathroom from './data/Bathroom';
 import Header from './Uteletis/Header';
 import Footer from './Uteletis/Footer';
 import RequestCallBack from './components/RequestCallBack';
-import HomeAssistance from './components/HomeAssistance'; // Import HomeAssistance component
+import HomeAssistance from './components/HomeAssistance'; 
 import OurSuppliers from './components/OurSuppliers';
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
       <div className="app-container">
         <Header />
         <WhatsAppTab />
+        <QuoteTab /> {/* Add the floating quote button */}
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutUs />} />
@@ -32,7 +34,7 @@ const App = () => {
           <Route path="/livingroom" element={<LivingRoom />} />
           <Route path="/bathroom" element={<Bathroom />} />
           <Route path="/request-call-back" element={<RequestCallBack />} />
-          <Route path="/home-assistance" element={<HomeAssistance />} /> {/* Add this route */}
+          <Route path="/home-assistance" element={<HomeAssistance />} />
         </Routes>
         <Footer />
       </div>

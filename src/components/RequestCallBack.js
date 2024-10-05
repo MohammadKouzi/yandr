@@ -134,9 +134,10 @@ const RequestCallBack = () => {
         <title>GlamStone - Request a CallBack</title>
         <meta name="description" content="Request a callback for consultations or quotes." />
       </Helmet>
-      <Container style={{ paddingTop: '56px' }}>
-        <Container className="text-center mb-4">
-          <h2 className='hstyle'>Request a CallBack</h2>
+      <Container className='section2'>
+        <br />
+        <h1 className="text-center hstyle">Request a Call Back</h1>
+        <br />
           <p className="pstyle">
             To schedule a consultation, request a quote, arrange a home visit, or have samples delivered right to your door, we’re here to assist you! Let us help turn your vision into reality at a time that’s most convenient for you. We can’t wait to collaborate with you!
           </p>
@@ -270,8 +271,7 @@ const RequestCallBack = () => {
             </Button>
           </Form>
         </Container>
-      </Container>
-    </div>
+     </div>
   );
 };
 

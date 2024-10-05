@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Helmet } from 'react-helmet';  
+import { Helmet } from 'react-helmet';
 import { Container, Card, Col, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -11,9 +11,9 @@ import {
   faTruck,
   faCalendarAlt,
   faMapMarkedAlt,
-  faClock
+  faClock,
 } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';  
+import { Link } from 'react-router-dom';
 
 // Data for cards
 const cardItems = [
@@ -42,7 +42,11 @@ const cardItems = [
     title: 'Quotation Options',
     text: (
       <>
-        We provide convenient quotation options both online and through our home visit service. Whether you prefer a quick estimate <Link to="/quote" className="quote-link">via our website</Link> or a more personalized consultation during a home visit, we ensure transparency and accuracy in every quote.
+        We provide convenient quotation options both online and through our home visit service. Whether you prefer a quick estimate{' '}
+        <Link to="/quote" className="quote-link">
+          via our website
+        </Link>{' '}
+        or a more personalized consultation during a home visit, we ensure transparency and accuracy in every quote.
       </>
     ),
   },
@@ -69,41 +73,56 @@ const cardItems = [
 ];
 
 const WhyUsPage = () => {
-  // State to keep track of which card is expanded
   const [expandedCard, setExpandedCard] = useState(null);
 
+  // Function to reset the animation for all cards
+  const resetAnimation = () => {
+    const allCards = document.querySelectorAll('.custom-card'); // Select all cards
+    allCards.forEach((card) => {
+      card.style.animation = 'none'; // Remove animation
+    });
+
+    // Reapply the animation after a short delay to restart it
+    setTimeout(() => {
+      allCards.forEach((card) => {
+        card.style.animation = ''; // Reapply animation
+      });
+    }, 10); // Short delay to trigger reflow
+  };
+
   const handleCardClick = (index) => {
-    setExpandedCard(expandedCard === index ? null : index);
+    resetAnimation(); // Reset the animation for all cards
+    setExpandedCard(expandedCard === index ? null : index); // Toggle the card expansion
   };
 
   return (
     <>
       {/* SEO using React Helmet */}
       <Helmet>
-        <title> GlamStone Official Website</title>
-        <meta name="description" content="Discover why we stand out in worktop, floor tile, and vanity installations with our specialized expertise, personalized service, and commitment to quality." />
+        <title>GlamStone Official Website</title>
         <meta
-          name="keywords"
-          content="
-            specialized expertise, personalized service, high-end materials, cutting and installation, independent designers, builders collaboration, quality craftsmanship, worktops, vanities, walls, floors, home visit services, quotation options, online quote, home visit quote, sample delivery service, worktop samples, floor tile samples, wall tile samples, weekend availability, bank holiday availability, nationwide coverage, UK worktop services, timely execution, project timelines, home decoration, reliable services
-          "
+          name="description"
+          content="Discover why we stand out in worktop, floor tile, and vanity installations with our specialized expertise, personalized service, and commitment to quality."
         />
       </Helmet>
 
       <Container className="section2 text-center">
+        <br />
         <h1 className="hstyle">Why Us</h1>
         <br />
         <Row>
           {cardItems.map((item, index) => (
             <Col key={index} xs={6} md={4} lg={4} className="mb-3">
-              <Card 
-                className={`custom-card ${expandedCard === index ? 'expanded' : 'pulsing'}`}
+              <Card
+                className={`custom-card ${expandedCard === index ? 'expanded' : ''} ${
+                  expandedCard === index ? '' : 'pulsing'
+                }`}
                 onClick={() => handleCardClick(index)}
               >
                 <Card.Body>
                   <FontAwesomeIcon icon={item.icon} size="3x" className="mb-3" />
-                  <Card.Title>{item.title}</Card.Title>
-                  {expandedCard === index && <Card.Text>{item.text}</Card.Text>}
+                  <Card.Title className="card-title">{item.title}</Card.Title>
+                  {expandedCard === index && <Card.Text className="card-text">{item.text}</Card.Text>}
                 </Card.Body>
               </Card>
             </Col>

@@ -9,7 +9,7 @@ import ShapeSelection from './FreeQuote/ShapeSelection';
 import PersonalDetailsForm from './FreeQuote/PersonalDetailsForm';
 import Notes from './FreeQuote/Notes';
 import TermsAndSubmit from './FreeQuote/TermsAndSubmit';
-import { Helmet } from 'react-helmet'; // Import Helmet
+import { Helmet } from 'react-helmet';  
 
 
 const initialFormState = {
@@ -196,10 +196,10 @@ const FreeQuote = () => {
         <title>GalmStone - Free Online Quote</title>
         <meta name="description" content="Request a free quote for your kitchen project and enjoy expert guidance and competitive pricing." />
         </Helmet>
-      <Container style={{ paddingTop: '8px' }}>
-        <Container className="py-5">
-          <h2 className="hstyle text-center mb-4">Free Online Quote</h2>
-
+        <Container className='section2'>
+        <br />
+        <h1 className="text-center hstyle"> Free Online Quote</h1>
+        <br />
           <Form onSubmit={handleSubmit}>
             <MaterialSelection
               materialPhotos={materialPhotos}
@@ -271,9 +271,10 @@ const FreeQuote = () => {
               setTermsAgreed={setTermsAgreed}
             />
           </Form>
+          <div/>
+
         </Container>
-      </Container>
-    </div>
+     </div>
   );
 };
 

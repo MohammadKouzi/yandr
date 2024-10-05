@@ -59,7 +59,7 @@ const Services = () => {
               id="service-tabs"
               activeKey={activeTab}
               onSelect={(key) => setActiveTab(key)}
-              className="mb-3 custom-tabs"
+              className="mb-4 custom-tabs"
               justify
             >
               <Tab eventKey="Precision Cutting" title="Precision Cutting"></Tab>

@@ -7,16 +7,106 @@
 }
 .pstyle {
   color: #5b4a2c;
-  font-size: 24px;
+  font-family: 'Lora', serif; /* Add this line */
+  font-size: 18px; /* Default for mobile */
 }
 
-.servicep {
-  color: #5b4a2c;
-  font-size: 24px;
-  padding-top: px;
+@media (min-width: 768px) {
+  /* Applies to screens larger than 768px (e.g., tablets, desktops) */
+  .pstyle {
+    font-size: 26px; /* Larger font size for larger screens */
+  }
 }
  
- 
+ /* QuoteTab.css */
+ .quote-tab {
+  position: fixed;
+  bottom: 100px;
+  right: 16px;
+  background-color: darkgoldenrod;
+  color: white;
+  padding: 12px ; /* Slightly increased padding */
+  border-radius: 50px;
+  box-shadow: 0px 4px 15px rgba(8, 8, 7, 0.5); /* Soft golden glow */
+  cursor: pointer;
+  text-align: center;
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: bounce 2s infinite ease-in-out; /* Smooth bouncing */
+  overflow: hidden;
+}
+.quote-tab h3{
+  font-size: 14px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+
+}
+.quote-tab svg{
+  margin-top: 10px;
+  height: 18px;
+}
+/* Tooltip or Hint for Clicking */
+.quote-tab::after {
+  content: "Click me!";
+  position: absolute;
+  bottom: 110%;
+  background-color: rgba(0, 0, 0, 0.7); /* Dark background */
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Show tooltip on hover */
+.quote-tab:hover::after {
+  opacity: 1;
+  transform: translateY(0); /* Slide up hint */
+}
+
+/* Modern subtle pulse on hover */
+.quote-tab:hover {
+  transform: scale(1.05); /* Slightly enlarge on hover */
+  box-shadow: 0px 6px 20px rgba(255, 223, 100, 0.7); /* Stronger golden glow */
+}
+
+/* Bouncing Arrow Animation */
+.quote-tab::before {
+  content: "";
+  position: absolute;
+  font-size: 16px;
+  bottom: 8px;
+  animation: bounce-arrow 1.5s infinite ease-in-out;
+  color: white;
+  opacity: 0.7; /* Semi-transparent arrow */
+}
+
+/* Keyframes for the bouncing arrow */
+@keyframes bounce-arrow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px); /* Bouncing motion */
+  }
+}
+
+/* Smooth Bounce Animation for Button */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px); /* Bounce up */
+  }
+}
+
 .HeaderBar {
   background: linear-gradient(120deg, #000000, #4b4b4b, #000000); /* Black to Grey gradient */
   display: flex;
@@ -150,9 +240,11 @@
     z-index: 5;
     position: absolute;
     top: 80px;
-    left: 0; /* إضافة هذه السطر */
+    left: 0;   
     width: 100%;
-    margin: 0; /* تأكد من إزالة أي هوامش */
+    margin: 0;  
+    z-index: 200;
+
   }
  
   
@@ -324,8 +416,7 @@
   color: #aaa;
 }
 
-/* Mobile Responsive behavior */
-/* Mobile Responsive behavior */
+ /* Mobile Responsive behavior */
 @media (max-width: 768px) {
   .footer-row {
     flex-direction: column; /* Stack columns vertically */
@@ -427,19 +518,76 @@
   height: auto;
   transition: transform 0.5s ease;
 }
- /* Grid Container */
-.grid-container {
+  
+ /* General card styles */
+ .custom-card {
+  padding: 20px;
+  height: 300px; /* Set a fixed height */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  background-color: #fff;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 20px auto;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
 }
 
-/* Grid Item */
-.grid-item {
-  flex: 1 1 calc(33% - 30px); /* Adjust width with margin */
-  margin: 15px; /* Margin for spacing between cards */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Title max-height and overflow control */
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+  max-height: 50px; /* Limit title height */
+  overflow: hidden;
+  text-overflow: ellipsis;
+ }
+
+/* Card body alignment */
+.custom-card .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+/* Text content control */
+.card-text {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.custom-card.expanded .card-text {
+  opacity: 1; /* Show text when card is expanded */
+}
+
+/* Hover and expanded effects */
+.custom-card:hover, .custom-card.expanded {
+  transform: scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+ 
+
+/* Responsive for medium screens */
+@media (max-width: 1200px) {
+  .custom-card {
+    height: 280px;
+  }
+}
+
+/* Responsive for small screens */
+@media (max-width: 768px) {
+  .custom-card {
+    height: 260px;
+  }
+  
+  .svg-inline--fa {
+    font-size: 1.5em;
+  }
 }
 /* Pulsing animation */
 @keyframes pulsing {
@@ -456,66 +604,21 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
 }
-/* Custom Card */
-.custom-card {
-  padding: 20px; /* Padding for better content spacing */
-  height: 250px; /* Adjusted height */
-  min-height: 150px; /* Set a minimum height for consistency */
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
-  margin-bottom: 20px;
-  overflow: hidden;
-  border-radius: 12px; /* Rounded corners */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer; /* Indicate that the card is clickable */
-  background: #fff; /* White background for cards */
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
 
 /* Animation when clicked */
 .custom-card.expanded {
   transform: scale(1.05) translateY(-5px); /* Scale up slightly and move up */
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Enhanced shadow for emphasis */
- }
-
-.custom-card:hover {
-  transform: scale(1.02); /* Slight scaling on hover */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
 }
 
-/* Card Body */
-.custom-card .card-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+/* Pulsing effect */
+.custom-card.pulsing {
+  animation: pulsing 2s infinite; 
 }
 
-/* Card Title */
-.custom-card .card-title {
-  padding-top: 10px;
-  color: #695a37;
-  font-weight: bold;
-  margin-bottom: 10px;
-  font-size: 1.2rem; /* Larger font size for titles */
-  text-align: center;
-}
-
-/* Card Text */
-.custom-card .card-text {
-  padding-top: 10px;
-  color: #343a40;
-  text-align: center;
-  word-wrap: break-word;
-  opacity: 0; /* Initially hide the text */
-  transition: opacity 0.3s ease;
-}
-
-/* Show text when card is expanded */
-.custom-card.expanded .card-text {
-  opacity: 1; /* Show the text when clicked */
+/* Remove pulsing when card is not selected */
+.custom-card {
+  animation: none; /* Reset animation when card is not pulsing */
 }
 
 /* SVG Icon */
@@ -541,40 +644,20 @@
   }
   .custom-card .svg-inline--fa {
     width: 0.7em; /* Smaller icon size on smaller screens */
-    height: 0.7em;
-  }
-}
-/* Pulsing animation */
-@keyframes pulsing {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
-  50% {
-    transform: scale(1.01);
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    height: px;
   }
 }
 
-/* Pulsing effect */
-.custom-card.pulsing {
-  animation: pulsing 2s infinite; 
-}
- 
+
 
 /* WhatsApp Tab Styles */
 .whatsapp-tab {
   position: fixed;
   left: 0px;
-  top: 70%;
+  top: 50%;
   transform: translateY(-50%);
   background-color: #25d366;
-  color: #fff;
-  padding: 8px;
+  padding: 2px;
   border-radius: 0 64px 64px 0;
   display: flex;
   align-items: center;
@@ -590,10 +673,14 @@
 .whatsapp-tab h3 {
   margin: 16px;
   font-size: 16px;
+  color: #fff;
+
 }
 
 .whatsapp-tab .icon {
-  margin-left: 16px;
+  margin-left: 8px;
+  color: #fff;
+
 }
 
 .app-container {
@@ -907,9 +994,8 @@
   height: auto;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   margin-bottom: 16px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
+  margin-right:100px;
+  }
 /* Add this to your CSS file */
 .image-gallery {
   position: relative;
@@ -1064,7 +1150,7 @@
   padding: 10px 20px; /* Adjust padding */
   font-size: 16px; /* Adjust font size */
   border-radius: 5px; /* Adjust border radius */
-  cursor: pointer; /* Change cursor on hover */
+  cursor: pointer;  
  }
 
 .quoteForm button:disabled {

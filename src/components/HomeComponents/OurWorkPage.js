@@ -8,17 +8,18 @@ import Image3 from '../../Images/bathroom.png';
 const OurWorkPage = () => {
   return (
     <Container className="our-work-section text-center">
+    <br></br>
       <h1 className="hstyle">Our Work</h1>
 
       {/* Responsive Paragraph Section */}
       <Row className="justify-content-center">
         <Col xs={12} md={10} lg={8}>
-          <p className="subtitle">
+          <p className="pstyle">
             Discover our outstanding craftsmanship in a variety of beautifully crafted spaces.
             From bespoke kitchens to refined living rooms and luxurious bathrooms, 
             every project is tailored with precision and care. 
             <br></br>
-            <strong> Click on the images below to explore our work in detail!</strong>
+            <strong> Click on the images below to explore our work in detail </strong>
           </p>
         </Col>
       </Row>

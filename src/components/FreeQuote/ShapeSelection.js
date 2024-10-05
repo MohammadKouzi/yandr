@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Row, Col, Card, Form } from 'react-bootstrap';
+import { Row, Col, Card, Form, Button } from 'react-bootstrap';
 import upstandsImage from '../../Images/Upstands.jpeg';
 import sinkImage from '../../Images/SinkCutOut.jpeg';
 import hobImage from '../../Images/HobCutOut.jpeg';
@@ -9,6 +9,18 @@ import slopeImage from '../../Images/SlopeDownsSink.jpeg';
 import waterfallImage from '../../Images/WaterfallLegs.jpeg';
 import fullSplashBackImage from '../../Images/FullSplashback.jpeg';
 import windowSillImage from '../../Images/windowsSills.jpeg';
+
+const maxMeasurementsPerShape = {
+    'Upstands': 3,
+    'Sink Cut Out': 2,
+    'Hob Cut Out': 2,
+    'Drainers Grooves': 4,
+    'Hob Splashback': 2,
+    'Slope Down Sink': 3,
+    'Waterfall Legs': 3,
+    'Full Splashback': 2,
+    'Windows Sills': 3
+};
 
 const ShapeSelection = ({ formData, handleChange, errors, setErrors }) => {
     const [selectedShapes, setSelectedShapes] = useState(formData.shape || []);
@@ -26,33 +38,54 @@ const ShapeSelection = ({ formData, handleChange, errors, setErrors }) => {
         if (updatedShapes.length > 0) {
             setErrors((prev) => ({ ...prev, shapeSelection: '' }));
         }
+
+        // If a shape is deselected, clear its associated measurements
+        if (!updatedShapes.includes(label)) {
+            const { [label]: _, ...remainingMeasurements } = shapeMeasurements;
+            setShapeMeasurements(remainingMeasurements);
+            handleChange({ target: { name: 'shapeMeasurement', value: remainingMeasurements } });
+        }
     };
 
-    const handleMeasurementChange = (label, e) => {
-        const value = e.target.value;
+    const handleMeasurementChange = (label, index, value) => {
         const regex = /^\d+\s*x\s*\d+$/;
-    
-        // Check if the value matches "number x number" exactly
-        if (!regex.test(value)) {
+
+        const measurements = shapeMeasurements[label] || [];
+        measurements[index] = value;
+
+        if (value && !regex.test(value)) {
             setErrors((prev) => ({
                 ...prev,
-                [`shapeMeasurement_${label}`]: 'Please enter exactly two numbers in "Width x Height" format, e.g., 300 x 200.',
+                [`shapeMeasurement_${label}_${index}`]: 'Please enter exactly two numbers in "Width x Height" format, e.g., 300 x 200.',
             }));
         } else {
             setErrors((prev) => ({
                 ...prev,
-                [`shapeMeasurement_${label}`]: '',
+                [`shapeMeasurement_${label}_${index}`]: '',
             }));
         }
-    
-        setShapeMeasurements(prev => ({ ...prev, [label]: value }));
-        handleChange({ target: { name: 'shapeMeasurement', value: { ...shapeMeasurements, [label]: value } } });
+
+        setShapeMeasurements(prev => ({ ...prev, [label]: measurements }));
+        handleChange({ target: { name: 'shapeMeasurement', value: { ...shapeMeasurements, [label]: measurements } } });
     };
-    
-    
+
+    const addMeasurement = (label) => {
+        const measurements = shapeMeasurements[label] || [];
+
+        if (measurements.length < maxMeasurementsPerShape[label]) {
+            setShapeMeasurements(prev => ({ ...prev, [label]: [...measurements, ''] }));
+        } else {
+            alert(`You can only add up to ${maxMeasurementsPerShape[label]} measurements for ${label}.`);
+        }
+    };
+
+    const removeMeasurement = (label, index) => {
+        const measurements = shapeMeasurements[label].filter((_, i) => i !== index);
+        setShapeMeasurements(prev => ({ ...prev, [label]: measurements }));
+    };
 
     return (
-        <section>
+        <section style={{ padding: '20px' }}>
             <h2>Select Shapes and Features</h2>
             <Row>
                 {[
@@ -70,10 +103,10 @@ const ShapeSelection = ({ formData, handleChange, errors, setErrors }) => {
                         <Card
                             className={`shape-card ${selectedShapes.includes(label) ? 'selected' : ''}`}
                             onClick={() => handleCardClick(label)}
-                            style={{ cursor: 'pointer' }}
+                            style={{ cursor: 'pointer', padding: '10px' }}
                         >
                             <Card.Img variant="top" src={image} alt={`${label} Image`} />
-                            <Card.Body>
+                            <Card.Body style={{ padding: '15px' }}>
                                 <Card.Title>{label}</Card.Title>
                             </Card.Body>
                         </Card>
@@ -83,21 +116,41 @@ const ShapeSelection = ({ formData, handleChange, errors, setErrors }) => {
             {errors.shapeSelection && <p className="text-danger">{errors.shapeSelection}</p>}
 
             {selectedShapes.length > 0 && selectedShapes.map((shape) => (
-                <Form.Group key={shape} controlId={`shapeMeasurement_${shape}`}>
-                    <h5 className='hstyle'>Shape Measurement for {shape}</h5>
-                    <Form.Control
-                        type="text"
-                        name={`shapeMeasurement_${shape}`}
-                        value={shapeMeasurements[shape] || ''}
-                        onChange={(e) => handleMeasurementChange(shape, e)}
-                        placeholder="Height x Width"
-                        isInvalid={!!errors[`shapeMeasurement_${shape}`]}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                        {errors[`shapeMeasurement_${shape}`]}
-                    </Form.Control.Feedback>
-                    <br />
-                </Form.Group>
+                <div key={shape}>
+                    <h5 className='hstyle' style={{ padding: '10px 0' }}>Enter {shape} Measurements</h5>
+                    {(shapeMeasurements[shape] || []).map((measurement, index) => (
+                        <Form.Group key={index} controlId={`shapeMeasurement_${shape}_${index}`} style={{ marginBottom: '15px' }}>
+                            <Form.Control
+                                type="text"
+                                name={`shapeMeasurement_${shape}_${index}`}
+                                value={measurement}
+                                onChange={(e) => handleMeasurementChange(shape, index, e.target.value)}
+                                placeholder="Width x Height"
+                                isInvalid={!!errors[`shapeMeasurement_${shape}_${index}`]}
+                                style={{ padding: '10px' }}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                {errors[`shapeMeasurement_${shape}_${index}`]}
+                            </Form.Control.Feedback>
+                            <Button variant="danger" onClick={() => removeMeasurement(shape, index)} style={{ marginTop: '10px' }}>Remove</Button>
+                        </Form.Group>
+                    ))}
+                    <div>
+                        <Button
+                            variant="primary"
+                            onClick={() => addMeasurement(shape)}
+                            style={{
+                                backgroundColor: 'darkgoldenrod',
+                                color: 'white',
+                                padding: '12px',
+                                cursor: 'pointer',
+                            }}
+                        >
+                            Add Measurement
+                        </Button>
+                        <hr style={{ margin: '20px 0', border: '3px solid #cccc' }} />
+                    </div>
+                </div>
             ))}
         </section>
     );

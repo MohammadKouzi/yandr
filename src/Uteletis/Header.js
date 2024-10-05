@@ -83,12 +83,14 @@ const Header = () => {
                 Email Us
               </NavDropdown.Item>
               <NavDropdown.Item 
-                as={NavLink} 
-                to="/quote" 
-                onClick={handleNavItemClick}
-              >
-                Free Quote
-              </NavDropdown.Item>
+  as={NavLink} 
+  to="/quote" 
+  onClick={handleNavItemClick}
+  style={{ fontWeight: 'bold', color: 'darkgoldenrod' }} // Apply styles inline
+>
+  Free Quote
+</NavDropdown.Item>
+
               <NavDropdown.Item 
                 as={NavLink} 
                 to="/home-assistance" 

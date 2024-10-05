@@ -37,8 +37,8 @@ const AboutUs = () => {
             </Col>
             <Col xs={12} md={6}>
               <br />
-              <h2 className='hstyle'>GlamStone</h2>
-              <p className='pstyle' style={{ fontSize: '24px' }}>
+              <h2 className='h6style '>GlamStone</h2>
+              <p className='pstyle' >
                 At GlamStone, we specialize in delivering precision-cut and expertly installed worktops, floor tiles, wall tiles, and vanities that elevate the design and functionality of kitchen spaces and beyond. Our reputation is built on a commitment to craftsmanship, ensuring that every project we undertake meets the highest standards of excellence.
               </p>
             </Col>

@@ -135,9 +135,10 @@ const HomeAssistance = () => {
         <meta name="description" content="Welcome to GlamStone. We specialize in delivering precision-cut worktops, floor tiles, wall tiles, and vanities with expert craftsmanship." />
         <meta name="keywords" content="GlamStone, worktops, floor tiles, wall tiles, vanities" />
       </Helmet>
-      <Container style={{ paddingTop: '56px' }}>
-        <Container className="text-center mb-4">
-          <h2 className='hstyle'>Request a Home Assistance</h2>
+      <Container className='section2'>
+      <br />
+        <h1 className="text-center hstyle">Request Home Assistance</h1>
+        <br />
           <p className="pstyle">
             To schedule a consultation, request a quote online, arrange a home visit, or have samples
             delivered to your door. Let us help you bring your vision to life, at a time that suits
@@ -279,8 +280,7 @@ const HomeAssistance = () => {
             </Button>
           </Form>
         </Container>
-      </Container>
-    </div>
+     </div>
   );
 };
 

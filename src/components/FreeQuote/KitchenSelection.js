@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
-import { Row, Col, Card, Form } from 'react-bootstrap';
+import { Row, Col, Card, Form, Button } from 'react-bootstrap';
 import galleyImage from '../../Images/galley.png';
 import lShapeImage from '../../Images/l.png';
 import uShapeImage from '../../Images/u.png';
 import islandShapeImage from '../../Images/island.png';
+
+const maxMeasurementsPerKitchen = {
+    'Gallery': 6,
+    'L Shape': 4,  // عدد قياسات محدد لشكل L
+    'U Shape': 5,  // عدد قياسات محدد لشكل U
+    'Island Shape': 3 // عدد قياسات محدد لشكل Island
+};
 
 const KitchenSelection = ({ formData, handleChange, errors, setErrors }) => {
     const [selectedKitchens, setSelectedKitchens] = useState(formData.kitchen || []);
@@ -17,40 +24,54 @@ const KitchenSelection = ({ formData, handleChange, errors, setErrors }) => {
         setSelectedKitchens(updatedKitchens);
         handleChange({ target: { name: 'kitchen', value: updatedKitchens } });
 
-        // Clear kitchen selection error in parent
         if (updatedKitchens.length > 0) {
             setErrors((prev) => ({ ...prev, kitchenSelection: '' }));
         }
     };
 
-    const handleMeasurementChange = (label, e) => {
-        const value = e.target.value;
+    const handleMeasurementChange = (label, index, value) => {
         const regex = /^\d+\s*x\s*\d+$/;
-    
-        // Check if the value matches "number x number" exactly
-        if (!regex.test(value)) {
+
+        const measurements = kitchenMeasurements[label] || [];
+        measurements[index] = value;
+
+        if (value && !regex.test(value)) {
             setErrors((prev) => ({
                 ...prev,
-                [`kitchenMeasurement_${label}`]: 'Please enter exactly two numbers in "Width x Height" format, e.g., 300 x 200.',
+                [`kitchenMeasurement_${label}_${index}`]: 'Please enter exactly two numbers in "Width x Height" format, e.g., 300 x 200.',
             }));
         } else {
             setErrors((prev) => ({
                 ...prev,
-                [`kitchenMeasurement_${label}`]: '',
+                [`kitchenMeasurement_${label}_${index}`]: '',
             }));
         }
-    
-        setKitchenMeasurements(prev => ({ ...prev, [label]: value }));
-        handleChange({ target: { name: 'kitchenMeasurement', value: { ...kitchenMeasurements, [label]: value } } });
+
+        setKitchenMeasurements(prev => ({ ...prev, [label]: measurements }));
+        handleChange({ target: { name: 'kitchenMeasurement', value: { ...kitchenMeasurements, [label]: measurements } } });
     };
-    
-    
+
+    const addMeasurement = (label) => {
+        const measurements = kitchenMeasurements[label] || [];
+        
+        // Check if current number of measurements is less than the max allowed for the kitchen type
+        if (measurements.length < maxMeasurementsPerKitchen[label]) {
+            setKitchenMeasurements(prev => ({ ...prev, [label]: [...measurements, ''] }));
+        } else {
+            alert(`You can only add up to ${maxMeasurementsPerKitchen[label]} measurements for ${label}.`);
+        }
+    };
+
+    const removeMeasurement = (label, index) => {
+        const measurements = kitchenMeasurements[label].filter((_, i) => i !== index);
+        setKitchenMeasurements(prev => ({ ...prev, [label]: measurements }));
+    };
 
     return (
-        <section>
+        <section style={{ padding: '20px' }}>
             <h2>Select Kitchen Types</h2>
             <Row>
-                {[
+                {[ 
                     { label: 'Gallery', image: galleyImage },
                     { label: 'L Shape', image: lShapeImage },
                     { label: 'U Shape', image: uShapeImage },
@@ -60,10 +81,10 @@ const KitchenSelection = ({ formData, handleChange, errors, setErrors }) => {
                         <Card
                             className={`measurement-card ${selectedKitchens.includes(label) ? 'selected' : ''}`}
                             onClick={() => handleCardClick(label)}
-                            style={{ cursor: 'pointer' }}
+                            style={{ cursor: 'pointer', padding: '10px' }}
                         >
                             <Card.Img variant="top" src={image} alt={`${label} Image`} />
-                            <Card.Body>
+                            <Card.Body style={{ padding: '15px' }}>
                                 <Card.Title>{label}</Card.Title>
                             </Card.Body>
                         </Card>
@@ -73,21 +94,42 @@ const KitchenSelection = ({ formData, handleChange, errors, setErrors }) => {
             {errors.kitchenSelection && <p className="text-danger">{errors.kitchenSelection}</p>}
 
             {selectedKitchens.length > 0 && selectedKitchens.map((kitchen) => (
-                <Form.Group key={kitchen} controlId={`kitchenMeasurement_${kitchen}`}>
-                    <br></br>
-                    <h5 className='hstyle'>Enter {kitchen} Measurement</h5>
-                    <Form.Control
-                        type="text"
-                        name={`kitchenMeasurement_${kitchen}`}
-                        value={kitchenMeasurements[kitchen] || ''}
-                        onChange={(e) => handleMeasurementChange(kitchen, e)}
-                        placeholder="Width x Height"
-                        isInvalid={!!errors[`kitchenMeasurement_${kitchen}`]}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                        {errors[`kitchenMeasurement_${kitchen}`]}
-                    </Form.Control.Feedback>
-                </Form.Group>
+                <div key={kitchen}>
+                    <h5 className='hstyle' style={{ padding: '10px 0' }}>Enter {kitchen} Measurements</h5>
+                    {(kitchenMeasurements[kitchen] || []).map((measurement, index) => (
+                        <Form.Group key={index} controlId={`kitchenMeasurement_${kitchen}_${index}`} style={{ marginBottom: '15px' }}>
+                            <Form.Control
+                                type="text"
+                                name={`kitchenMeasurement_${kitchen}_${index}`}
+                                value={measurement}
+                                onChange={(e) => handleMeasurementChange(kitchen, index, e.target.value)}
+                                placeholder="Width x Height"
+                                isInvalid={!!errors[`kitchenMeasurement_${kitchen}_${index}`]}
+                                style={{ padding: '10px' }}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                {errors[`kitchenMeasurement_${kitchen}_${index}`]}
+                            </Form.Control.Feedback>
+                            <Button variant="danger" onClick={() => removeMeasurement(kitchen, index)} style={{ marginTop: '10px' }}>Remove</Button>
+                        </Form.Group>
+                    ))}
+                    <div>
+    <Button
+        variant="primary"
+        onClick={() => addMeasurement(kitchen)}
+        style={{
+            backgroundColor: 'darkgoldenrod',
+            color: 'white',
+            padding: '12px',
+             cursor: 'pointer',
+        }}
+    >
+        Add Measurement
+    </Button>
+    <hr style={{ margin: '20px 0', border: '3px solid #cccc' }} />
+</div>
+
+                </div>
             ))}
         </section>
     );
