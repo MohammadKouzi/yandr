@@ -7,9 +7,9 @@ import islandShapeImage from '../../Images/island.png';
 
 const maxMeasurementsPerKitchen = {
     'Gallery': 6,
-    'L Shape': 4,  // عدد قياسات محدد لشكل L
-    'U Shape': 5,  // عدد قياسات محدد لشكل U
-    'Island Shape': 3 // عدد قياسات محدد لشكل Island
+    'L Shape': 6,   
+    'U Shape': 6,  
+    'Island Shape': 4  
 };
 
 const KitchenSelection = ({ formData, handleChange, errors, setErrors }) => {

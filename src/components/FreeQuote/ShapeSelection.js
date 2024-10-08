@@ -11,15 +11,15 @@ import fullSplashBackImage from '../../Images/FullSplashback.jpeg';
 import windowSillImage from '../../Images/windowsSills.jpeg';
 
 const maxMeasurementsPerShape = {
-    'Upstands': 3,
-    'Sink Cut Out': 2,
-    'Hob Cut Out': 2,
+    'Upstands': 4,
+    'Sink Cut Out': 4,
+    'Hob Cut Out': 4,
     'Drainers Grooves': 4,
-    'Hob Splashback': 2,
-    'Slope Down Sink': 3,
-    'Waterfall Legs': 3,
-    'Full Splashback': 2,
-    'Windows Sills': 3
+    'Hob Splashback': 4,
+    'Slope Down Sink': 4,
+    'Waterfall Legs': 4,
+    'Full Splashback': 4,
+    'Windows Sills': 4
 };
 
 const ShapeSelection = ({ formData, handleChange, errors, setErrors }) => {
