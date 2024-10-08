@@ -1,0 +1,29 @@
+
+.our-work-link {
+    text-decoration: none;
+    color: inherit; /* Inherit text color for the link */
+  }
+  
+  .our-work-image-container {
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  
+  .our-work-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+  }
+  
+  .our-work-image-container:hover .our-work-image {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+  }
+  
+  .our-work-subtitle {
+    margin-top: 10px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #b8860b; /* White text color for subtitles */
+    transition: color 0.3s ease;
+  }

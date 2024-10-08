@@ -1,0 +1,160 @@
+/* Style for selected cards */
+.measurement-card.selected,
+.feature-card.selected,
+.shape-card.selected {
+  border: 2px solid #b8860b;
+  background: linear-gradient(135deg, #604706 0%, #fbdea7 100%);
+  transform: scale(1.05); /* Slightly enlarge the selected card */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transition for hover and selection */
+  color: white; /* Change text color to white when selected */
+}
+
+/* Add hover effect for all cards */
+.measurement-card:hover,
+.feature-card:hover,
+.shape-card:hover {
+  transform: scale(1.03); /* Slightly enlarge on hover */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Add padding between cards */
+.measurement-card,
+.feature-card,
+.shape-card {
+  margin-bottom: 20px; /* Space between rows of cards */
+  padding: 10px; /* Inner padding for the card content */
+}
+
+/* Text styling for selected cards */
+.measurement-card.selected .card-title,
+.feature-card.selected .card-title,
+.shape-card.selected .card-title {
+  color: white; /* Ensure the text inside the selected card is white */
+  
+}
+
+/* Ensure the text inside the card body is white when selected */
+.measurement-card.selected .card-body,
+.feature-card.selected .card-body,
+.shape-card.selected .card-body {
+  color: white;
+}
+  /* Common Card Styles for KitchenSelection and ShapeSelection */
+.measurement-card, .shape-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+}
+
+.measurement-card:hover, .shape-card:hover {
+    transform: scale(1.05);
+ }
+ 
+
+/* General styles for images */
+.material-item {
+    cursor: pointer;
+    position: relative;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center; /* Center-align the text */
+  }
+  
+  .material-item img {
+    margin-bottom: 10px; /* Add margin below the image to create space between the image and text */
+    max-width: 100%; /* Ensure the image is responsive */
+   }
+  
+  .material-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .material-item.selected {
+    border: 2px solid #b8860b;
+    background: linear-gradient(135deg, #604706 0%, #fbdea7 100%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transform: scale(1.02);
+    z-index: 1;
+    color: #ffffff; /* Set text color to white */
+  }
+/*quote*/
+
+.quoteSection {
+    margin-bottom: 40px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.5); /* Dark transparent background */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .quoteSection h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color:  #cda765;
+  }
+  
+  .quoteSection p {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #555;
+  }
+   
+  
+  .manufacturer-photo  {
+    text-align: center;
+    
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+  
+   
+  
+  .quoteForm .form-group {
+    margin-bottom: 30px;
+  }
+  
+  .quoteForm input[type="text"], 
+  .quoteForm input[type="email"], 
+  .quoteForm input[type="radio"] {
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+  }
+  
+  .quoteForm input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  .quoteForm label {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .quoteForm button {
+    margin-top: 16px;
+    background-color:  #cda765; /* Adjust the background color */
+    color: white; /* Adjust text color */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Adjust padding */
+    font-size: 16px; /* Adjust font size */
+    border-radius: 5px; /* Adjust border radius */
+    cursor: pointer;  
+   }
+  
+  .quoteForm button:disabled {
+    margin-top: 16px;
+    background-color:  #d5ba8a; /* Disabled button background color */
+    cursor: not-allowed; /* Change cursor on disabled */
+  } 
+  /*  header color */
+  .quote-link {
+    color: #b8860b; 
+    text-decoration: none; /* Remove underline */
+    font-weight: bold;
+    transition: color 0.3s, text-shadow 0.3s;
+  }
+  

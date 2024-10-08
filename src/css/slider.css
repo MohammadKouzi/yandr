@@ -1,0 +1,35 @@
+.slider-image {
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease; /* Smoother transition */
+  border-radius: 8px; /* Rounded corners for a more polished look */
+  width: 100%; /* Make sure images are responsive */
+  max-width: 350px; /* Limit maximum width for larger screens */
+  margin: 10px; /* Add margin to create space between images */
+}
+
+.slider-image:hover {
+  transform: scale(1.15); /* Scale slightly larger */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Add a shadow to give a lifting effect */
+}
+
+.slider-row {
+  margin-bottom: 20px; /* Add space between rows */
+  display: flex; /* Use flexbox to align items */
+  flex-wrap: wrap; /* Allow items to wrap onto the next line */
+  justify-content: space-between; /* Space out items evenly */
+}
+
+/* تصميم الشاشات الصغيرة */
+@media (max-width: 768px) {
+  .slider-image {
+    max-width: 200px; /* Reduce image size on smaller screens */
+    margin: 5px; /* Adjust margin for smaller screens */
+  }
+
+  .image-wrapper {
+    padding: 10px; /* Adjust padding for mobile screens */
+  }
+
+  .slider-row {
+    margin-bottom: 15px; /* Reduce space between rows on mobile */
+  }
+}

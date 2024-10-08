@@ -1,0 +1,43 @@
+/* Body Styles */
+.body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    background-image: url('/src/Images/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed; /* This will keep the background in place */
+    flex: 1;
+  }
+  
+  
+  /* Sections */
+  .section1 {
+    position: relative;
+    padding-right: 800px;
+    white-space: nowrap;
+    padding-bottom: 50px;
+  }
+  
+  .section2 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .app-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .body {
+    position: relative;
+    min-height: 100vh; /* Ensure body takes at least the full height of the viewport */
+  }
+  @media screen and (max-width: 768px) {
+    .section2 {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  }
+  

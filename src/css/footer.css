@@ -1,0 +1,149 @@
+
+.footer {
+    background-color: #363636;
+    color: #fff;
+    padding: 24px 0px 0px 0px;
+    box-sizing: border-box; /* Ensure padding is included within element's width/height */
+  }
+  
+  /* Flexbox layout for centering footer rows */
+  .footer-row {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: flex-start; /* Top align all columns */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    gap: 40px; /* Flexible spacing between columns */
+  }
+  
+  /* Footer column styling */
+  .footer-column {
+    flex: 1;
+    max-width: 300px; /* Optional max-width for columns */
+    padding: 20px;
+    text-align: center; /* Center content inside columns */
+  }
+  
+  .footer h3 {
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  
+  .footer p, .footer-links li {
+    font-size: 14px;
+    color: #ccc;
+    line-height: 1.6;
+  }
+  
+  /* Footer Links Styling */
+  .footer-links {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-links li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-links a {
+    color: #ccc;
+    text-decoration: none;
+  }
+  
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Contact Information Section */
+  .contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 10px 0;
+    text-align: center; /* Ensure the "Contact Us" section is centered */
+  }
+  
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .contact-icon {
+    margin-right: 5px;
+  }
+  
+  .contact-link {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .contact-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Footer Bottom Styling */
+  .footer2-bottom {
+    background: linear-gradient(120deg, 
+      rgb(59, 48, 10) 0%,   /* Darker gold */
+      rgb(191, 149, 10) 50%,  /* Mid-tone gold */
+      rgb(59, 48, 10) 100%   /* Darker gold */);
+    height: 40px;
+  }
+  
+  .footer-bottom {
+    background-color: #222;
+    padding: 15px 0;
+  }
+  
+  .footer-bottom p {
+    margin: 0;
+    color: #aaa;
+  }
+  
+   /* Mobile Responsive behavior */
+   @media (max-width: 768px) {
+    .footer-row {
+      flex-direction: column; /* Stack columns vertically */
+      gap: 0px; /* Adjust gap between sections */
+      justify-content: center; /* Center all sections horizontally on mobile */
+      align-items: center; /* Center all sections horizontally */
+    }
+  
+    .footer-column {
+      max-width: 100%; /* Allow full width on smaller screens */
+      padding: 10px; /* Reduce padding for smaller screens */
+      text-align: center; /* Center text within the column */
+    }
+  
+    .footer-links li {
+      margin-bottom: 8px; /* Reduce margin between list items */
+    }
+  
+    .footer h3 {
+      font-size: 18px; /* Reduce font size for headings */
+      margin-bottom: 15px;
+    }
+  
+    .footer p, .footer-links li {
+      font-size: 12px; /* Adjust font size for smaller devices */
+    }
+  
+    .contact-info {
+      gap: 30px; /* Reduced gap for better spacing between contact items */
+      text-align: center; /* Center the contact details */
+    }
+  
+    .contact-icon {
+      margin-right: 8px; /* Add margin between the icon and text */
+      font-size: 16px; /* Adjust icon size for smaller screens */
+    }
+  
+  
+  .contact-icon {
+    font-size: 14px; /* Adjust icon size for very small screens */
+  }
+  .contact-info {
+    gap: 24px; /* No gap between contact items on very small screens */
+    text-align: center; /* Ensure the "Contact Us" section is centered */
+  }
+   }  

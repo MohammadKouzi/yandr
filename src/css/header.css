@@ -1,0 +1,190 @@
+.HeaderBar {
+    background: linear-gradient(120deg, #000000, #4b4b4b, #000000); /* Black to Grey gradient */
+    display: flex;
+    width: 100%;
+    align-items: center;
+    height: 80px;
+    position: relative;
+    border-top: 2px solid #d4af37; /* Elegant golden border on top */
+    border-bottom: 2px solid #d4af37; /* Elegant golden border on bottom */
+    background-image: 
+      radial-gradient(circle at 10% 10%, rgba(0, 0, 0, 0.7) 100%, transparent 80%),
+      linear-gradient(120deg, rgba(0, 0, 0, 0.6) 25%, transparent 25%, 
+      transparent 75%, rgba(0, 0, 0, 0.3) 75%),
+      linear-gradient(to top, rgba(0, 0, 0, .5) 50%, transparent 100%); /* Subtle effects */
+    background-size: cover, cover, cover;
+    background-blend-mode: overlay; /* Blends gradients together */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+  }
+  
+  /* Burger Icon and Logo Container */
+  .header .container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Aligns items to the start of the container */
+  }
+  
+  .HeaderBar .navbar-toggler {
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners for a modern look */
+    padding: 10px; /* Add padding for better click area */
+    margin-right: 20px; /* Add margin-right to separate it from the logo */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition effects */
+    order: 1; /* Ensure the burger menu comes first */
+  }
+  
+  /* Logo Styling */
+  .header .logo {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;  
+    order: 2;  
+  }
+  
+  /* Styling for header items */
+  .HeaderItem {
+    color: #eec174 !important;  
+    margin-left: 60px;
+    margin-right: 60px;
+    font-size: 1.2rem;  
+    font-family: 'Poppins', sans-serif;
+    transition: color 0.3s ease-in-out; /* Adding transition for color change */
+  }
+   
+  /* Styling for nav links and dropdown toggle */
+  .HeaderBar .nav-link,
+  .HeaderBar .nav-item .dropdown-toggle {
+    color: #cda765 !important;
+    transition: color 0.3s ease;
+  }
+  
+  .HeaderBar .nav-link:hover,
+  .HeaderBar .nav-item .dropdown-toggle:hover,
+  .header nav ul li a:hover {
+    color: #d4af37 !important;  
+  }
+  
+  /* Navigation Styling */
+  .header nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  .header nav ul li {
+    margin-left: 20px;
+  }
+  
+  .header nav ul li a {
+    text-decoration: none;
+    color: #f0f0f0;  
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  /* CTA Button Styling */
+  .header .cta-button {
+    transition: background-color 0.3s ease;
+  }
+  
+  .header .cta-button:hover {
+    background-color: #5b4a2c;
+  }
+  
+  .navbar-collapse {
+    flex: 2;
+    justify-content: center;
+  }
+   
+  /* Header Link Styling */
+  .headerLink {
+    color: #eec174;
+    margin: 0 1rem;
+    text-align: center;
+    font-size: 1rem;
+  }
+  
+  /* Navbar Navigation Styling */
+  .navbar-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    
+  }
+  
+  /* Media Query for Mobile */
+  @media (max-width: 768px) {
+    .navbar-collapse {
+      background: linear-gradient(90deg, #1e1e1e, #4b4b4b);
+      padding: 1rem;
+      z-index: 5;
+      position: absolute;
+      top: 80px;
+      left: 0;   
+      width: 100%;
+      margin: 0;  
+      z-index: 200;
+  
+    }
+   
+    
+  
+    
+    .navbar-nav {
+      flex-direction: column;
+    }
+  
+    .headerLink {
+      margin: 0.5rem 0; /* Adjusted margin for mobile view */
+      text-align: center;
+      
+    }
+  }
+  
+  /* Header Content Styling */
+  .header-content {
+    position: relative;
+    z-index: 3;
+    color: #d4af37; /* Gold color */
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem; /* Larger font size for emphasis */
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Subtle text shadow for better readability */
+  }
+  
+  /* Style for the Burger Menu Icon */
+  .HeaderBar .navbar-toggler-icon {
+    background-image: none; /* Remove default background image */
+    width: 30px; /* Adjust size as needed */
+    height: 30px; /* Adjust size as needed */
+    position: relative; /* Position relative for the lines */
+  }
+  
+  .HeaderBar .navbar-toggler-icon::before,
+  .HeaderBar .navbar-toggler-icon::after {
+    content: "";
+    display: block;
+    width: 30px; /* Adjust width to match icon size */
+    height: 3px; /* Adjust thickness of lines */
+    background-color: #d4af37; /* Yellow color for lines */
+    position: absolute;
+    left: 0;
+    transition: transform 0.3s ease;
+  }
+  
+  .HeaderBar .navbar-toggler-icon::before {
+    top: 5px; /* Adjust spacing from the top */
+  }
+  
+  .HeaderBar .navbar-toggler-icon::after {
+    top: 20px; /* Adjust spacing for the second line */
+  }
+  

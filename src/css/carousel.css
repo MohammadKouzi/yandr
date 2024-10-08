@@ -1,0 +1,107 @@
+ /* Ensure carousel controls are clickable */
+ .carousel-control-prev, .carousel-control-next {
+    z-index: 5; /* Increase z-index to ensure controls are on top of other elements */
+    pointer-events: all; /* Ensure pointer events are enabled */
+  }
+  
+  /* Style for control icons */
+  .carousel-control-prev-icon, .carousel-control-next-icon {
+     padding: 10px;
+    border-radius: 50%; /* Round control buttons */
+  }
+  
+  /* Carousel container */
+  .custom-carousel {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Image container */
+  .carousel-image-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Image styles */
+  .carousel-image-container img {
+    width: 100%;
+    height: auto;
+    max-height: 700px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.8s ease; /* Add smooth image transition */
+  }
+  
+  /* Text overlay */
+  .carousel-text-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1; /* Ensure text overlay is below controls */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease; /* Smooth fade-in effect */
+  }
+  
+  /* Fade-in effect for overlay when slide becomes active */
+  .carousel-item.active .carousel-text-overlay {
+    opacity: 1;
+    transform: translateY(0); /* Moves the text to its final position */
+  }
+  
+  /* Header styles */
+  .carouselHeader {
+    margin: 0;
+    font-size: 2em;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  
+  /* Paragraph styles */
+  .carouselParagraph {
+    margin: 10px 0 0;
+    font-size: 1.2em;
+    line-height: 1.5;
+  }
+  
+  /* Responsive styles for medium screens */
+  @media (max-width: 768px) {
+    .carousel-text-overlay {
+      padding: 15px;
+    }
+  
+    .carouselHeader {
+      font-size: 1.5em;
+    }
+  
+    .carouselParagraph {
+      font-size: 1em;
+    }
+  }
+  
+  /* Responsive styles for small screens */
+  @media (max-width: 576px) {
+    .carousel-text-overlay {
+      padding: 10px;
+    }
+  
+    .carouselHeader {
+      font-size: 1.2em;
+    }
+  
+    .carouselParagraph {
+      font-size: 0.9em;
+    }
+  }
+  
+  

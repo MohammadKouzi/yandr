@@ -1,0 +1,93 @@
+/* Custom pagination styles */
+.pagination {
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .pagination .page-item {
+    margin: 0 5px;
+  }
+  
+  .pagination .page-link {
+    color: #cda765; /* Primary color for the pagination links */
+    background-color: #fff;
+    border: 1px solid #cda765;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  }
+  
+  .pagination .page-link:hover {
+    color: #fff;
+    background-color: #cda765;
+    border-color: #cda765;
+    text-decoration: none;
+  }
+  
+  .pagination .page-item.active .page-link {
+    color: #fff;
+    background-color: #cda765;
+    border-color: #cda765;
+  }
+  
+  .pagination .page-link:focus {
+    box-shadow: none;
+  }
+     
+    
+  .close-button, .nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+  }
+  
+  .close-button {
+    right: 20px;
+  }
+  
+  .nav-button {
+    background: rgba(0, 0, 0, 0.6);
+  }
+  
+  .prev {
+    left: 20px;
+  }
+  
+  .next {
+    right: 70px;
+  }
+  
+  .nav-button:hover, .close-button:hover {
+    background: rgba(0, 0, 0, 0.8);
+  }
+  
+  .fade-in {
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+  }
+  
+  .fade-in {
+    opacity: 1;
+  }
+  
+  .photo {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out; /* Fade-in effect */
+  }
+  
+  .photo.loaded {
+    opacity: 1; /* Fully visible */
+  }
+  

@@ -4,16 +4,16 @@ import WhatsAppTab from "./Uteletis/WhatsAppTab";
 import QuoteTab from "./Uteletis/QuoteTab"; // Import the QuoteTab component
 import HomePage from './components/HomePage';
 import AboutUs from './components/AboutUs';
-import ContactUs from './components/ContactUs';
+import ContactUs from './components/contacting/ContactUs';
 import Services from './components/Services';
-import FreeQuote from './components/FreeQuote';
+import FreeQuote from './components/contacting/FreeQuote';
 import Kitchen from './data/Kitchen';
 import LivingRoom from './data/LivingRoom';
 import Bathroom from './data/Bathroom';
 import Header from './Uteletis/Header';
 import Footer from './Uteletis/Footer';
-import RequestCallBack from './components/RequestCallBack';
-import HomeAssistance from './components/HomeAssistance'; 
+import RequestCallBack from './components/contacting/RequestCallBack';
+import HomeAssistance from './components/contacting/HomeAssistance'; 
 import OurSuppliers from './components/OurSuppliers';
 
 const App = () => {

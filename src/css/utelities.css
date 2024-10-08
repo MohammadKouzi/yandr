@@ -1,0 +1,125 @@
+/* WhatsApp Tab Styles */
+.whatsapp-tab {
+    position: fixed;
+    left: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #25d366;
+    padding: 2px;
+    border-radius: 0 64px 64px 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: width 0.3s;
+    z-index: 10;
+  }
+  
+  .whatsapp-tab:hover {
+    background-color: #1fb255;
+  }
+  
+  .whatsapp-tab h3 {
+    margin: 16px;
+    font-size: 16px;
+    color: #fff;
+  
+  }
+  
+  .whatsapp-tab .icon {
+    margin-left: 8px;
+    color: #fff;
+  
+  }
+/* QuoteTab.css */
+.quote-tab {
+    position: fixed;
+    bottom: 100px;
+    right: 16px;
+    background-color: darkgoldenrod;
+    color: white;
+    padding: 12px ; /* Slightly increased padding */
+    border-radius: 50px;
+    box-shadow: 0px 4px 15px rgba(8, 8, 7, 0.5); /* Soft golden glow */
+    cursor: pointer;
+    text-align: center;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: bounce 2s infinite ease-in-out; /* Smooth bouncing */
+    overflow: hidden;
+  }
+  .quote-tab h3{
+    font-size: 14px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+  
+  }
+  .quote-tab svg{
+    margin-top: 10px;
+    height: 18px;
+  }
+  /* Tooltip or Hint for Clicking */
+  .quote-tab::after {
+    content: "Click me!";
+    position: absolute;
+    bottom: 110%;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark background */
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  /* Show tooltip on hover */
+  .quote-tab:hover::after {
+    opacity: 1;
+    transform: translateY(0); /* Slide up hint */
+  }
+  
+  /* Modern subtle pulse on hover */
+  .quote-tab:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0px 6px 20px rgba(255, 223, 100, 0.7); /* Stronger golden glow */
+  }
+  
+  /* Bouncing Arrow Animation */
+  .quote-tab::before {
+    content: "";
+    position: absolute;
+    font-size: 16px;
+    bottom: 8px;
+    animation: bounce-arrow 1.5s infinite ease-in-out;
+    color: white;
+    opacity: 0.7; /* Semi-transparent arrow */
+  }
+  
+  /* Keyframes for the bouncing arrow */
+  @keyframes bounce-arrow {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(5px); /* Bouncing motion */
+    }
+  }
+  
+  /* Smooth Bounce Animation for Button */
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px); /* Bounce up */
+    }
+  }
+  
+  
+  
+  
+    
