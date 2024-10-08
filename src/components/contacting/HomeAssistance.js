@@ -171,6 +171,7 @@ const HomeAssistance = () => {
                 />
                 <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
               </Form.Group>
+              <br></br>
             </Col>
             <Col md={6}>
               <Form.Group controlId="formEmail">
@@ -185,6 +186,8 @@ const HomeAssistance = () => {
                 />
                 <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
               </Form.Group>
+              <br></br>
+
             </Col>
           </Row>
 
@@ -202,6 +205,8 @@ const HomeAssistance = () => {
                 />
                 <Form.Control.Feedback type="invalid">{errors.phone}</Form.Control.Feedback>
               </Form.Group>
+              <br></br>
+
             </Col>
             <Col md={6}>
               <Form.Group controlId="formSubject">
@@ -216,6 +221,8 @@ const HomeAssistance = () => {
                 />
                 <Form.Control.Feedback type="invalid">{errors.subject}</Form.Control.Feedback>
               </Form.Group>
+              <br></br>
+
             </Col>
           </Row>
 
@@ -232,6 +239,8 @@ const HomeAssistance = () => {
             />
             <Form.Control.Feedback type="invalid">{errors.message}</Form.Control.Feedback>
           </Form.Group>
+          <br></br>
+
 
           <Row>
             <Col md={6}>
@@ -246,6 +255,8 @@ const HomeAssistance = () => {
                 />
                 <Form.Control.Feedback type="invalid">{errors.date}</Form.Control.Feedback>
               </Form.Group>
+              <br></br>
+
             </Col>
             <Col md={6}>
               <Form.Group controlId="formTime">
@@ -259,6 +270,7 @@ const HomeAssistance = () => {
                 />
                 <Form.Control.Feedback type="invalid">{errors.time}</Form.Control.Feedback>
               </Form.Group>
+ 
             </Col>
          
           </Row>
