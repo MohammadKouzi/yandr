@@ -147,3 +147,88 @@
     text-align: center; /* Ensure the "Contact Us" section is centered */
   }
    }  
+  /* Social Media Icon Container */
+.social-media-container {
+  display: flex; /* Flexbox to align horizontally */
+  justify-content: center; /* Center icons horizontally */
+  gap: 20px; /* Space between icons */
+  padding: 20px 0; /* Padding to create space around icons */
+}
+
+  /* Social Media Container Styling */
+.social-media-container {
+  display: flex; /* Flexbox to align icons horizontally */
+  justify-content: center; /* Center icons horizontally */
+  gap: 20px; /* Space between icons */
+  padding: 20px 0; /* Padding to create space around icons */
+}
+
+/* Social Media Icon Styling */
+.social-icon {
+  font-size: 24px; /* Icon size */
+  color: #ffffff; /* Default color (black) */
+  transition: color 0.3s, transform 0.3s, background-color 0.3s; /* Smooth transition for hover effects */
+  padding: 6px; /* Space around icon */
+  border-radius: 50%; /* Circular background */
+  display: flex; /* Center icon in its circle */
+  align-items: center; /* Center align items vertically */
+  justify-content: center; /* Center align items horizontally */
+}
+
+ 
+
+/* Optional: Add specific hover colors for each social media icon */
+.social-icon.facebook:hover {
+  background: linear-gradient(135deg, #3b5998, #8b9dc3); /* Facebook gradient */
+  color: #ffffff; /* Default color   */
+
+} 
+
+.social-icon.instagram:hover {
+  background: linear-gradient(135deg, #E1306C, #F1B1A1); /* Instagram gradient */
+  color: #ffffff; /* Default color   */
+
+}
+
+.social-icon.twitter:hover {
+  background: linear-gradient(135deg, #1DA1F2, #A1C4FD); /* Twitter gradient */
+  color: #ffffff; /* Default color   */
+
+}
+
+.social-icon.youtube:hover {
+  background: linear-gradient(135deg, #FF0000, #FF6F61); /* YouTube gradient */
+  color: #ffffff; /* Default color   */
+
+}
+
+.social-icon.snapchat:hover {
+  background: linear-gradient(135deg, #807e00, #FFEA00); /* Snapchat gradient */
+  color: #ffffff; /* Default color   */
+
+}
+
+ /* Responsive Adjustments */
+@media (max-width: 768px) {
+  .social-icon {
+    font-size: 20px; /* Reduce icon size for mobile */
+    padding: 8px; /* Reduce padding */
+  }
+
+  .social-media-container {
+    gap: 15px; /* Reduce space between icons */
+    padding: 15px 0; /* Reduce padding for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .social-icon {
+    font-size: 18px; /* Further reduce icon size for very small screens */
+    padding: 6px; /* Further reduce padding */
+  }
+
+  .social-media-container {
+    gap: 10px; /* Further reduce space between icons */
+    padding: 10px 0; /* Further reduce padding for very small screens */
+  }
+}

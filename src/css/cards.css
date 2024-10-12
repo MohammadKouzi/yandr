@@ -1,130 +1,128 @@
- /* General card styles */
- .custom-card {
-    padding: 20px;
-    height: 300px; /* Set a fixed height */
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    border-radius: 12px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow: hidden;
+/* General card styles */
+.custom-card {
+  padding: 20px;
+  height: 300px; /* Set a fixed height */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+/* Title max-height and overflow control */
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+  max-height: 50px; /* Limit title height */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Card body alignment */
+.custom-card .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+/* Text content control */
+.card-text {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.custom-card.expanded .card-text {
+  opacity: 1; /* Show text when card is expanded */
+}
+
+/* Hover and expanded effects */
+.custom-card:hover,
+.custom-card.expanded {
+  transform: scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive for medium screens */
+@media (max-width: 1200px) {
+  .custom-card {
+    height: 280px;
   }
-  
-  /* Title max-height and overflow control */
-  .card-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-    text-align: center;
-    max-height: 50px; /* Limit title height */
-    overflow: hidden;
-    text-overflow: ellipsis;
-   }
-  
-  /* Card body alignment */
-  .custom-card .card-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
+}
+
+/* Responsive for small screens */
+@media (max-width: 768px) {
+  .custom-card {
+    height: 260px;
   }
-  
-  /* Text content control */
-  .card-text {
-    opacity: 0;
-    transition: opacity 0.3s ease;
+
+  .svg-inline--fa {
+    font-size: 2em; /* Increase icon size on smaller screens */
   }
-  
-  .custom-card.expanded .card-text {
-    opacity: 1; /* Show text when card is expanded */
+}
+
+/* Pulsing animation */
+@keyframes pulsing {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
-  
-  /* Hover and expanded effects */
-  .custom-card:hover, .custom-card.expanded {
-    transform: scale(1.05);
+  50% {
+    transform: scale(1.01);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
   }
-  
-   
-  
-  /* Responsive for medium screens */
-  @media (max-width: 1200px) {
-    .custom-card {
-      height: 280px;
-    }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
-  
-  /* Responsive for small screens */
-  @media (max-width: 768px) {
-    .custom-card {
-      height: 260px;
-    }
-    
-    .svg-inline--fa {
-      font-size: 1.5em;
-    }
+}
+
+/* Animation when clicked */
+.custom-card.expanded {
+  transform: scale(1.05) translateY(-5px); /* Scale up slightly and move up */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Enhanced shadow for emphasis */
+}
+
+/* Pulsing effect */
+.custom-card.pulsing {
+  animation: pulsing 2s infinite;
+}
+
+/* Remove pulsing when card is not selected */
+.custom-card {
+  animation: none; /* Reset animation when card is not pulsing */
+}
+
+/* SVG Icon */
+.custom-card .svg-inline--fa {
+  color: #A28B55;
+  margin-bottom: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .grid-item {
+    flex: 1 1 calc(50% - 30px); /* Two cards per row for medium screens */
   }
-  /* Pulsing animation */
-  @keyframes pulsing {
-    0% {
-      transform: scale(1);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-    50% {
-      transform: scale(1.01);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
-    }
-    100% {
-      transform: scale(1);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-  }
-  
-  /* Animation when clicked */
-  .custom-card.expanded {
-    transform: scale(1.05) translateY(-5px); /* Scale up slightly and move up */
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Enhanced shadow for emphasis */
-  }
-  
-  /* Pulsing effect */
-  .custom-card.pulsing {
-    animation: pulsing 2s infinite; 
-  }
-  
-  /* Remove pulsing when card is not selected */
-  .custom-card {
-    animation: none; /* Reset animation when card is not pulsing */
-  }
-  
-  /* SVG Icon */
   .custom-card .svg-inline--fa {
-    color: #A28B55;
-    margin-bottom: 10px;
+    width: 1.2em; /* Increase icon size on medium screens */
+    height: 1.2em;
   }
-  
-  /* Responsive adjustments */
-  @media (max-width: 1200px) {
-    .grid-item {
-      flex: 1 1 calc(50% - 30px); /* Two cards per row for medium screens */
-    }
-    .custom-card .svg-inline--fa {
-      width: 0.7em; /* Smaller icon size on smaller screens */
-      height: 0.7em;
-    }
+}
+
+@media (max-width: 768px) {
+  .grid-item {
+    flex: 1 1 100%; /* Full width for smaller screens */
   }
-  
-  @media (max-width: 768px) {
-    .grid-item {
-      flex: 1 1 calc(50% - 30px); /* Full width for smaller screens */
-    }
-    .custom-card .svg-inline--fa {
-      width: 0.7em; /* Smaller icon size on smaller screens */
-      height: px;
-    }
+  .custom-card .svg-inline--fa {
+    width: 1.1em; /* Larger icon size on smaller screens */
+    height: 1.1em; /* Ensure height matches width for uniformity */
   }
-  
-  
+}
