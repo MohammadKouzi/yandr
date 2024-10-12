@@ -6,8 +6,8 @@ const PersonalDetailsForm = ({ formData, handleChange, errors }) => (
     <h2>Personal Details</h2>
     
     <Row>
-      <Col md={6}>
-        <Form.Group controlId="formName" className="mb-3"> {/* Added margin-bottom class here */}
+      <Col lg={6} sm={12}>
+        <Form.Group controlId="formName" className="mb-3"> 
           <Form.Label className="mb-1">Name</Form.Label> 
           <Form.Control 
             type="text" 
@@ -21,8 +21,8 @@ const PersonalDetailsForm = ({ formData, handleChange, errors }) => (
         </Form.Group>
       </Col>
 
-      <Col md={6}>
-        <Form.Group controlId="formEmail" className="mb-3"> {/* Added margin-bottom class here */}
+      <Col lg={6} sm={12}>
+        <Form.Group controlId="formEmail" className="mb-3"> 
           <Form.Label className="mb-1">Email</Form.Label> 
           <Form.Control 
             type="email" 
@@ -38,8 +38,8 @@ const PersonalDetailsForm = ({ formData, handleChange, errors }) => (
     </Row>
 
     <Row>
-      <Col md={6}>
-        <Form.Group controlId="formPhone" className="mb-3"> {/* Added margin-bottom class here */}
+      <Col lg={6} sm={12}>
+        <Form.Group controlId="formPhone" className="mb-3"> 
           <Form.Label className="mb-1">Phone</Form.Label> 
           <Form.Control 
             type="text" 
@@ -53,8 +53,8 @@ const PersonalDetailsForm = ({ formData, handleChange, errors }) => (
         </Form.Group>
       </Col>
 
-      <Col md={6}>
-        <Form.Group controlId="formPostcode" className="mb-3"> {/* Added margin-bottom class here */}
+      <Col lg={6} sm={12}>
+        <Form.Group controlId="formPostcode" className="mb-3"> 
           <Form.Label className="mb-1">Postcode</Form.Label> 
           <Form.Control 
             type="text" 
@@ -70,8 +70,8 @@ const PersonalDetailsForm = ({ formData, handleChange, errors }) => (
     </Row>
 
     <Row>
-      <Col md={6}>
-        <Form.Group controlId="formInstallationDate" className="mb-3"> {/* Added margin-bottom class here */}
+      <Col lg={6} sm={12}>
+        <Form.Group controlId="formInstallationDate" className="mb-3"> 
           <Form.Label className="mb-1">Installation Date</Form.Label> 
           <Form.Control 
             type="date" 

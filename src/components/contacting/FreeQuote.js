@@ -253,7 +253,7 @@ const FreeQuote = () => {
             <PersonalDetailsForm formData={formData} handleChange={handleChange} errors={errors} />
 
             <Form.Group className="quoteSection">
-              <h2>Upload Your Photos (optional)</h2>
+              <h2>Upload Your Photo  </h2>
               <Form.Control type="file" multiple onChange={handleFileUpload} />
             </Form.Group>
 

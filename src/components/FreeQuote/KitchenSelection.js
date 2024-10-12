@@ -71,33 +71,40 @@ const KitchenSelection = ({ formData, handleChange, errors, setErrors }) => {
         <section style={{ padding: '20px' }}>
             <h2>Select Kitchen Types</h2>
             <Row>
-                {[ 
-                    { label: 'Gallery', image: galleyImage },
-                    { label: 'L Shape', image: lShapeImage },
-                    { label: 'U Shape', image: uShapeImage },
-                    { label: 'Island Shape', image: islandShapeImage },
-                ].map(({ label, image }) => (
-                    <Col xs={6} md={4} key={label}>
-                        <Card
-                            className={`measurement-card ${selectedKitchens.includes(label) ? 'selected' : ''}`}
-                            onClick={() => handleCardClick(label)}
-                            style={{ cursor: 'pointer', padding: '10px' }}
-                        >
-                            <Card.Img variant="top" src={image} alt={`${label} Image`} />
-                            <Card.Body style={{ padding: '15px' }}>
-                                <Card.Title>{label}</Card.Title>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                ))}
-            </Row>
+    {[ 
+        { label: 'Gallery', image: galleyImage },
+        { label: 'L Shape', image: lShapeImage },
+        { label: 'U Shape', image: uShapeImage },
+        { label: 'Island Shape', image: islandShapeImage },
+    ].map(({ label, image }) => (
+        <Col lg={4} md={6} sm={6} xs={12} key={label}> {/* Now showing 3 columns on large screens, 2 on medium, and 1 on small */}
+            <Card
+                className={`measurement-card ${selectedKitchens.includes(label) ? 'selected' : ''}`}
+                onClick={() => handleCardClick(label)}
+                style={{ cursor: 'pointer', padding: '10px' }}
+            >
+                <Card.Img variant="top" src={image} alt={`${label} Image`} />
+                <Card.Body style={{ padding: '15px' }}>
+                    <Card.Title>{label}</Card.Title>
+                </Card.Body>
+            </Card>
+        </Col>
+    ))}
+</Row>
+
             {errors.kitchenSelection && <p className="text-danger">{errors.kitchenSelection}</p>}
 
             {selectedKitchens.length > 0 && selectedKitchens.map((kitchen) => (
                 <div key={kitchen}>
+
+                    
                     <h5 className='hstyle' style={{ padding: '10px 0' }}>Enter {kitchen} Measurements</h5>
+                      <Row>
                     {(kitchenMeasurements[kitchen] || []).map((measurement, index) => (
+                        <Col lg={4} sm={6} xs={12} key={index}> {/* توزيع الأعمدة لقياسات كل شكل */}
+
                         <Form.Group key={index} controlId={`kitchenMeasurement_${kitchen}_${index}`} style={{ marginBottom: '15px' }}>
+
                             <Form.Control
                                 type="text"
                                 name={`kitchenMeasurement_${kitchen}_${index}`}
@@ -111,8 +118,12 @@ const KitchenSelection = ({ formData, handleChange, errors, setErrors }) => {
                                 {errors[`kitchenMeasurement_${kitchen}_${index}`]}
                             </Form.Control.Feedback>
                             <Button variant="danger" onClick={() => removeMeasurement(kitchen, index)} style={{ marginTop: '10px' }}>Remove</Button>
+
                         </Form.Group>
+                        </Col>
+
                     ))}
+                    </Row>
                     <div>
     <Button
         variant="primary"

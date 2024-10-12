@@ -34,12 +34,10 @@ const ShapeSelection = ({ formData, handleChange, errors, setErrors }) => {
         setSelectedShapes(updatedShapes);
         handleChange({ target: { name: 'shape', value: updatedShapes } });
 
-        // Clear shape selection error in parent
         if (updatedShapes.length > 0) {
             setErrors((prev) => ({ ...prev, shapeSelection: '' }));
         }
 
-        // If a shape is deselected, clear its associated measurements
         if (!updatedShapes.includes(label)) {
             const { [label]: _, ...remainingMeasurements } = shapeMeasurements;
             setShapeMeasurements(remainingMeasurements);
@@ -88,18 +86,17 @@ const ShapeSelection = ({ formData, handleChange, errors, setErrors }) => {
         <section style={{ padding: '20px' }}>
             <h2>Select Shapes and Features</h2>
             <Row>
-                {[
-                    { label: 'Upstands', image: upstandsImage },
-                    { label: 'Sink Cut Out', image: sinkImage },
-                    { label: 'Hob Cut Out', image: hobImage },
-                    { label: 'Drainers Grooves', image: drainersImage },
-                    { label: 'Hob Splashback', image: splashBackImage },
-                    { label: 'Slope Down Sink', image: slopeImage },
-                    { label: 'Waterfall Legs', image: waterfallImage },
-                    { label: 'Full Splashback', image: fullSplashBackImage },
-                    { label: 'Windows Sills', image: windowSillImage },
-                ].map(({ label, image }) => (
-                    <Col xs={6} md={4} key={label}>
+                {[{ label: 'Upstands', image: upstandsImage },
+                { label: 'Sink Cut Out', image: sinkImage },
+                { label: 'Hob Cut Out', image: hobImage },
+                { label: 'Drainers Grooves', image: drainersImage },
+                { label: 'Hob Splashback', image: splashBackImage },
+                { label: 'Slope Down Sink', image: slopeImage },
+                { label: 'Waterfall Legs', image: waterfallImage },
+                { label: 'Full Splashback', image: fullSplashBackImage },
+                { label: 'Windows Sills', image: windowSillImage }]
+                .map(({ label, image }) => (
+                    <Col lg={4} sm={6} xs={12} key={label}> {/* تعديل حجم الأعمدة */}
                         <Card
                             className={`shape-card ${selectedShapes.includes(label) ? 'selected' : ''}`}
                             onClick={() => handleCardClick(label)}
@@ -118,38 +115,40 @@ const ShapeSelection = ({ formData, handleChange, errors, setErrors }) => {
             {selectedShapes.length > 0 && selectedShapes.map((shape) => (
                 <div key={shape}>
                     <h5 className='hstyle' style={{ padding: '10px 0' }}>Enter {shape} Measurements</h5>
-                    {(shapeMeasurements[shape] || []).map((measurement, index) => (
-                        <Form.Group key={index} controlId={`shapeMeasurement_${shape}_${index}`} style={{ marginBottom: '15px' }}>
-                            <Form.Control
-                                type="text"
-                                name={`shapeMeasurement_${shape}_${index}`}
-                                value={measurement}
-                                onChange={(e) => handleMeasurementChange(shape, index, e.target.value)}
-                                placeholder="Width x Height"
-                                isInvalid={!!errors[`shapeMeasurement_${shape}_${index}`]}
-                                style={{ padding: '10px' }}
-                            />
-                            <Form.Control.Feedback type="invalid">
-                                {errors[`shapeMeasurement_${shape}_${index}`]}
-                            </Form.Control.Feedback>
-                            <Button variant="danger" onClick={() => removeMeasurement(shape, index)} style={{ marginTop: '10px' }}>Remove</Button>
-                        </Form.Group>
-                    ))}
-                    <div>
-                        <Button
-                            variant="primary"
-                            onClick={() => addMeasurement(shape)}
-                            style={{
-                                backgroundColor: 'darkgoldenrod',
-                                color: 'white',
-                                padding: '12px',
-                                cursor: 'pointer',
-                            }}
-                        >
-                            Add Measurement
-                        </Button>
-                        <hr style={{ margin: '20px 0', border: '3px solid #cccc' }} />
-                    </div>
+                    <Row>
+                        {(shapeMeasurements[shape] || []).map((measurement, index) => (
+                            <Col lg={4} sm={6} xs={12} key={index}> {/* توزيع الأعمدة لقياسات كل شكل */}
+                                <Form.Group controlId={`shapeMeasurement_${shape}_${index}`} style={{ marginBottom: '15px' }}>
+                                    <Form.Control
+                                        type="text"
+                                        name={`shapeMeasurement_${shape}_${index}`}
+                                        value={measurement}
+                                        onChange={(e) => handleMeasurementChange(shape, index, e.target.value)}
+                                        placeholder="Width x Height"
+                                        isInvalid={!!errors[`shapeMeasurement_${shape}_${index}`]}
+                                        style={{ padding: '10px' }}
+                                    />
+                                    <Form.Control.Feedback type="invalid">
+                                        {errors[`shapeMeasurement_${shape}_${index}`]}
+                                    </Form.Control.Feedback>
+                                    <Button variant="danger" onClick={() => removeMeasurement(shape, index)} style={{ marginTop: '10px' }}>Remove</Button>
+                                </Form.Group>
+                            </Col>
+                        ))}
+                    </Row>
+                    <Button
+                        variant="primary"
+                        onClick={() => addMeasurement(shape)}
+                        style={{
+                            backgroundColor: 'darkgoldenrod',
+                            color: 'white',
+                            padding: '12px',
+                            cursor: 'pointer',
+                        }}
+                    >
+                        Add Measurement
+                    </Button>
+                    <hr style={{ margin: '20px 0', border: '3px solid #cccc' }} />
                 </div>
             ))}
         </section>
