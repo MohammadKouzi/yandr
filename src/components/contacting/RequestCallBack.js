@@ -102,7 +102,7 @@ const RequestCallBack = () => {
     console.log("Data being sent to backend:", dataToSend);
 
     axios
-      .post(process.env.REACT_APP_CALLBACK_API_URL, dataToSend)
+      .post(process.env.REACT_APP_REQUESTCALLBACK_API_URL, dataToSend)
       .then((response) => {
         console.log('SUCCESS!', response.status, response.data);
         // Reset form fields
@@ -134,22 +134,22 @@ const RequestCallBack = () => {
   return (
     <div className="body">
       <Helmet>
-        <title>GlamStone - Request a CallBack</title>
-        <meta name="description" content="Request a callback for consultations or quotes." />
+        <title>GlamStone - Request Call Back</title>
+        <meta name="description" content="Request a call back from GlamStone." />
       </Helmet>
       <Container className="section2">
         <br />
         <h1 className="text-center hstyle">Request a Call Back</h1>
         <br />
         <p className="pstyle">
-          To schedule a consultation, request a quote, arrange a home visit, or have samples delivered right to your door, we’re here to assist you! Let us help turn your vision into reality at a time that’s most convenient for you. We can’t wait to collaborate with you!
+          Let us know when you would like us to call you back for further discussions, consultations, or quotes. We're here to assist you at your convenience!
         </p>
       </Container>
 
       <Container className="quoteSection p-4 rounded">
-        <h2 className="text-center mb-4 hstyle">Send Us a Message</h2>
+        <h2 className="text-center mb-4 hstyle">Send Us Your Request</h2>
 
-        {/* Show alert if there is a message */}
+        {/* Alert Component */}
         {alert.message && (
           <Alert variant={alert.type} onClose={() => setAlert({ type: '', message: '' })} dismissible>
             {alert.message}
@@ -171,7 +171,7 @@ const RequestCallBack = () => {
                 />
                 <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
               </Form.Group>
-              <br /> {/* Line break after each Form.Group */}
+              <br />
             </Col>
             <Col md={6}>
               <Form.Group controlId="formEmail">
@@ -235,6 +235,7 @@ const RequestCallBack = () => {
               isInvalid={!!errors.message}
             />
             <Form.Control.Feedback type="invalid">{errors.message}</Form.Control.Feedback>
+            <small>{(formData.message.trim().split(/\s+/).length || 0)} / 250 words</small>
           </Form.Group>
           <br />
 
@@ -265,11 +266,9 @@ const RequestCallBack = () => {
                 />
                 <Form.Control.Feedback type="invalid">{errors.time}</Form.Control.Feedback>
               </Form.Group>
-              <br />
             </Col>
           </Row>
           <br />
-
           <Button
               variant="primary"
               type="submit"

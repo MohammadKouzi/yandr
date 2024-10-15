@@ -76,10 +76,13 @@
     color: #fff;
     text-decoration: none;
   }
-  
-  .contact-link:hover {
-    text-decoration: underline;
+
+  .contact-icon {
+    color: #fff;
+    text-decoration: none;
   }
+  
+ 
   
   /* Footer Bottom Styling */
   .footer2-bottom {
@@ -87,7 +90,10 @@
       rgb(59, 48, 10) 0%,   /* Darker gold */
       rgb(191, 149, 10) 50%,  /* Mid-tone gold */
       rgb(59, 48, 10) 100%   /* Darker gold */);
-    height: 40px;
+    height:48px; 
+    padding-top:2px;
+    padding-bottom:8px;
+
   }
   
   .footer-bottom {
@@ -195,13 +201,6 @@
   color: #ffffff; /* Default color   */
 
 }
-
-.social-icon.youtube:hover {
-  background: linear-gradient(135deg, #FF0000, #FF6F61); /* YouTube gradient */
-  color: #ffffff; /* Default color   */
-
-}
-
 .social-icon.snapchat:hover {
   background: linear-gradient(135deg, #807e00, #FFEA00); /* Snapchat gradient */
   color: #ffffff; /* Default color   */

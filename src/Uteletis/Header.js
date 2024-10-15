@@ -96,7 +96,7 @@ const Header = () => {
                 to="/home-assistance" 
                 onClick={handleNavItemClick}
               >
-                Home Assistance
+                Home Visit
               </NavDropdown.Item>
               <NavDropdown.Item 
                 as={NavLink} 

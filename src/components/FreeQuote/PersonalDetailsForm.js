@@ -69,18 +69,18 @@ const PersonalDetailsForm = ({ formData, handleChange, errors }) => (
       </Col>
     </Row>
 
+ 
+    {/* Optional Installation Date */}
     <Row>
       <Col lg={6} sm={12}>
         <Form.Group controlId="formInstallationDate" className="mb-3"> 
-          <Form.Label className="mb-1">Installation Date</Form.Label> 
+          <Form.Label className="mb-1">Installation Date (Optional)</Form.Label> 
           <Form.Control 
             type="date" 
             name="installationDate" 
             value={formData.installationDate} 
             onChange={handleChange} 
-            isInvalid={!!errors.installationDate}
           />
-          {errors.installationDate && <Form.Control.Feedback type="invalid">{errors.installationDate}</Form.Control.Feedback>}
         </Form.Group>
       </Col>
     </Row>

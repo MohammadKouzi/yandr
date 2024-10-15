@@ -5,106 +5,68 @@ import lShapeImage from '../../Images/l.png';
 import uShapeImage from '../../Images/u.png';
 import islandShapeImage from '../../Images/island.png';
 
-const maxMeasurementsPerKitchen = {
-    'Gallery': 6,
-    'L Shape': 6,   
-    'U Shape': 6,  
-    'Island Shape': 4  
+const kitchenOptions = {
+    'Gallery': { image: galleyImage, labelCount: 4 },
+    'L Shape': { image: lShapeImage, labelCount: 2 },
+    'U Shape': { image: uShapeImage, labelCount: 3 },
+    'Island Shape': { image: islandShapeImage, labelCount: 2 }
 };
 
 const KitchenSelection = ({ formData, handleChange, errors, setErrors }) => {
-    const [selectedKitchens, setSelectedKitchens] = useState(formData.kitchen || []);
+    const [selectedKitchen, setSelectedKitchen] = useState('');
     const [kitchenMeasurements, setKitchenMeasurements] = useState(formData.kitchenMeasurement || {});
+    const [showMeasurements, setShowMeasurements] = useState(false); // لحفظ حالة عرض المقاسات
 
-    const handleCardClick = (label) => {
-        const updatedKitchens = selectedKitchens.includes(label)
-            ? selectedKitchens.filter(kitchen => kitchen !== label)
-            : [...selectedKitchens, label];
+    const handleKitchenChange = (e) => {
+        const kitchen = e.target.value;
+        const newKitchenArray = formData.kitchen.includes(kitchen)
+            ? formData.kitchen.filter(item => item !== kitchen) // إزالة في حال كانت موجودة
+            : [...formData.kitchen, kitchen]; // إضافة في حال عدم وجودها
 
-        setSelectedKitchens(updatedKitchens);
-        handleChange({ target: { name: 'kitchen', value: updatedKitchens } });
-
-        if (updatedKitchens.length > 0) {
-            setErrors((prev) => ({ ...prev, kitchenSelection: '' }));
-        }
+        setSelectedKitchen(kitchen);
+        handleChange({ target: { name: 'kitchen', value: newKitchenArray } });
+        setErrors((prev) => ({ ...prev, kitchenSelection: '' }));
     };
 
     const handleMeasurementChange = (label, index, value) => {
-        const regex = /^\d+\s*x\s*\d+$/;
-
-        const measurements = kitchenMeasurements[label] || [];
-        measurements[index] = value;
-
+        const regex = /^\d+\s*x\s*\d+$/; // Regex for "Width x Height" format
+        const updatedMeasurements = { ...kitchenMeasurements }; // Clone the current kitchen measurements
+    
+        if (!updatedMeasurements[label]) {
+            updatedMeasurements[label] = Array(kitchenOptions[label].labelCount).fill(''); // Ensure the label exists with an empty array
+        }
+    
+        updatedMeasurements[label][index] = value; // Update the specific measurement at the given index
+    
         if (value && !regex.test(value)) {
-            setErrors((prev) => ({
+            setErrors(prev => ({
                 ...prev,
                 [`kitchenMeasurement_${label}_${index}`]: 'Please enter exactly two numbers in "Width x Height" format, e.g., 300 x 200.',
             }));
         } else {
-            setErrors((prev) => ({
+            setErrors(prev => ({
                 ...prev,
-                [`kitchenMeasurement_${label}_${index}`]: '',
+                [`kitchenMeasurement_${label}_${index}`]: '', // Clear the error for this input if valid
             }));
         }
-
-        setKitchenMeasurements(prev => ({ ...prev, [label]: measurements }));
-        handleChange({ target: { name: 'kitchenMeasurement', value: { ...kitchenMeasurements, [label]: measurements } } });
+    
+        setKitchenMeasurements(updatedMeasurements); // Update the kitchen measurements in state
+        handleChange({ target: { name: 'kitchenMeasurement', value: updatedMeasurements } }); // Pass the updated measurements to the parent formData
     };
+    
 
-    const addMeasurement = (label) => {
-        const measurements = kitchenMeasurements[label] || [];
-        
-        // Check if current number of measurements is less than the max allowed for the kitchen type
-        if (measurements.length < maxMeasurementsPerKitchen[label]) {
-            setKitchenMeasurements(prev => ({ ...prev, [label]: [...measurements, ''] }));
-        } else {
-            alert(`You can only add up to ${maxMeasurementsPerKitchen[label]} measurements for ${label}.`);
-        }
-    };
+    const renderMeasurementFields = (kitchen) => {
+        const labelCount = kitchenOptions[kitchen]?.labelCount || 0;
+        const measurements = kitchenMeasurements[kitchen] || Array(labelCount).fill('');
 
-    const removeMeasurement = (label, index) => {
-        const measurements = kitchenMeasurements[label].filter((_, i) => i !== index);
-        setKitchenMeasurements(prev => ({ ...prev, [label]: measurements }));
-    };
+        if (!showMeasurements) return null;
 
-    return (
-        <section style={{ padding: '20px' }}>
-            <h2>Select Kitchen Types</h2>
+        return (
             <Row>
-    {[ 
-        { label: 'Gallery', image: galleyImage },
-        { label: 'L Shape', image: lShapeImage },
-        { label: 'U Shape', image: uShapeImage },
-        { label: 'Island Shape', image: islandShapeImage },
-    ].map(({ label, image }) => (
-        <Col lg={4} md={6} sm={6} xs={12} key={label}> {/* Now showing 3 columns on large screens, 2 on medium, and 1 on small */}
-            <Card
-                className={`measurement-card ${selectedKitchens.includes(label) ? 'selected' : ''}`}
-                onClick={() => handleCardClick(label)}
-                style={{ cursor: 'pointer', padding: '10px' }}
-            >
-                <Card.Img variant="top" src={image} alt={`${label} Image`} />
-                <Card.Body style={{ padding: '15px' }}>
-                    <Card.Title>{label}</Card.Title>
-                </Card.Body>
-            </Card>
-        </Col>
-    ))}
-</Row>
-
-            {errors.kitchenSelection && <p className="text-danger">{errors.kitchenSelection}</p>}
-
-            {selectedKitchens.length > 0 && selectedKitchens.map((kitchen) => (
-                <div key={kitchen}>
-
-                    
-                    <h5 className='hstyle' style={{ padding: '10px 0' }}>Enter {kitchen} Measurements</h5>
-                      <Row>
-                    {(kitchenMeasurements[kitchen] || []).map((measurement, index) => (
-                        <Col lg={4} sm={6} xs={12} key={index}> {/* توزيع الأعمدة لقياسات كل شكل */}
-
-                        <Form.Group key={index} controlId={`kitchenMeasurement_${kitchen}_${index}`} style={{ marginBottom: '15px' }}>
-
+                {measurements.map((measurement, index) => (
+                    <Col lg={4} sm={6} xs={12} key={index}>
+                        <Form.Group controlId={`kitchenMeasurement_${kitchen}_${index}`} style={{ marginBottom: '15px' }}>
+                            <Form.Label>Measurement {index + 1}</Form.Label>
                             <Form.Control
                                 type="text"
                                 name={`kitchenMeasurement_${kitchen}_${index}`}
@@ -117,33 +79,99 @@ const KitchenSelection = ({ formData, handleChange, errors, setErrors }) => {
                             <Form.Control.Feedback type="invalid">
                                 {errors[`kitchenMeasurement_${kitchen}_${index}`]}
                             </Form.Control.Feedback>
-                            <Button variant="danger" onClick={() => removeMeasurement(kitchen, index)} style={{ marginTop: '10px' }}>Remove</Button>
-
                         </Form.Group>
-                        </Col>
+                    </Col>
+                ))}
+            </Row>
+        );
+    };
 
+    return (
+        <section className="quoteSection">
+            <h2>Select Kitchen Type</h2>
+
+            <Form.Group controlId="kitchenType">
+                <Form.Control as="select" value={selectedKitchen} onChange={handleKitchenChange}>
+                    <option value="">Select Kitchen Type</option>
+                    {Object.keys(kitchenOptions).map((kitchen) => (
+                        <option key={kitchen} value={kitchen}>
+                            {kitchen}
+                        </option>
                     ))}
-                    </Row>
-                    <div>
-    <Button
-        variant="primary"
-        onClick={() => addMeasurement(kitchen)}
-        style={{
-            backgroundColor: 'darkgoldenrod',
-            color: 'white',
-            padding: '12px',
-             cursor: 'pointer',
-        }}
-    >
-        Add Measurement
-    </Button>
-    <hr style={{ margin: '20px 0', border: '3px solid #cccc' }} />
-</div>
+                </Form.Control>
+            </Form.Group>
 
+            {errors.kitchenSelection && <p className="text-danger">{errors.kitchenSelection}</p>}
+
+            {selectedKitchen && (
+                <div style={{ marginTop: '20px', textAlign: 'center' }}>
+                    {!showMeasurements ? (
+                        <>
+                            <img
+                                src={kitchenOptions[selectedKitchen].image}
+                                alt={selectedKitchen} // وصف بديل
+                                style={{
+                                    width: '100%',
+                                    height: 'auto',
+                                    maxWidth: '100%',
+                                    maxHeight: '300px',
+                                    objectFit: 'contain'
+                                }} // ستايل الصور لتكون متجاوبة
+                            />
+                            <div style={{ marginTop: '10px' }}>
+                                <Button
+                                    variant="primary"
+                                    style={{
+                                    backgroundColor: 'darkgoldenrod',
+                                    color: 'white',
+                                    padding: '12px',
+                                    cursor: 'pointer',
+                                    }}
+                                    onClick={() => setShowMeasurements(true)} // تعديل لعرض المقاسات
+                                >
+                                    Add Optional Measurements
+                                </Button>
+                            </div>
+                        </>
+                    ) : (
+                        <Row>
+                            <Col lg={6} md={6} sm={12} style={{ textAlign: 'center' }}>
+                                <img
+                                    src={kitchenOptions[selectedKitchen].image}
+                                    alt={selectedKitchen} // وصف بديل
+                                    style={{
+                                        width: '450px',
+                                        height: 'auto',
+                                        maxWidth: '100%',
+                                        maxHeight: '300px',
+                                        objectFit: 'contain',
+                                        marginTop: '10px'
+                                    }} // ستايل الصور لتكون متجاوبة
+                                />
+                            </Col>
+                            <Col lg={6} md={6} sm={12}>
+                                <Card style={{ marginTop: '20px' }}>
+                                    <Card.Body>
+                                        <Card.Title style={{ marginBottom: '16px' }}>{selectedKitchen}</Card.Title>
+                                         {renderMeasurementFields(selectedKitchen)}
+                                       
+                                    </Card.Body>
+                                </Card>
+                                 <Button
+                                            variant="secondary"
+                                            onClick={() => setShowMeasurements(false)} // إضافة زر لإخفاء المقاسات
+                                            style={{ marginTop: '10px' }}
+                                        >
+                                            Hide Measurements
+                                        </Button>
+                            </Col>
+                        </Row>
+                    )}
                 </div>
-            ))}
+            )}
         </section>
     );
 };
 
+ 
 export default KitchenSelection;

@@ -39,8 +39,7 @@ const AboutUs = () => {
               <br />
               <h2 className='h6style '>GlamStone</h2>
               <p className='pstyle' >
-                At GlamStone, we specialize in delivering precision-cut and expertly installed worktops, floor tiles, wall tiles, and vanities that elevate the design and functionality of kitchen spaces and beyond. Our reputation is built on a commitment to craftsmanship, ensuring that every project we undertake meets the highest standards of excellence.
-              </p>
+              At GlamStone, we specialise in delivering precision-cut and expertly installed worktops, floor tiles, wall tiles, and vanities that elevate the design and functionality of kitchen spaces and beyond. Our reputation is built on a commitment to craftsmanship, ensuring that every project we undertake meets the highest standards of excellence. </p>
             </Col>
           </Row>
         </div>

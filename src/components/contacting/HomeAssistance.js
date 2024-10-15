@@ -139,7 +139,7 @@ const HomeAssistance = () => {
       </Helmet>
       <Container className="section2">
         <br />
-        <h1 className="text-center hstyle">Request Home Assistance</h1>
+        <h1 className="text-center hstyle">Request Home Visit</h1>
         <br />
         <p className="pstyle">
           To schedule a consultation, request a quote, arrange a home visit, or have samples delivered to your door. Let us help you bring your vision to life, at a time that suits you best. We look forward to working with you!
@@ -171,7 +171,7 @@ const HomeAssistance = () => {
                 />
                 <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
               </Form.Group>
-              <br></br>
+              <br />
             </Col>
             <Col md={6}>
               <Form.Group controlId="formEmail">
@@ -186,8 +186,7 @@ const HomeAssistance = () => {
                 />
                 <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
               </Form.Group>
-              <br></br>
-
+              <br />
             </Col>
           </Row>
 
@@ -205,8 +204,7 @@ const HomeAssistance = () => {
                 />
                 <Form.Control.Feedback type="invalid">{errors.phone}</Form.Control.Feedback>
               </Form.Group>
-              <br></br>
-
+              <br />
             </Col>
             <Col md={6}>
               <Form.Group controlId="formSubject">
@@ -221,8 +219,7 @@ const HomeAssistance = () => {
                 />
                 <Form.Control.Feedback type="invalid">{errors.subject}</Form.Control.Feedback>
               </Form.Group>
-              <br></br>
-
+              <br />
             </Col>
           </Row>
 
@@ -238,9 +235,9 @@ const HomeAssistance = () => {
               isInvalid={!!errors.message}
             />
             <Form.Control.Feedback type="invalid">{errors.message}</Form.Control.Feedback>
+            <small>{(formData.message.trim().split(/\s+/).length || 0)} / 250 words</small>
           </Form.Group>
-          <br></br>
-
+          <br />
 
           <Row>
             <Col md={6}>
@@ -255,8 +252,7 @@ const HomeAssistance = () => {
                 />
                 <Form.Control.Feedback type="invalid">{errors.date}</Form.Control.Feedback>
               </Form.Group>
-              <br></br>
-
+              <br />
             </Col>
             <Col md={6}>
               <Form.Group controlId="formTime">
@@ -270,11 +266,9 @@ const HomeAssistance = () => {
                 />
                 <Form.Control.Feedback type="invalid">{errors.time}</Form.Control.Feedback>
               </Form.Group>
- 
             </Col>
-         
           </Row>
-          <br></br>
+          <br />
           <Button
               variant="primary"
               type="submit"
@@ -295,5 +289,6 @@ const HomeAssistance = () => {
     </div>
   );
 };
+ 
 
 export default HomeAssistance;

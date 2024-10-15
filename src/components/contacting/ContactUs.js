@@ -16,11 +16,26 @@ const ContactUs = () => {
   const [isSending, setIsSending] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [wordCount, setWordCount] = useState(0); // Word count state for the message
 
-  const API_URL = process.env.REACT_APP_CONTACT_API_URL  ;
+  const API_URL = process.env.REACT_APP_CONTACT_API_URL;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    if (name === 'message') {
+      const words = value.trim().split(/\s+/).length;
+      setWordCount(words); // Update word count
+
+      if (words > 250) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          message: 'Your message exceeds the 250-word limit.',
+        }));
+        return;
+      }
+    }
+
     setFormData({ ...formData, [name]: value });
     validateField(name, value);
   };
@@ -29,19 +44,19 @@ const ContactUs = () => {
     let error = '';
     switch (name) {
       case 'name':
-        error = value.trim() ? '' : 'Name is required';
+        error = value.trim() ? '' : 'Please provide a valid name.';
         break;
       case 'email':
-        error = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? '' : 'Valid email is required';
+        error = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? '' : 'Please provide a valid email address.';
         break;
       case 'subject':
-        error = value.trim() ? '' : 'Subject is required';
+        error = value.trim() ? '' : 'Subject is required.';
         break;
       case 'message':
-        error = value.trim() ? '' : 'Message is required';
+        error = value.trim() ? '' : 'Please write a message.';
         break;
       case 'phone':
-        error = /^\+44\d{10}$/.test(value) ? '' : 'Valid UK phone number is required (Starting with +44)';
+        error = /^\+44\d{10}$/.test(value) ? '' : 'Ensure the phone number starts with +44.';
         break;
       default:
         break;
@@ -53,7 +68,7 @@ const ContactUs = () => {
     e.preventDefault();
 
     if (!isFormValid()) {
-      alert('Please fill in all required fields correctly.');
+      alert('Ensure all fields are filled out correctly before submitting.');
       return;
     }
 
@@ -63,12 +78,13 @@ const ContactUs = () => {
 
     try {
       await axios.post(API_URL, formData);
-      setSuccessMessage('Email sent successfully!');
+      setSuccessMessage('Thank you for reaching out! We will get back to you shortly.');
       setFormData({ name: '', email: '', subject: '', message: '', phone: '' });
       setErrors({});
+      setWordCount(0); // Reset word count after submission
     } catch (err) {
-      console.error('Error sending data to server:', err);
-      setErrorMessage(err.response?.data?.error || 'Failed to send email. Please try again later.');
+      console.error('Error sending data to the server:', err);
+      setErrorMessage('An error occurred. Please try again later.');
     } finally {
       setIsSending(false);
     }
@@ -77,24 +93,22 @@ const ContactUs = () => {
   const isFormValid = () => {
     const allFieldsFilled = Object.values(formData).every((value) => String(value).trim() !== '');
     const noErrors = Object.values(errors).every((error) => error === '');
-    return allFieldsFilled && noErrors;
+    return allFieldsFilled && noErrors && wordCount <= 250;
   };
 
   return (
     <div className="body">
       <Helmet>
         <title>GlamStone - Email Us</title>
-        <meta name="description" content="Welcome to GlamStone. We specialize in delivering precision-cut worktops, floor tiles, wall tiles, and vanities with expert craftsmanship." />
-        <meta name="keywords" content="GlamStone, worktops, floor tiles, wall tiles, vanities" />
+        <meta name="description" content="Welcome to GlamStone. We specialize in precision-cut worktops, floor tiles, wall tiles, and vanities." />
       </Helmet>
       <Container className='section2'>
         <br />
         <h1 className="text-center hstyle">Email Us Today</h1>
         <br />
         <Container className="text-center mb-4">
-        
-           <p>
-            To schedule a consultation, request a quote online, arrange a home visit, or have samples delivered to your door. Let us help you bring your vision to life, at a time that suits you best. We look forward to working with you!
+          <p>
+            We invite you to reach out to us to schedule a consultation or request an online quote. We’re also happy to deliver samples directly to your door.
           </p>
         </Container>
 
@@ -119,9 +133,9 @@ const ContactUs = () => {
                   />
                   <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
                 </Form.Group>
-                <br></br>
+                <br />
               </Col>
-                
+
               <Col md={6}>
                 <Form.Group controlId="formEmail">
                   <Form.Label>Email address</Form.Label>
@@ -135,7 +149,7 @@ const ContactUs = () => {
                   />
                   <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
                 </Form.Group>
-                <br></br>
+                <br />
               </Col>
             </Row>
 
@@ -153,7 +167,7 @@ const ContactUs = () => {
                   />
                   <Form.Control.Feedback type="invalid">{errors.phone}</Form.Control.Feedback>
                 </Form.Group>
-                <br></br>
+                <br />
               </Col>
 
               <Col md={6}>
@@ -169,7 +183,7 @@ const ContactUs = () => {
                   />
                   <Form.Control.Feedback type="invalid">{errors.subject}</Form.Control.Feedback>
                 </Form.Group>
-                <br></br>
+                <br />
               </Col>
             </Row>
 
@@ -185,8 +199,10 @@ const ContactUs = () => {
                 isInvalid={!!errors.message}
               />
               <Form.Control.Feedback type="invalid">{errors.message}</Form.Control.Feedback>
+              <small>{wordCount} / 250 words</small> {/* Word count display */}
             </Form.Group>
             <br />
+
             <Button
               variant="primary"
               type="submit"
