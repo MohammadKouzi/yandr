@@ -11,7 +11,7 @@ const PhotoSlider = () => {
     Object.values(materialPhotos).slice(Math.ceil(2 * Object.values(materialPhotos).length / 3))
   ];
 
-  const marqueeSpeed = 20;
+  const marqueeSpeed = 40;
 
   // Custom function to open a smaller window
   const openInSmallWindow = (e, link) => {

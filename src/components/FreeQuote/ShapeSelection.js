@@ -33,7 +33,7 @@ const ShapeSelection = ({ formData, handleChange, errors, setErrors }) => {
         }
 
         // Automatically add empty measurement inputs for the selected shape
-        if (!shapeMeasurements[label]) {
+        if (updatedShapes.includes(label) && !shapeMeasurements[label]) {
             const updatedMeasurements = {
                 ...shapeMeasurements,
                 [label]: Array(maxMeasurementsPerShape[label]).fill(''), // Initialize with empty strings
@@ -65,7 +65,7 @@ const ShapeSelection = ({ formData, handleChange, errors, setErrors }) => {
             }));
         }
 
-        const newShapeMeasurements = { ...shapeMeasurements, [label]: updatedMeasurements };
+        const newShapeMeasurements = { ...shapeMeasurements, [label]: updatedMeasurements.length ? updatedMeasurements : null }; // Set to null if empty
         setShapeMeasurements(newShapeMeasurements);
         handleChange({ target: { name: 'shapeMeasurement', value: newShapeMeasurements } });
     };
@@ -126,7 +126,7 @@ const ShapeSelection = ({ formData, handleChange, errors, setErrors }) => {
                                         <Form.Control
                                             type="text"
                                             name={`shapeMeasurement_${shape}_${index}`}
-                                            value={measurement}
+                                            value={measurement || ''} // Ensure value is an empty string if undefined
                                             onChange={(e) => handleMeasurementChange(shape, index, e.target.value)}
                                             placeholder="Width x Height"
                                             isInvalid={!!errors[`shapeMeasurement_${shape}_${index}`]}
@@ -148,3 +148,4 @@ const ShapeSelection = ({ formData, handleChange, errors, setErrors }) => {
 };
 
 export default ShapeSelection;
+
