@@ -27,3 +27,18 @@
     color: #b8860b; /* White text color for subtitles */
     transition: color 0.3s ease;
   }
+  /* Our Work Page Styles */
+.our-work-image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.our-work-image {
+  width: 100%;
+  height: auto;
+  transition: filter 0.5s ease-in-out; /* Smooth transition for removing blur */
+}
+
+.blur {
+  filter: blur(10px); /* Initial blur effect */
+}

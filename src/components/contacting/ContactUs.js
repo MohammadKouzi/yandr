@@ -18,7 +18,7 @@ const ContactUs = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [wordCount, setWordCount] = useState(0); // Word count state for the message
 
-  const API_URL = process.env.REACT_APP_CONTACT_API_URL;
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const handleChange = (e) => {
     const { name, value } = e.target;

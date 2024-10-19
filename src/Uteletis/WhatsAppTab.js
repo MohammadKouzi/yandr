@@ -5,7 +5,7 @@ import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'; // Importing th
 const WhatsAppTab = () => {
   const handleWhatsAppClick = () => {
     console.log('WhatsApp icon clicked!');
-    window.open("https://wa.me/+966537883876", "_blank", "noopener noreferrer");
+    window.open("https://wa.me/+442030890107", "_blank", "noopener noreferrer");
   };
 
   return (

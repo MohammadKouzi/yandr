@@ -69,8 +69,6 @@ const PersonalDetailsForm = ({ formData, handleChange, errors }) => (
       </Col>
     </Row>
 
- 
-    {/* Optional Installation Date */}
     <Row>
       <Col lg={6} sm={12}>
         <Form.Group controlId="formInstallationDate" className="mb-3"> 

@@ -6,29 +6,29 @@ import fullSplashBackImage from '../../Images/FullSplashback.jpeg';
 import windowSillImage from '../../Images/windowsSills.jpeg';
 
 const Features = ({ formData, handleChange }) => {
-    const [selectedShapes, setSelectedShapes] = useState(formData.shape || []);
+    const [selectedFeatures, setSelectedFeatures] = useState(formData.features || []);
 
     const handleCardClick = (label) => {
-        const updatedShapes = selectedShapes.includes(label)
-            ? selectedShapes.filter(shape => shape !== label)  // Deselect shape
-            : [...selectedShapes, label]; // Select shape
+        const updatedFeatures = selectedFeatures.includes(label)
+            ? selectedFeatures.filter(feature => feature !== label)  // Deselect feature
+            : [...selectedFeatures, label]; // Select feature
 
-        setSelectedShapes(updatedShapes);
-        handleChange({ target: { name: 'shape', value: updatedShapes } });
+        setSelectedFeatures(updatedFeatures);
+        handleChange({ target: { name: 'features', value: updatedFeatures } }); // Update the main form state
     };
 
     return (
         <section className='quoteSection'>
             <h2>Select Features (Optional)</h2>
             <Row>
-                {[ 
+                {[
                     { label: 'Waterfall Legs', image: waterfallImage }, 
                     { label: 'Full Splashback', image: fullSplashBackImage }, 
-                    { label: 'Windows Sills', image: windowSillImage } 
+                    { label: 'Windows Sills', image: windowSillImage }
                 ].map(({ label, image }) => (
                     <Col lg={4} sm={6} xs={12} key={label}>
                         <Card
-                            className={`shape-card ${selectedShapes.includes(label) ? 'selected' : ''}`}
+                            className={`shape-card ${selectedFeatures.includes(label) ? 'selected' : ''}`}
                             onClick={() => handleCardClick(label)}
                             style={{ cursor: 'pointer', padding: '10px' }}
                         >

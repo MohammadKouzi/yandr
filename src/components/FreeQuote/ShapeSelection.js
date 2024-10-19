@@ -15,7 +15,6 @@ const maxMeasurementsPerShape = {
     'Hob Splashback': 4,
     'Slope Down Sink': 4,
 };
-
 const ShapeSelection = ({ formData, handleChange, errors, setErrors }) => {
     const [selectedShapes, setSelectedShapes] = useState(formData.shape || []);
     const [shapeMeasurements, setShapeMeasurements] = useState(formData.shapeMeasurement || {});
@@ -35,11 +34,12 @@ const ShapeSelection = ({ formData, handleChange, errors, setErrors }) => {
 
         // Automatically add empty measurement inputs for the selected shape
         if (!shapeMeasurements[label]) {
-            setShapeMeasurements(prev => ({
-                ...prev,
-                [label]: Array(maxMeasurementsPerShape[label]).fill('') // Initialize with empty strings
-            }));
-            handleChange({ target: { name: 'shapeMeasurement', value: { ...shapeMeasurements, [label]: Array(maxMeasurementsPerShape[label]).fill('') } } });
+            const updatedMeasurements = {
+                ...shapeMeasurements,
+                [label]: Array(maxMeasurementsPerShape[label]).fill(''), // Initialize with empty strings
+            };
+            setShapeMeasurements(updatedMeasurements);
+            handleChange({ target: { name: 'shapeMeasurement', value: updatedMeasurements } });
         } else if (!updatedShapes.includes(label)) {
             const { [label]: _, ...remainingMeasurements } = shapeMeasurements;
             setShapeMeasurements(remainingMeasurements);
@@ -50,8 +50,8 @@ const ShapeSelection = ({ formData, handleChange, errors, setErrors }) => {
     const handleMeasurementChange = (label, index, value) => {
         const regex = /^\d+\s*x\s*\d+$/;
 
-        const measurements = shapeMeasurements[label] || [];
-        measurements[index] = value;
+        const updatedMeasurements = shapeMeasurements[label] || [];
+        updatedMeasurements[index] = value;
 
         if (value && !regex.test(value)) {
             setErrors((prev) => ({
@@ -65,28 +65,27 @@ const ShapeSelection = ({ formData, handleChange, errors, setErrors }) => {
             }));
         }
 
-        setShapeMeasurements(prev => ({ ...prev, [label]: measurements }));
-        handleChange({ target: { name: 'shapeMeasurement', value: { ...shapeMeasurements, [label]: measurements } } });
+        const newShapeMeasurements = { ...shapeMeasurements, [label]: updatedMeasurements };
+        setShapeMeasurements(newShapeMeasurements);
+        handleChange({ target: { name: 'shapeMeasurement', value: newShapeMeasurements } });
     };
-
- 
 
     const toggleMeasurementsVisibility = (shape) => {
         setShowMeasurements(prev => ({ ...prev, [shape]: !prev[shape] }));
     };
 
     return (
-        <section className="quoteSection" >
+        <section className="quoteSection">
             <h2>Select Shapes</h2>
             <Row>
-                {[{ label: 'Upstands', image: upstandsImage },
-                { label: 'Sink Cut Out', image: sinkImage },
-                { label: 'Hob Cut Out', image: hobImage },
-                { label: 'Drainers Grooves', image: drainersImage },
-                { label: 'Hob Splashback', image: splashBackImage },
-                { label: 'Slope Down Sink', image: slopeImage },
-                ]
-                .map(({ label, image }) => (
+                {[
+                    { label: 'Upstands', image: upstandsImage },
+                    { label: 'Sink Cut Out', image: sinkImage },
+                    { label: 'Hob Cut Out', image: hobImage },
+                    { label: 'Drainers Grooves', image: drainersImage },
+                    { label: 'Hob Splashback', image: splashBackImage },
+                    { label: 'Slope Down Sink', image: slopeImage },
+                ].map(({ label, image }) => (
                     <Col lg={4} sm={6} xs={6} key={label}>
                         <Card
                             className={`shape-card ${selectedShapes.includes(label) ? 'selected' : ''}`}
@@ -105,25 +104,22 @@ const ShapeSelection = ({ formData, handleChange, errors, setErrors }) => {
 
             {selectedShapes.length > 0 && selectedShapes.map((shape) => (
                 <div key={shape}>
-                    <h5 className='hstyle' style={{ padding: '10px 10'  }}>Enter {shape} Measurements</h5>
-                    <Button 
+                    <h5 className="hstyle" style={{ padding: '10px 10' }}>Enter {shape} Measurements</h5>
+                    <Button
                         onClick={() => toggleMeasurementsVisibility(shape)}
                         style={{
-                                    backgroundColor: 'darkgoldenrod',
-                                    color: 'white',
-                                    padding: '12px',
-                                    cursor: 'pointer',
-                                    margin : '10px',
-                                    
-                                    }}
+                            backgroundColor: 'darkgoldenrod',
+                            color: 'white',
+                            padding: '12px',
+                            cursor: 'pointer',
+                            margin: '10px',
+                        }}
                     >
                         {showMeasurements[shape] ? 'Hide Measurements' : 'Add Measurements (optional)'}
                     </Button>
- 
-                    {showMeasurements[shape] && (
-                        
-                        <Row>
 
+                    {showMeasurements[shape] && (
+                        <Row>
                             {(shapeMeasurements[shape] || []).map((measurement, index) => (
                                 <Col lg={4} sm={6} xs={12} key={index}>
                                     <Form.Group controlId={`shapeMeasurement_${shape}_${index}`} style={{ marginBottom: '24px' }}>
@@ -139,7 +135,6 @@ const ShapeSelection = ({ formData, handleChange, errors, setErrors }) => {
                                         <Form.Control.Feedback type="invalid">
                                             {errors[`shapeMeasurement_${shape}_${index}`]}
                                         </Form.Control.Feedback>
-                                        
                                     </Form.Group>
                                 </Col>
                             ))}

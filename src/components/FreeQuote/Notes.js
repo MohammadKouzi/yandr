@@ -1,30 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 
-const Notes = ({ formData = {}, handleChange, setFormData }) => {
+const Notes = ({ formData = {}, handleChange }) => {
+  const [errorMessage, setErrorMessage] = useState('');
+
   const handleNotesChange = (e) => {
     const value = e.target.value;
-    const wordCount = value.trim().split(/\s+/).length;
 
-    // Check if word count exceeds 250
-    if (wordCount <= 250) {
-      handleChange(e);  // Update form data if word count is valid
+    // Allow change if character count is valid (250 characters limit)
+    if (value.length <= 250) {
+      setErrorMessage(''); // Clear error message
+      handleChange(e);  // Call handleChange to update form data
+    } else {
+      setErrorMessage('Maximum limit is 250 characters.'); // Set error message
     }
   };
 
+  // Calculate current character count from formData
+  const charCount = formData.additionalNotes ? formData.additionalNotes.length : 0;
+
   return (
-    <section className='quoteSection'>
+    <section className="quoteSection">
       <Form.Group controlId="additionalNotes">
         <h2>Additional Notes</h2>
         <Form.Control
           as="textarea"
           rows={3}
-          value={formData.additionalNotes}
+          value={formData.additionalNotes || ''}
           onChange={handleNotesChange}
           name="additionalNotes"
-          placeholder="Enter any additional notes here "
+          placeholder="Enter any additional notes here (max 250 characters)"
         />
-        <small>{formData.additionalNotes?.trim().split(/\s+/).length || 0} / 250 words</small>
+        <small>{charCount} / 250 characters</small> {/* Display character count */}
+        {errorMessage && <div className="text-danger">{errorMessage}</div>} {/* Display error message */}
       </Form.Group>
     </section>
   );

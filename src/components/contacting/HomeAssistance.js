@@ -1,6 +1,6 @@
 import React, { useState } from 'react'; 
-import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
-import axios from 'axios'; // Use axios for API requests
+import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap'; 
+import axios from 'axios'; 
 import { Helmet } from 'react-helmet';
 
 const HomeAssistance = () => {
@@ -11,7 +11,8 @@ const HomeAssistance = () => {
     message: '',
     phone: '',
     date: '',
-    time: '', // 24-hour format
+    timeSlot: '', 
+    agree: false, 
   });
 
   const [errors, setErrors] = useState({
@@ -21,16 +22,19 @@ const HomeAssistance = () => {
     message: '',
     phone: '',
     date: '',
-    time: '',
+    timeSlot: '',
+    agree: '',
   });
 
   const [isSending, setIsSending] = useState(false);
-  const [alert, setAlert] = useState({ type: '', message: '' }); // Alert state
+  const [alert, setAlert] = useState({ type: '', message: '' }); 
+
+  const CHAR_LIMIT = 250; 
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-    validateField(name, value);
+    const { name, value, type, checked } = e.target;
+    setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value });
+    validateField(name, type === 'checkbox' ? checked : value);
   };
 
   const validateField = (name, value) => {
@@ -46,7 +50,10 @@ const HomeAssistance = () => {
         error = value.trim() ? '' : 'Subject is required';
         break;
       case 'message':
-        error = value.trim() ? '' : 'Message is required';
+        error = value.length > CHAR_LIMIT ? `Message cannot exceed ${CHAR_LIMIT} characters. (${value.length} characters)` : '';
+        if (!error && !value.trim()) {
+          error = 'Message is required';
+        }
         break;
       case 'phone':
         error = /^\+44\d{10}$/.test(value) ? '' : 'Valid UK phone number is required (Starting with +44)';
@@ -56,8 +63,11 @@ const HomeAssistance = () => {
         const selectedDate = new Date(value);
         error = selectedDate < today ? 'Date cannot be in the past' : '';
         break;
-      case 'time':
-        error = value.trim() ? '' : 'Time is required';
+      case 'timeSlot':
+        error = value ? '' : 'Time slot is required';
+        break;
+      case 'agree':
+        error = value ? '' : 'You must agree to the terms and conditions';
         break;
       default:
         break;
@@ -65,16 +75,17 @@ const HomeAssistance = () => {
     setErrors((prevErrors) => ({ ...prevErrors, [name]: error }));
   };
 
-  const formatTime = (hours, minutes) => {
-    let period = hours >= 12 ? "PM" : "AM";
-    hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
-    minutes = minutes < 10 ? '0' + minutes : minutes; // leading zero
-    return `${hours}:${minutes} ${period}`;
+  const validateAllFields = () => {
+    Object.keys(formData).forEach((field) => {
+      validateField(field, formData[field]);
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Validate all fields before submission
+    validateAllFields();
 
     if (!isFormValid()) {
       setAlert({ type: 'danger', message: 'Please fill in all required fields correctly.' });
@@ -84,28 +95,20 @@ const HomeAssistance = () => {
     setIsSending(true);
     setAlert({ type: '', message: '' });
 
-    // Format date to YYYY-MM-DD
     const formattedDate = new Date(formData.date).toISOString().split('T')[0];
 
-    // Convert time from 24-hour to 12-hour format with AM/PM
-    const [hours, minutes] = formData.time.split(':').map(Number); // Convert to numbers
-    const formattedTime = formatTime(hours, minutes); // Format the time
-
-    // Create a new form data object with formatted date and combined time
     const dataToSend = {
       ...formData,
       date: formattedDate,
-      time: formattedTime, // Send formatted time with AM/PM
     };
 
-    // Log the data to see what is being sent
     console.log("Data being sent to backend:", dataToSend);
 
     axios
       .post(process.env.REACT_APP_HOMEASSISTENCE_API_URL, dataToSend)
       .then((response) => {
         console.log('SUCCESS!', response.status, response.data);
-        // Reset form fields
+        // Reset form data
         setFormData({
           name: '',
           email: '',
@@ -113,7 +116,8 @@ const HomeAssistance = () => {
           message: '',
           phone: '',
           date: '',
-          time: '',
+          timeSlot: '',
+          agree: false,
         });
         setAlert({ type: 'success', message: 'Request sent successfully!' });
       })
@@ -124,10 +128,18 @@ const HomeAssistance = () => {
       .finally(() => setIsSending(false));
   };
 
+  // Adjusted logic for form validity
   const isFormValid = () => {
     return (
-      Object.values(formData).every((value) => value.trim() !== '') &&
-      Object.values(errors).every((error) => error === '')
+      Object.values(errors).every((error) => error === '') && // All fields must be valid
+      formData.name.trim() !== '' && // Check for name
+      formData.email.trim() !== '' && // Check for email
+      formData.subject.trim() !== '' && // Check for subject
+      formData.message.trim() !== '' && // Check for message
+      formData.phone.trim() !== '' && // Check for phone
+      formData.date !== '' && // Check for date
+      formData.timeSlot !== '' && // Check for time slot
+      formData.agree // The checkbox must be checked
     );
   };
 
@@ -149,7 +161,6 @@ const HomeAssistance = () => {
       <Container className="quoteSection p-4 rounded">
         <h2 className="text-center mb-4 hstyle">Send Us a Message</h2>
 
-        {/* Alert Component */}
         {alert.message && (
           <Alert variant={alert.type} onClose={() => setAlert({ type: '', message: '' })} dismissible>
             {alert.message}
@@ -235,7 +246,7 @@ const HomeAssistance = () => {
               isInvalid={!!errors.message}
             />
             <Form.Control.Feedback type="invalid">{errors.message}</Form.Control.Feedback>
-            <small>{(formData.message.trim().split(/\s+/).length || 0)} / 250 words</small>
+            <small>{formData.message.length} / {CHAR_LIMIT} characters</small>
           </Form.Group>
           <br />
 
@@ -252,23 +263,54 @@ const HomeAssistance = () => {
                 />
                 <Form.Control.Feedback type="invalid">{errors.date}</Form.Control.Feedback>
               </Form.Group>
-              <br />
             </Col>
             <Col md={6}>
-              <Form.Group controlId="formTime">
-                <Form.Label>Time</Form.Label>
-                <Form.Control
-                  type="time"
-                  name="time"
-                  value={formData.time}
-                  onChange={handleChange}
-                  isInvalid={!!errors.time}
-                />
-                <Form.Control.Feedback type="invalid">{errors.time}</Form.Control.Feedback>
+              <Form.Group controlId="formTimeSlot">
+                <Form.Label>Preferred Time Slot</Form.Label>
+                <div className="d-flex flex-column">
+                  <Form.Check
+                    type="radio"
+                    label="Morning (09:00 AM - 12:00 PM)"
+                    name="timeSlot"
+                    value="Morning"
+                    checked={formData.timeSlot === 'Morning'}
+                    onChange={handleChange}
+                  />
+                  <Form.Check
+                    type="radio"
+                    label="Afternoon (12:00 PM - 05:00 PM)"
+                    name="timeSlot"
+                    value="Afternoon"
+                    checked={formData.timeSlot === 'Afternoon'}
+                    onChange={handleChange}
+                  />
+                  <Form.Check
+                    type="radio"
+                    label="Evening (05:00 PM - 08:00 PM)"
+                    name="timeSlot"
+                    value="Evening"
+                    checked={formData.timeSlot === 'Evening'}
+                    onChange={handleChange}
+                  />
+                  <Form.Control.Feedback type="invalid">{errors.timeSlot}</Form.Control.Feedback>
+                </div>
               </Form.Group>
             </Col>
           </Row>
-          <br />
+
+          <Form.Group controlId="formAgree" className="mt-3">
+            <Form.Check
+              type="checkbox"
+              label="I agree to the terms and conditions"
+              name="agree"
+              checked={formData.agree}
+              onChange={handleChange}
+              isInvalid={!!errors.agree}
+            />
+            <Form.Control.Feedback type="invalid">{errors.agree}</Form.Control.Feedback>
+          </Form.Group>
+
+          <div className="text-center">
           <Button
               variant="primary"
               type="submit"
@@ -284,11 +326,11 @@ const HomeAssistance = () => {
             >
               {isSending ? 'Sending...' : 'Send'}
             </Button>
+          </div>
         </Form>
       </Container>
     </div>
   );
 };
- 
 
 export default HomeAssistance;

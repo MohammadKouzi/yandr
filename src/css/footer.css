@@ -135,8 +135,10 @@
     }
   
     .contact-info {
-      gap: 30px; /* Reduced gap for better spacing between contact items */
+      gap: 20px; /* Reduced gap for better spacing between contact items */
       text-align: center; /* Center the contact details */
+      font-size: 14px; /* Adjust icon size for smaller screens */
+
     }
   
     .contact-icon {
@@ -149,7 +151,7 @@
     font-size: 14px; /* Adjust icon size for very small screens */
   }
   .contact-info {
-    gap: 24px; /* No gap between contact items on very small screens */
+    gap: 14px; /* No gap between contact items on very small screens */
     text-align: center; /* Ensure the "Contact Us" section is centered */
   }
    }  

@@ -1,51 +1,81 @@
 /* Services Tabs */
 /* Custom Styles for Tabs */
 .custom-tabs .nav-link {
-    color: #b8860b; /* Dark golden text color */
-    font-weight: bold;
-    border: 1px solid transparent;
-    border-radius: 5px; /* Rounded corners */
-    padding: 10px 15px; /* Adjust padding for better touch targets */
-    transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Smooth transitions */
+  color: #b8860b; /* Dark golden text color */
+  font-weight: bold;
+  border: 1px solid transparent;
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px 15px; /* Adjust padding for better touch targets */
+  transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Smooth transitions */
+}
+
+/* Style for active tab */
+.custom-tabs .nav-link.active {
+  color: #fff; /* White text color for active tab */
+  background-color: #b8860b; /* Dark golden background for active tab */
+  border-color: #b8860b; /* Border color for active tab */
+}
+
+/* Style for tab hover */
+.custom-tabs .nav-link:hover {
+  color: #fff; /* White text color on hover */
+  background-color: rgba(124, 92, 12, 0.8); /* Slightly darker gold with transparency on hover */
+}
+
+/* Style for tab content */
+.custom-tabs .tab-content {
+  border-top: 1px solid #b8860b; /* Border below the tab headers */
+  padding: 15px; /* Padding inside the tab content */
+}
+
+/* Animation for paragraph content */
+@keyframes zoomIn {
+  0% {
+    transform: scale(0.9); /* Start slightly smaller */
+    opacity: 0; /* Start invisible */
   }
-  
-  /* Style for active tab */
-  .custom-tabs .nav-link.active {
-    color: #fff; /* White text color for active tab */
-    background-color: #b8860b; /* Dark golden background for active tab */
-    border-color: #b8860b; /* Border color for active tab */
-   }
-  
-  /* Style for tab hover */
-  .custom-tabs .nav-link:hover {
-    color: #fff; /* White text color on hover */
-    background-color: rgba(124, 92, 12, 0.8); /* Slightly darker gold with transparency on hover */
-   }
-  
-  /* Style for tab content */
+  100% {
+    transform: scale(1); /* Full size */
+    opacity: 1; /* Fully visible */
+  }
+}
+
+@keyframes zoomOut {
+  0% {
+    transform: scale(1); /* Full size */
+    opacity: 1; /* Fully visible */
+  }
+  100% {
+    transform: scale(0.9); /* End slightly smaller */
+    opacity: 0; /* Fade out */
+  }
+}
+
+.servicep {
+  animation: zoomIn 0.4s ease-in-out; /* Zoom in effect when loaded */
+}
+
+/* Add the zoom-out class to trigger zoom out */
+.zoom-out {
+  animation: zoomOut 0.4s ease-in-out forwards; /* Zoom out effect */
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+  .custom-tabs .nav-link {
+    font-size: 0.9rem; /* Smaller font size on mobile */
+    padding: 8px 12px; /* Adjust padding for mobile screens */
+  }
+
   .custom-tabs .tab-content {
-    border-top: 1px solid #b8860b; /* Border below the tab headers */
-    padding: 15px; /* Padding inside the tab content */
+    padding: 10px; /* Adjust padding for mobile screens */
   }
-  
-  /* Mobile responsiveness */
-  @media screen and (max-width: 768px) {
-    .custom-tabs .nav-link {
-      font-size: 0.9rem; /* Smaller font size on mobile */
-      padding: 8px 12px; /* Adjust padding for mobile screens */
-    }
-  
-    .custom-tabs .tab-content {
-      padding: 10px; /* Adjust padding for mobile screens */
-    }
+}
+
+/* Extra large screens */
+@media screen and (min-width: 1200px) {
+  .custom-tabs .nav-link {
+    font-size: 1.1rem; /* Larger font size for extra-large screens */
+    padding: 12px 20px; /* Increased padding for extra-large screens */
   }
-  
-  /* Extra large screens */
-  @media screen and (min-width: 1200px) {
-    .custom-tabs .nav-link {
-      font-size: 1.1rem; /* Larger font size for extra-large screens */
-      padding: 12px 20px; /* Increased padding for extra-large screens */
-    }
-  }
-  
-  
+}

@@ -1,17 +1,21 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
-import materialPhotos from '../../data/materialPhotos';
+import materialPhotos from '../../data/materialPhotos'; // Import material data
 
-const MaterialSelection = ({
-  selectedMaterialType,
-  handleMaterialTypeChange,
-  error
+const Suppliers = ({
+  selectedSupplier,
+  handleSupplierChange,
+  error,
 }) => {
   return (
-    <section className='quoteSection'>
-      <Form.Group controlId="materialType">
+    <section className="quoteSection">
+      <Form.Group controlId="Supplier">
         <h2>Select Supplier</h2>
-        <Form.Control as="select" value={selectedMaterialType} onChange={handleMaterialTypeChange}>
+        <Form.Control
+          as="select"
+          value={selectedSupplier}
+          onChange={handleSupplierChange}
+        >
           <option value="">Select...</option>
           {Object.keys(materialPhotos).map((material) => (
             <option key={material} value={material}>
@@ -25,4 +29,4 @@ const MaterialSelection = ({
   );
 };
 
-export default MaterialSelection;
+export default Suppliers;

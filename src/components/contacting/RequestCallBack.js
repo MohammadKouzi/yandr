@@ -27,6 +27,8 @@ const RequestCallBack = () => {
   const [isSending, setIsSending] = useState(false);
   const [alert, setAlert] = useState({ type: '', message: '' }); // Alert state
 
+  const CHAR_LIMIT = 250; // Character limit for the message
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -46,7 +48,10 @@ const RequestCallBack = () => {
         error = value.trim() ? '' : 'Subject is required';
         break;
       case 'message':
-        error = value.trim() ? '' : 'Message is required';
+        error = value.length > CHAR_LIMIT ? `Message cannot exceed ${CHAR_LIMIT} characters.` : '';
+        if (!error && !value.trim()) {
+          error = 'Message is required';
+        }
         break;
       case 'phone':
         error = /^\+44\d{10}$/.test(value) ? '' : 'Valid UK phone number is required (Starting with +44)';
@@ -98,13 +103,9 @@ const RequestCallBack = () => {
       time: formattedTime, // Send formatted time with AM/PM
     };
 
-    // Log the data to see what is being sent
-    console.log("Data being sent to backend:", dataToSend);
-
     axios
       .post(process.env.REACT_APP_REQUESTCALLBACK_API_URL, dataToSend)
       .then((response) => {
-        console.log('SUCCESS!', response.status, response.data);
         // Reset form fields
         setFormData({
           name: '',
@@ -118,7 +119,6 @@ const RequestCallBack = () => {
         setAlert({ type: 'success', message: 'Request sent successfully!' });
       })
       .catch((err) => {
-        console.error('Error:', err);
         setAlert({ type: 'danger', message: 'Failed to send request. Please try again later.' });
       })
       .finally(() => setIsSending(false));
@@ -235,7 +235,7 @@ const RequestCallBack = () => {
               isInvalid={!!errors.message}
             />
             <Form.Control.Feedback type="invalid">{errors.message}</Form.Control.Feedback>
-            <small>{(formData.message.trim().split(/\s+/).length || 0)} / 250 words</small>
+            <small>{formData.message.length} / 250 characters</small>
           </Form.Group>
           <br />
 
@@ -256,7 +256,7 @@ const RequestCallBack = () => {
             </Col>
             <Col md={6}>
               <Form.Group controlId="formTime">
-                <Form.Label>Time</Form.Label>
+                <Form.Label>Time (24-hour format)</Form.Label>
                 <Form.Control
                   type="time"
                   name="time"
@@ -266,9 +266,11 @@ const RequestCallBack = () => {
                 />
                 <Form.Control.Feedback type="invalid">{errors.time}</Form.Control.Feedback>
               </Form.Group>
+              <br />
             </Col>
           </Row>
-          <br />
+
+          <div className="text-center">
           <Button
               variant="primary"
               type="submit"
@@ -284,9 +286,10 @@ const RequestCallBack = () => {
             >
               {isSending ? 'Sending...' : 'Send'}
             </Button>
+          </div>
         </Form>
       </Container>
-    </div>
+     </div>
   );
 };
 

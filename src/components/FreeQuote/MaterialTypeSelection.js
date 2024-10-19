@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
 
-const MaterialSelectionForm = ({
+const MaterialTypeSelection = ({
   selectedMaterialType,
   handleMaterialTypeChange,
   error
@@ -24,4 +24,4 @@ const MaterialSelectionForm = ({
   );
 };
 
-export default MaterialSelectionForm;
+export default MaterialTypeSelection;

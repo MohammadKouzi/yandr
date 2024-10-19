@@ -15,29 +15,31 @@ const kitchenOptions = {
 const KitchenSelection = ({ formData, handleChange, errors, setErrors }) => {
     const [selectedKitchen, setSelectedKitchen] = useState('');
     const [kitchenMeasurements, setKitchenMeasurements] = useState(formData.kitchenMeasurement || {});
-    const [showMeasurements, setShowMeasurements] = useState(false); // لحفظ حالة عرض المقاسات
+    const [showMeasurements, setShowMeasurements] = useState(false);
 
     const handleKitchenChange = (e) => {
         const kitchen = e.target.value;
-        const newKitchenArray = formData.kitchen.includes(kitchen)
-            ? formData.kitchen.filter(item => item !== kitchen) // إزالة في حال كانت موجودة
-            : [...formData.kitchen, kitchen]; // إضافة في حال عدم وجودها
 
+        // Clear previous measurements when a new kitchen is selected
+        setKitchenMeasurements({});
+        setShowMeasurements(false); // Reset the measurements display
         setSelectedKitchen(kitchen);
+        
+        const newKitchenArray = kitchen ? [kitchen] : []; // Ensure only one selection
         handleChange({ target: { name: 'kitchen', value: newKitchenArray } });
         setErrors((prev) => ({ ...prev, kitchenSelection: '' }));
     };
 
     const handleMeasurementChange = (label, index, value) => {
-        const regex = /^\d+\s*x\s*\d+$/; // Regex for "Width x Height" format
-        const updatedMeasurements = { ...kitchenMeasurements }; // Clone the current kitchen measurements
-    
+        const regex = /^\d+\s*x\s*\d+$/;
+        const updatedMeasurements = { ...kitchenMeasurements };
+
         if (!updatedMeasurements[label]) {
-            updatedMeasurements[label] = Array(kitchenOptions[label].labelCount).fill(''); // Ensure the label exists with an empty array
+            updatedMeasurements[label] = Array(kitchenOptions[label].labelCount).fill('');
         }
-    
-        updatedMeasurements[label][index] = value; // Update the specific measurement at the given index
-    
+
+        updatedMeasurements[label][index] = value;
+
         if (value && !regex.test(value)) {
             setErrors(prev => ({
                 ...prev,
@@ -46,14 +48,13 @@ const KitchenSelection = ({ formData, handleChange, errors, setErrors }) => {
         } else {
             setErrors(prev => ({
                 ...prev,
-                [`kitchenMeasurement_${label}_${index}`]: '', // Clear the error for this input if valid
+                [`kitchenMeasurement_${label}_${index}`]: '',
             }));
         }
-    
-        setKitchenMeasurements(updatedMeasurements); // Update the kitchen measurements in state
-        handleChange({ target: { name: 'kitchenMeasurement', value: updatedMeasurements } }); // Pass the updated measurements to the parent formData
+
+        setKitchenMeasurements(updatedMeasurements);
+        handleChange({ target: { name: 'kitchenMeasurement', value: updatedMeasurements } });
     };
-    
 
     const renderMeasurementFields = (kitchen) => {
         const labelCount = kitchenOptions[kitchen]?.labelCount || 0;
@@ -109,25 +110,25 @@ const KitchenSelection = ({ formData, handleChange, errors, setErrors }) => {
                         <>
                             <img
                                 src={kitchenOptions[selectedKitchen].image}
-                                alt={selectedKitchen} // وصف بديل
+                                alt={selectedKitchen}
                                 style={{
                                     width: '100%',
                                     height: 'auto',
                                     maxWidth: '100%',
                                     maxHeight: '300px',
                                     objectFit: 'contain'
-                                }} // ستايل الصور لتكون متجاوبة
+                                }}
                             />
                             <div style={{ marginTop: '10px' }}>
                                 <Button
                                     variant="primary"
                                     style={{
-                                    backgroundColor: 'darkgoldenrod',
-                                    color: 'white',
-                                    padding: '12px',
-                                    cursor: 'pointer',
+                                        backgroundColor: 'darkgoldenrod',
+                                        color: 'white',
+                                        padding: '12px',
+                                        cursor: 'pointer',
                                     }}
-                                    onClick={() => setShowMeasurements(true)} // تعديل لعرض المقاسات
+                                    onClick={() => setShowMeasurements(true)}
                                 >
                                     Add Optional Measurements
                                 </Button>
@@ -138,7 +139,7 @@ const KitchenSelection = ({ formData, handleChange, errors, setErrors }) => {
                             <Col lg={6} md={6} sm={12} style={{ textAlign: 'center' }}>
                                 <img
                                     src={kitchenOptions[selectedKitchen].image}
-                                    alt={selectedKitchen} // وصف بديل
+                                    alt={selectedKitchen}
                                     style={{
                                         width: '450px',
                                         height: 'auto',
@@ -146,24 +147,23 @@ const KitchenSelection = ({ formData, handleChange, errors, setErrors }) => {
                                         maxHeight: '300px',
                                         objectFit: 'contain',
                                         marginTop: '10px'
-                                    }} // ستايل الصور لتكون متجاوبة
+                                    }}
                                 />
                             </Col>
                             <Col lg={6} md={6} sm={12}>
                                 <Card style={{ marginTop: '20px' }}>
                                     <Card.Body>
                                         <Card.Title style={{ marginBottom: '16px' }}>{selectedKitchen}</Card.Title>
-                                         {renderMeasurementFields(selectedKitchen)}
-                                       
+                                        {renderMeasurementFields(selectedKitchen)}
                                     </Card.Body>
                                 </Card>
-                                 <Button
-                                            variant="secondary"
-                                            onClick={() => setShowMeasurements(false)} // إضافة زر لإخفاء المقاسات
-                                            style={{ marginTop: '10px' }}
-                                        >
-                                            Hide Measurements
-                                        </Button>
+                                <Button
+                                    variant="secondary"
+                                    onClick={() => setShowMeasurements(false)}
+                                    style={{ marginTop: '10px' }}
+                                >
+                                    Hide Measurements
+                                </Button>
                             </Col>
                         </Row>
                     )}
@@ -173,5 +173,4 @@ const KitchenSelection = ({ formData, handleChange, errors, setErrors }) => {
     );
 };
 
- 
 export default KitchenSelection;

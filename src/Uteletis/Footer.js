@@ -28,9 +28,9 @@ const Footer = () => {
               <li><Link to="/our-suppliers">Our Suppliers</Link></li>
               <li><Link to="/services">Services</Link></li>
               <li><Link to="/about">About Us</Link></li>
+              <li><Link to="/kitchen"> Kitchens Work</Link></li> {/* Link to Kitchens.js */}
               <li><Link to="/livingroom"> Living Room Work </Link></li> {/* Link to LivingRoom.js */}
               <li><Link to="/bathroom">   Bathrooms Work</Link></li> {/* Link to Bathrooms.js */}
-              <li><Link to="/kitchen"> Kitchens Work</Link></li> {/* Link to Kitchens.js */}
             </ul>
           </Col>
 

@@ -10,7 +10,11 @@ const Banner = () => {
         </div>
         <div className="contact-item">
           <i className="fas fa-phone contact-icon"></i>
-          <a href="tel:+1234567890" className="contact-link">+1234567890</a>
+          <a href="tel:02030890107" className="contact-link">02030890107</a>
+        </div>
+        <div className="contact-item">
+          <i className="fas fa-phone contact-icon"></i>
+          <a href="tel:07312 222279" className="contact-link">07312 222279</a>
         </div>
       </div>
     </div>

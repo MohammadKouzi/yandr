@@ -7,25 +7,38 @@ import serviceImage from '../Images/service.jpg';
 
 const Services = () => {
   const [activeTab, setActiveTab] = useState('Precision Cutting');
+  const [animationClass, setAnimationClass] = useState('zoom-in'); // Control animation
+
+  // Handle tab switching with zoom-out effect first
+  const handleTabSelect = (key) => {
+    // Add zoom-out effect before changing the tab content
+    setAnimationClass('zoom-out');
+
+    // Delay the tab switch to let the zoom-out animation finish
+    setTimeout(() => {
+      setActiveTab(key);
+      setAnimationClass('zoom-in'); // Reset to zoom-in effect for new tab
+    }, 300); // Match the animation duration (0.3s)
+  };
 
   // Render tab content based on the active tab
   const renderTabContent = () => {
     switch (activeTab) {
       case 'Precision Cutting':
         return (
-          <p className="servicep pstyle">
+          <p className={`servicep pstyle ${animationClass}`}>
             We offer meticulous cutting services for quartz, porcelain, granite, and marble. Whether it’s custom shapes, detailed edging, or precise cutouts for sinks, vanities, and fixtures, our work is defined by accuracy and a keen eye for detail.
           </p>
         );
       case 'Quartz & Porcelain for Floors, Walls, and Vanities':
         return (
-          <p className="servicep pstyle">
+          <p className={`servicep pstyle ${animationClass}`}>
             Beyond worktops, we provide specialized cutting services for quartz and porcelain floors, walls, and vanities. These durable and elegant materials are perfect for enhancing kitchens, bathrooms, living spaces, and any other area of your home.
           </p>
         );
       case 'Professional Installation':
         return (
-          <p className="servicep pstyle">
+          <p className={`servicep pstyle ${animationClass}`}>
             Our team of professionals ensures that your chosen materials are installed with precision and care. From worktops to floors, walls, and vanities, we handle the entire installation process, leaving you with a flawless and beautiful finish.
           </p>
         );
@@ -38,7 +51,7 @@ const Services = () => {
     <div className='body'>
       {/* SEO using React Helmet */}
       <Helmet>
-        <title>GlamStone - Our Services </title>
+        <title>GlamStone - Our Services</title>
         <meta name="description" content="Explore the expert services offered by GlamStone, including precision cutting for quartz and porcelain, and professional installation for all your worktop and tile needs." />
         <meta 
           name="keywords" 
@@ -58,7 +71,7 @@ const Services = () => {
             <Tabs
               id="service-tabs"
               activeKey={activeTab}
-              onSelect={(key) => setActiveTab(key)}
+              onSelect={(key) => handleTabSelect(key)} // Call custom handler
               className="mb-4 custom-tabs"
               justify
             >
