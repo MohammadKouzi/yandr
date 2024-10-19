@@ -40,18 +40,4 @@
       padding-bottom: 20px;
     }
   }
-  .custom-tabs .nav-link {
-    background-color: white;
-    color: black;
-    border: 1px solid #ced4da;
-  }
-  
-  .custom-tabs .nav-link.active {
-    background-color: #d4af37; /* Dark gold */
-    color: white; /* Text color */
-  }
-  
-  .custom-tabs .nav-link:hover {
-    background-color: #f5f5f5;
-  }
-  
+ 
