@@ -142,16 +142,16 @@
     }
   
     .contact-icon {
-      margin-right: 8px; /* Add margin between the icon and text */
+      margin-right: 4px; /* Add margin between the icon and text */
       font-size: 16px; /* Adjust icon size for smaller screens */
     }
   
   
   .contact-icon {
-    font-size: 14px; /* Adjust icon size for very small screens */
+    font-size: 10px; /* Adjust icon size for very small screens */
   }
   .contact-info {
-    gap: 14px; /* No gap between contact items on very small screens */
+    gap: 10px; /* No gap between contact items on very small screens */
     text-align: center; /* Ensure the "Contact Us" section is centered */
   }
    }  
