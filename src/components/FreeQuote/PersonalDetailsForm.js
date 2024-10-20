@@ -17,7 +17,7 @@ const PersonalDetailsForm = ({ formData, handleChange, errors }) => (
             isInvalid={!!errors.name}
             placeholder="Enter your name"
           />
-          {errors.name && <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>}
+          <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
         </Form.Group>
       </Col>
 
@@ -32,7 +32,7 @@ const PersonalDetailsForm = ({ formData, handleChange, errors }) => (
             isInvalid={!!errors.email}
             placeholder="Enter your email address"
           />
-          {errors.email && <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>}
+          <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
         </Form.Group>
       </Col>
     </Row>
@@ -47,9 +47,9 @@ const PersonalDetailsForm = ({ formData, handleChange, errors }) => (
             value={formData.phone} 
             onChange={handleChange}
             isInvalid={!!errors.phone}
-            placeholder="Enter your phone number (e.g., 123-456-7890)"
+            placeholder="Enter your phone number (e.g., +441234567890)"
           />
-          {errors.phone && <Form.Control.Feedback type="invalid">{errors.phone}</Form.Control.Feedback>}
+          <Form.Control.Feedback type="invalid">{errors.phone}</Form.Control.Feedback>
         </Form.Group>
       </Col>
 
@@ -64,7 +64,7 @@ const PersonalDetailsForm = ({ formData, handleChange, errors }) => (
             isInvalid={!!errors.postcode}
             placeholder="Enter your postcode"
           />
-          {errors.postcode && <Form.Control.Feedback type="invalid">{errors.postcode}</Form.Control.Feedback>}
+          <Form.Control.Feedback type="invalid">{errors.postcode}</Form.Control.Feedback>
         </Form.Group>
       </Col>
     </Row>
