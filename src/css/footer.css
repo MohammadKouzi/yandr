@@ -137,7 +137,7 @@
     .contact-info {
       gap: 20px; /* Reduced gap for better spacing between contact items */
       text-align: center; /* Center the contact details */
-      font-size: 14px; /* Adjust icon size for smaller screens */
+      font-size: 12px; /* Adjust icon size for smaller screens */
 
     }
   
