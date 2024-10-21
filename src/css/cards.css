@@ -19,7 +19,7 @@
   font-weight: bold;
   margin-bottom: 10px;
   text-align: center;
-  max-height: 50px; /* Limit title height */
+  max-height: 28px; /* Limit title height */
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -55,6 +55,9 @@
   .custom-card {
     height: 280px;
   }
+  .card-title {
+    max-height: 50px; /* Limit title height */
+  }
 }
 
 /* Responsive for small screens */
@@ -62,7 +65,9 @@
   .custom-card {
     height: 260px;
   }
-
+  .card-title {
+  max-height: 70px; /* Limit title height */
+}
   .svg-inline--fa {
     font-size: 2em; /* Increase icon size on smaller screens */
   }

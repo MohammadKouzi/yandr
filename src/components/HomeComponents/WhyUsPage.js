@@ -4,34 +4,20 @@ import { Container, Card, Col, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTools,
-  faUserCog,
-  faGem,
+  
   faHome,
   faClipboardList,
   faTruck,
   faCalendarAlt,
   faMapMarkedAlt,
-  faClock,
-} from '@fortawesome/free-solid-svg-icons';
+ } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 // Data for cards
 const cardItems = [
-  {
-    icon: faTools,
-    title: 'Specialized Expertise',
-    text: 'With extensive experience in working with high-end materials, we bring a deep understanding of each stone’s unique characteristics, enabling us to achieve superior results in both cutting and installation.',
-  },
-  {
-    icon: faUserCog,
-    title: 'Personalized Service',
-    text: 'As independent designers, we offer a tailored approach to each project, collaborating closely with builders and clients to ensure that the final product not only meets but exceeds design expectations.',
-  },
-  {
-    icon: faGem,
-    title: 'Commitment to Quality',
-    text: 'Quality craftsmanship is at the heart of everything we do. We ensure that every project, from worktops to vanities, walls, and floors, is completed with the utmost attention to detail and excellence.',
-  },
+
+ 
+ 
   {
     icon: faHome,
     title: 'Home Visit Services',
@@ -56,20 +42,23 @@ const cardItems = [
     text: 'We bring a wide range of worktop, floor tile, wall tile, and vanity samples directly to your door, allowing you to explore your options from the comfort of your home.',
   },
   {
-    icon: faCalendarAlt,
-    title: 'Weekend & Bank Holiday Availability',
-    text: 'We understand that your schedule may be busy, which is why we are available on weekends and bank holidays to better meet your needs and ensure your project progresses smoothly.',
-  },
-  {
     icon: faMapMarkedAlt,
     title: 'Nationwide Coverage',
     text: 'We proudly serve various areas across the UK, bringing our high-quality worktop, floor tile, wall tile, and vanity services to homes and businesses nationwide.',
   },
   {
-    icon: faClock,
-    title: 'Reliable and Timely Execution',
-    text: 'We recognize the importance of adhering to project timelines and budgets, providing reliable services that support your construction and home decoration goals.',
+    icon: faCalendarAlt,
+    title: 'Weekend & Bank Holiday Availability',
+    text: 'We understand that your schedule may be busy, which is why we are available on weekends and bank holidays to better meet your needs and ensure your project progresses smoothly.',
   },
+
+  {
+    icon: faTools,
+    title: 'Exceptional Stonework and Reliable Project Delivery',
+    text: ' We specialize in top-quality materials, offering expert cutting and seamless installation. As independent designers, we collaborate closely with builders and clients to ensure every project surpasses expectations. Whether it’s countertops, flooring, or other surfaces, our focus is on precision and craftsmanship. We guarantee timely and reliable service, ensuring all projects are completed on time and within your budget.',
+  },
+   
+  
 ];
 
 const WhyUsPage = () => {
