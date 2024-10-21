@@ -63,7 +63,7 @@
 /* Responsive for small screens */
 @media (max-width: 768px) {
   .custom-card {
-    height: 260px;
+    height: auto;
   }
   .card-title {
   max-height: 70px; /* Limit title height */
