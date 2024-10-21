@@ -39,7 +39,7 @@ const cardItems = [
   },
   {
     icon: faTruck,
-    title: 'Sample Delivery Service',
+    title: 'Sample Delivery ',
     text: 'We bring a wide range of worktop, floor tile, wall tile, and vanity samples directly to your door, allowing you to explore your options from the comfort of your home.',
   },
   {
