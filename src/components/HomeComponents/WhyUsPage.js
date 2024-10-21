@@ -18,11 +18,7 @@ const cardItems = [
 
  
  
-  {
-    icon: faHome,
-    title: 'Home Visit Services',
-    text: 'To guarantee your complete satisfaction, we offer home visit services. This allows us to understand your space and vision firsthand, ensuring that the final product perfectly complements your home and meets your expectations.',
-  },
+  
   {
     icon: faClipboardList,
     title: 'Quotation Options',
@@ -37,18 +33,24 @@ const cardItems = [
     ),
   },
   {
-    icon: faTruck,
-    title: 'Sample Delivery Service',
-    text: 'We bring a wide range of worktop, floor tile, wall tile, and vanity samples directly to your door, allowing you to explore your options from the comfort of your home.',
-  },
-  {
     icon: faMapMarkedAlt,
     title: 'Nationwide Coverage',
     text: 'We proudly serve various areas across the UK, bringing our high-quality worktop, floor tile, wall tile, and vanity services to homes and businesses nationwide.',
   },
   {
+    icon: faTruck,
+    title: 'Sample Delivery Service',
+    text: 'We bring a wide range of worktop, floor tile, wall tile, and vanity samples directly to your door, allowing you to explore your options from the comfort of your home.',
+  },
+  {
+    icon: faHome,
+    title: 'Home Visit Services',
+    text: 'To guarantee your complete satisfaction, we offer home visit services. This allows us to understand your space and vision firsthand, ensuring that the final product perfectly complements your home and meets your expectations.',
+  },
+ 
+  {
     icon: faCalendarAlt,
-    title: 'Weekend & Bank Holiday Availability',
+    title: 'Weekend and Bank Holiday Availability',
     text: 'We understand that your schedule may be busy, which is why we are available on weekends and bank holidays to better meet your needs and ensure your project progresses smoothly.',
   },
 

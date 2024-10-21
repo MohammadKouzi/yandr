@@ -66,10 +66,10 @@
     height: auto;
   }
   .card-title {
-  max-height: 70px; /* Limit title height */
+  max-height: 100px; /* Limit title height */
 }
   .svg-inline--fa {
-    font-size: 2em; /* Increase icon size on smaller screens */
+    font-size: 1.7em; /* Increase icon size on smaller screens */
   }
 }
 
