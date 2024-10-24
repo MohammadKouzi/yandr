@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form } from 'react-bootstrap';
+import { Form, Row, Col } from 'react-bootstrap';
 
 const Notes = ({ formData = {}, handleChange }) => {
   const [errorMessage, setErrorMessage] = useState('');
@@ -21,6 +21,8 @@ const Notes = ({ formData = {}, handleChange }) => {
 
   return (
     <section className="quoteSection">
+     <Row>
+     <Col lg={6} sm={12}>
       <Form.Group controlId="additionalNotes">
         <h2>Additional Notes</h2>
         <Form.Control
@@ -34,8 +36,9 @@ const Notes = ({ formData = {}, handleChange }) => {
         <small>{charCount} / 250 characters</small> {/* Display character count */}
         {errorMessage && <div className="text-danger">{errorMessage}</div>} {/* Display error message */}
       </Form.Group>
-    </section>
-  );
+      </Col>
+    </Row>
+  </section>  );
 };
 
 export default Notes;
