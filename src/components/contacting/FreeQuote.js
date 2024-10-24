@@ -202,12 +202,12 @@ const FreeQuote = () => {
       return acc;
     }, {});
 
-    const allNone = Object.values(shapeMeasurement).every((value) => value === 'none');
+    const allNone = Object.values(shapeMeasurement).every((value) => value === 'None');
 
     const quoteData = {
       ...formData,
       selectedSupplier: formData.selectedSupplier === 'Other' ? formData.customSupplier : formData.selectedSupplier,
-      shapeMeasurement: allNone ? 'none' : shapeMeasurement,
+      shapeMeasurement: allNone ? 'None' : shapeMeasurement,
       materialType: formData.materialType === 'Other' ? formData.materialTypeCustom : formData.materialType,
     };
 

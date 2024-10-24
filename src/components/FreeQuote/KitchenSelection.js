@@ -20,12 +20,10 @@ const KitchenSelection = ({ formData, handleChange, errors, setErrors }) => {
     const handleKitchenChange = (e) => {
         const kitchen = e.target.value;
 
-        // Clear previous measurements when a new kitchen is selected
         setKitchenMeasurements({});
-        setShowMeasurements(false); // Reset the measurements display
+        setShowMeasurements(false);
         setSelectedKitchen(kitchen);
-        
-        const newKitchenArray = kitchen ? [kitchen] : []; // Ensure only one selection
+        const newKitchenArray = kitchen ? [kitchen] : [];
         handleChange({ target: { name: 'kitchen', value: newKitchenArray } });
         setErrors((prev) => ({ ...prev, kitchenSelection: '' }));
     };
@@ -43,7 +41,7 @@ const KitchenSelection = ({ formData, handleChange, errors, setErrors }) => {
         if (value && !regex.test(value)) {
             setErrors(prev => ({
                 ...prev,
-                [`kitchenMeasurement_${label}_${index}`]: 'Please enter exactly two numbers in "Width x Height" format, e.g., 300 x 200.',
+                [`kitchenMeasurement_${label}_${index}`]: 'Enter "Width x Height", e.g., 300 x 200.',
             }));
         } else {
             setErrors(prev => ({
@@ -70,7 +68,6 @@ const KitchenSelection = ({ formData, handleChange, errors, setErrors }) => {
                             <Form.Label>Measurement {index + 1}</Form.Label>
                             <Form.Control
                                 type="text"
-                                name={`kitchenMeasurement_${kitchen}_${index}`}
                                 value={measurement}
                                 onChange={(e) => handleMeasurementChange(kitchen, index, e.target.value)}
                                 placeholder="Width x Height"
@@ -102,7 +99,7 @@ const KitchenSelection = ({ formData, handleChange, errors, setErrors }) => {
                 </Form.Control>
             </Form.Group>
 
-            {errors.kitchenSelection && <p className="text-danger">{errors.kitchenSelection}</p>}
+            {errors.kitchenSelection && <small className="text-danger">{errors.kitchenSelection}</small>}
 
             {selectedKitchen && (
                 <div style={{ marginTop: '20px', textAlign: 'center' }}>
@@ -126,7 +123,6 @@ const KitchenSelection = ({ formData, handleChange, errors, setErrors }) => {
                                         backgroundColor: 'darkgoldenrod',
                                         color: 'white',
                                         padding: '12px',
-                                        cursor: 'pointer',
                                     }}
                                     onClick={() => setShowMeasurements(true)}
                                 >
@@ -153,7 +149,7 @@ const KitchenSelection = ({ formData, handleChange, errors, setErrors }) => {
                             <Col lg={6} md={6} sm={12}>
                                 <Card style={{ marginTop: '20px' }}>
                                     <Card.Body>
-                                        <Card.Title style={{ marginBottom: '16px' }}>{selectedKitchen}</Card.Title>
+                                        <Card.Title>{selectedKitchen}</Card.Title>
                                         {renderMeasurementFields(selectedKitchen)}
                                     </Card.Body>
                                 </Card>

@@ -15,10 +15,11 @@ const maxMeasurementsPerShape = {
     'Hob Splashback': 4,
     'Slope Down Sink': 4,
 };
+
 const ShapeSelection = ({ formData, handleChange, errors, setErrors }) => {
     const [selectedShapes, setSelectedShapes] = useState(formData.shape || []);
     const [shapeMeasurements, setShapeMeasurements] = useState(formData.shapeMeasurement || {});
-    const [showMeasurements, setShowMeasurements] = useState({}); // State to manage visibility
+    const [showMeasurements, setShowMeasurements] = useState({});
 
     const handleCardClick = (label) => {
         const updatedShapes = selectedShapes.includes(label)
@@ -32,11 +33,10 @@ const ShapeSelection = ({ formData, handleChange, errors, setErrors }) => {
             setErrors((prev) => ({ ...prev, shapeSelection: '' }));
         }
 
-        // Automatically add empty measurement inputs for the selected shape
         if (updatedShapes.includes(label) && !shapeMeasurements[label]) {
             const updatedMeasurements = {
                 ...shapeMeasurements,
-                [label]: Array(maxMeasurementsPerShape[label]).fill(''), // Initialize with empty strings
+                [label]: Array(maxMeasurementsPerShape[label]).fill(''),
             };
             setShapeMeasurements(updatedMeasurements);
             handleChange({ target: { name: 'shapeMeasurement', value: updatedMeasurements } });
@@ -49,14 +49,13 @@ const ShapeSelection = ({ formData, handleChange, errors, setErrors }) => {
 
     const handleMeasurementChange = (label, index, value) => {
         const regex = /^\d+\s*x\s*\d+$/;
-
         const updatedMeasurements = shapeMeasurements[label] || [];
         updatedMeasurements[index] = value;
 
         if (value && !regex.test(value)) {
             setErrors((prev) => ({
                 ...prev,
-                [`shapeMeasurement_${label}_${index}`]: 'Please enter exactly two numbers in "Width x Height" format, e.g., 300 x 200.',
+                [`shapeMeasurement_${label}_${index}`]: 'Enter "Width x Height", e.g., 300 x 200.',
             }));
         } else {
             setErrors((prev) => ({
@@ -65,7 +64,7 @@ const ShapeSelection = ({ formData, handleChange, errors, setErrors }) => {
             }));
         }
 
-        const newShapeMeasurements = { ...shapeMeasurements, [label]: updatedMeasurements.length ? updatedMeasurements : null }; // Set to null if empty
+        const newShapeMeasurements = { ...shapeMeasurements, [label]: updatedMeasurements };
         setShapeMeasurements(newShapeMeasurements);
         handleChange({ target: { name: 'shapeMeasurement', value: newShapeMeasurements } });
     };
@@ -100,18 +99,17 @@ const ShapeSelection = ({ formData, handleChange, errors, setErrors }) => {
                     </Col>
                 ))}
             </Row>
-            {errors.shapeSelection && <p className="text-danger">{errors.shapeSelection}</p>}
+            {errors.shapeSelection && <small className="text-danger">{errors.shapeSelection}</small>}
 
             {selectedShapes.length > 0 && selectedShapes.map((shape) => (
                 <div key={shape}>
-                    <h5 className="hstyle" style={{ padding: '10px 10' }}>Enter {shape} Measurements</h5>
+                    <h5 style={{ padding: '10px 10' }}>Enter {shape} Measurements</h5>
                     <Button
                         onClick={() => toggleMeasurementsVisibility(shape)}
                         style={{
                             backgroundColor: 'darkgoldenrod',
                             color: 'white',
                             padding: '12px',
-                            cursor: 'pointer',
                             margin: '10px',
                         }}
                     >
@@ -125,8 +123,7 @@ const ShapeSelection = ({ formData, handleChange, errors, setErrors }) => {
                                     <Form.Group controlId={`shapeMeasurement_${shape}_${index}`} style={{ marginBottom: '24px' }}>
                                         <Form.Control
                                             type="text"
-                                            name={`shapeMeasurement_${shape}_${index}`}
-                                            value={measurement || ''} // Ensure value is an empty string if undefined
+                                            value={measurement || ''}
                                             onChange={(e) => handleMeasurementChange(shape, index, e.target.value)}
                                             placeholder="Width x Height"
                                             isInvalid={!!errors[`shapeMeasurement_${shape}_${index}`]}
@@ -148,4 +145,3 @@ const ShapeSelection = ({ formData, handleChange, errors, setErrors }) => {
 };
 
 export default ShapeSelection;
-
