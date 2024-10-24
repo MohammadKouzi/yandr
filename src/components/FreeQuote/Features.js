@@ -26,7 +26,7 @@ const Features = ({ formData, handleChange }) => {
                     { label: 'Full Splashback', image: fullSplashBackImage }, 
                     { label: 'Windows Sills', image: windowSillImage }
                 ].map(({ label, image }) => (
-                    <Col lg={4} sm={6} xs={12} key={label}>
+                    <Col lg={4} sm={6} xs={6} key={label}>
                         <Card
                             className={`shape-card ${selectedFeatures.includes(label) ? 'selected' : ''}`}
                             onClick={() => handleCardClick(label)}

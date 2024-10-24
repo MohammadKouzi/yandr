@@ -24,6 +24,9 @@ import artcut from '../Images/artcut.png';
 import technistone from '../Images/technistone.png';
 import nextstone from '../Images/nextstone.png';
 import interstone from '../Images/interstone.png';
+import laminamImage from '../Images/laminam.png';
+import arklamImage from '../Images/arklam.png';
+
 
 // Mapping materials to photos, names, and links
 const materialPhotos = {
@@ -85,7 +88,7 @@ const materialPhotos = {
   'Compac': {
     name: 'Compac',
     photo: compac,
-    link: 'https://us.compac.es/quartz/'
+    link: 'https://en.compac.es/quartz/'
   },
   'CRL Stone': {
     name: 'CRL Stone',
@@ -95,7 +98,7 @@ const materialPhotos = {
   'Classic Quartz Stone': {
     name: 'Classic Quartz Stone',
     photo: classicQuartzStone,
-    link: 'https://www.classicquartzstone.com/#'
+    link: 'https://www.classicquartzstone.com/product-category/stone-collection/'
   },
   'Nobel Stone': {
     name: 'Nobel Stone',
@@ -152,6 +155,18 @@ const materialPhotos = {
     photo: nextstone,
     link: 'https://newagestone.co.uk/home/signature-collection/'
   },
+ 
+'Laminam': {
+  name: 'Laminam',
+  photo: laminamImage, // ضع هنا المتغير المناسب لصورة Laminam
+  link: 'https://www.laminam.com/en/products/'
+},
+'Arklam': {
+  name: 'Arklam',
+  photo: arklamImage, // ضع هنا المتغير المناسب لصورة Arklam
+  link: 'https://arklam.com/en/products/'
+}
+ 
 };
 
 export default materialPhotos;

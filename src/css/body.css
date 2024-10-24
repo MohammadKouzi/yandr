@@ -40,4 +40,32 @@
       padding-bottom: 20px;
     }
   }
- 
+  .quoteSection {
+    padding: 15px;
+  }
+  
+  .notes-input {
+    width: 100%;
+    font-size: 1rem;
+  }
+  
+  @media (max-width: 576px) {
+    .quoteSection {
+      padding: 10px;
+    }
+  
+    .notes-input {
+      font-size: 0.9rem;
+    }
+  
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .notes-input {
+      font-size: 1rem;
+    }
+  }
+  

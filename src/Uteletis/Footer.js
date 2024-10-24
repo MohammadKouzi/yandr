@@ -47,7 +47,7 @@ const Footer = () => {
           <Col xs={12} md={6} lg={3} className="footer-column mb-4">
             <h3>Follow Us</h3>
             <div className="social-media-container">
-              <a href="https://www.facebook.com" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.facebook.com/profile.php?id=61567824472609" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon={faFacebook} className="social-icon facebook" />
               </a>
               <a href="https://www.instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
