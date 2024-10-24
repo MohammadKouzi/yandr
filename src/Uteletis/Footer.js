@@ -50,7 +50,7 @@ const Footer = () => {
               <a href="https://www.facebook.com/profile.php?id=61567824472609" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon={faFacebook} className="social-icon facebook" />
               </a>
-              <a href="https://www.instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.instagram.com/glamstone.ltd?igsh=OXdvdm5vYTA2MW0y" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon={faInstagram} className="social-icon instagram" />
               </a>
             </div>

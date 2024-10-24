@@ -11,7 +11,7 @@ const HomeAssistance = () => {
     message: '',
     phone: '',
     date: '',
-    timeSlot: '', 
+    time: '', // Renamed to 'time' to match backend
     agree: false, 
   });
 
@@ -22,7 +22,7 @@ const HomeAssistance = () => {
     message: '',
     phone: '',
     date: '',
-    timeSlot: '',
+    time: '',
     agree: '',
   });
 
@@ -63,8 +63,8 @@ const HomeAssistance = () => {
         const selectedDate = new Date(value);
         error = selectedDate < today ? 'Date cannot be in the past' : '';
         break;
-      case 'timeSlot':
-        error = value ? '' : 'Time slot is required';
+      case 'time':
+        error = value ? '' : 'Time slot is required'; // Adjusted to match 'time'
         break;
       case 'agree':
         error = value ? '' : 'You must agree to the terms and conditions';
@@ -99,13 +99,13 @@ const HomeAssistance = () => {
 
     const dataToSend = {
       ...formData,
-      date: formattedDate,
+      date: formattedDate, // Properly formatted date
     };
 
     console.log("Data being sent to backend:", dataToSend);
 
     axios
-      .post(process.env.REACT_APP_HOMEASSISTENCE_API_URL, dataToSend)
+  .post('http://localhost:5000/api/HomeAssistance', dataToSend)  // Example URL
       .then((response) => {
         console.log('SUCCESS!', response.status, response.data);
         // Reset form data
@@ -116,7 +116,7 @@ const HomeAssistance = () => {
           message: '',
           phone: '',
           date: '',
-          timeSlot: '',
+          time: '', // Reset time field
           agree: false,
         });
         setAlert({ type: 'success', message: 'Request sent successfully!' });
@@ -128,18 +128,17 @@ const HomeAssistance = () => {
       .finally(() => setIsSending(false));
   };
 
-  // Adjusted logic for form validity
   const isFormValid = () => {
     return (
-      Object.values(errors).every((error) => error === '') && // All fields must be valid
-      formData.name.trim() !== '' && // Check for name
-      formData.email.trim() !== '' && // Check for email
-      formData.subject.trim() !== '' && // Check for subject
-      formData.message.trim() !== '' && // Check for message
-      formData.phone.trim() !== '' && // Check for phone
-      formData.date !== '' && // Check for date
-      formData.timeSlot !== '' && // Check for time slot
-      formData.agree // The checkbox must be checked
+      Object.values(errors).every((error) => error === '') && 
+      formData.name.trim() !== '' &&
+      formData.email.trim() !== '' &&
+      formData.subject.trim() !== '' &&
+      formData.message.trim() !== '' &&
+      formData.phone.trim() !== '' &&
+      formData.date !== '' &&
+      formData.time !== '' &&
+      formData.agree
     );
   };
 
@@ -265,34 +264,34 @@ const HomeAssistance = () => {
               </Form.Group>
             </Col>
             <Col md={6}>
-              <Form.Group controlId="formTimeSlot">
+              <Form.Group controlId="formTime">
                 <Form.Label>Preferred Time Slot</Form.Label>
                 <div className="d-flex flex-column">
                   <Form.Check
                     type="radio"
                     label="Morning (09:00 AM - 12:00 PM)"
-                    name="timeSlot"
+                    name="time"
                     value="Morning"
-                    checked={formData.timeSlot === 'Morning'}
+                    checked={formData.time === 'Morning'}
                     onChange={handleChange}
                   />
                   <Form.Check
                     type="radio"
                     label="Afternoon (12:00 PM - 05:00 PM)"
-                    name="timeSlot"
+                    name="time"
                     value="Afternoon"
-                    checked={formData.timeSlot === 'Afternoon'}
+                    checked={formData.time === 'Afternoon'}
                     onChange={handleChange}
                   />
                   <Form.Check
                     type="radio"
                     label="Evening (05:00 PM - 08:00 PM)"
-                    name="timeSlot"
+                    name="time"
                     value="Evening"
-                    checked={formData.timeSlot === 'Evening'}
+                    checked={formData.time === 'Evening'}
                     onChange={handleChange}
                   />
-                  <Form.Control.Feedback type="invalid">{errors.timeSlot}</Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">{errors.time}</Form.Control.Feedback>
                 </div>
               </Form.Group>
             </Col>

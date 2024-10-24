@@ -3,7 +3,7 @@ import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
 import axios from 'axios'; 
 import { Helmet } from 'react-helmet';
 
-const HomeAssistance = () => {
+const CallBack = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -11,7 +11,7 @@ const HomeAssistance = () => {
     message: '',
     phone: '',
     date: '',
-    timeSlot: '', 
+    time: '', 
     agree: false, 
   });
 
@@ -22,7 +22,7 @@ const HomeAssistance = () => {
     message: '',
     phone: '',
     date: '',
-    timeSlot: '',
+    time: '',
     agree: '',
   });
 
@@ -63,8 +63,8 @@ const HomeAssistance = () => {
         const selectedDate = new Date(value);
         error = selectedDate < today ? 'Date cannot be in the past' : '';
         break;
-      case 'timeSlot':
-        error = value ? '' : 'Time slot is required';
+      case 'time':
+        error = value ? '' : 'Time is required';
         break;
       case 'agree':
         error = value ? '' : 'You must agree to the terms and conditions';
@@ -116,7 +116,7 @@ const HomeAssistance = () => {
           message: '',
           phone: '',
           date: '',
-          timeSlot: '',
+          time: '',
           agree: false,
         });
         setAlert({ type: 'success', message: 'Request sent successfully!' });
@@ -138,7 +138,7 @@ const HomeAssistance = () => {
       formData.message.trim() !== '' && // Check for message
       formData.phone.trim() !== '' && // Check for phone
       formData.date !== '' && // Check for date
-      formData.timeSlot !== '' && // Check for time slot
+      formData.time !== '' && // Check for time  
       formData.agree // The checkbox must be checked
     );
   };
@@ -265,34 +265,34 @@ const HomeAssistance = () => {
               </Form.Group>
             </Col>
             <Col md={6}>
-              <Form.Group controlId="formTimeSlot">
+              <Form.Group controlId="formTime">
                 <Form.Label>Preferred Time Slot</Form.Label>
                 <div className="d-flex flex-column">
                   <Form.Check
                     type="radio"
                     label="Morning (09:00 AM - 12:00 PM)"
-                    name="timeSlot"
+                    name="time"
                     value="Morning"
-                    checked={formData.timeSlot === 'Morning'}
+                    checked={formData.time === 'Morning'}
                     onChange={handleChange}
                   />
                   <Form.Check
                     type="radio"
                     label="Afternoon (12:00 PM - 05:00 PM)"
-                    name="timeSlot"
+                    name="time"
                     value="Afternoon"
-                    checked={formData.timeSlot === 'Afternoon'}
+                    checked={formData.time === 'Afternoon'}
                     onChange={handleChange}
                   />
                   <Form.Check
                     type="radio"
                     label="Evening (05:00 PM - 08:00 PM)"
-                    name="timeSlot"
+                    name="time"
                     value="Evening"
-                    checked={formData.timeSlot === 'Evening'}
+                    checked={formData.time === 'Evening'}
                     onChange={handleChange}
                   />
-                  <Form.Control.Feedback type="invalid">{errors.timeSlot}</Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">{errors.time}</Form.Control.Feedback>
                 </div>
               </Form.Group>
             </Col>
@@ -333,4 +333,4 @@ const HomeAssistance = () => {
   );
 };
 
-export default HomeAssistance;
+export default CallBack;
