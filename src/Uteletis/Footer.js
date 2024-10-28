@@ -25,13 +25,11 @@ const Footer = () => {
             <h3>Sections</h3>
             <ul className="footer-links">
               <li><Link to="/">Home</Link></li>
-              <li><Link to="/our-suppliers">Our Suppliers</Link></li>
               <li><Link to="/services">Services</Link></li>
-              <li><Link to="/about">About Us</Link></li>
-              <li><Link to="/kitchen"> Kitchens Work</Link></li> {/* Link to Kitchens.js */}
-              <li><Link to="/livingroom"> Living Room Work </Link></li> {/* Link to LivingRoom.js */}
-              <li><Link to="/bathroom">   Bathrooms Work</Link></li> {/* Link to Bathrooms.js */}
-            </ul>
+              <li><Link to="/galleries">Galleries</Link></li>
+              <li><Link to="/our-suppliers">Our Suppliers</Link></li>
+
+                 </ul>
           </Col>
 
           <Col xs={12} md={6} lg={2} className="footer-column mb-4">

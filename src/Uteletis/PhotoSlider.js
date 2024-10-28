@@ -23,7 +23,12 @@ const PhotoSlider = () => {
     <div className='quoteSection'>
       {materialGroups.map((group, groupIndex) => (
         <Row key={groupIndex} className="slider-row mb-4">
-          <Marquee direction={groupIndex % 2 === 0 ? "right" : "left"} speed={marqueeSpeed} delay={1}>
+          <Marquee
+            direction={groupIndex % 2 === 0 ? "right" : "left"}
+            speed={marqueeSpeed}
+            delay={1}
+            pauseOnHover // Pauses marquee on hover
+          >
             {group.map((material, index) => (
               <Col key={index} lg={12} md={13} sm={14} xs={19} className="image-wrapper">
                 <a

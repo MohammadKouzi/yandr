@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import WhatsAppTab from "./Uteletis/WhatsAppTab";
 import QuoteTab from "./Uteletis/QuoteTab";  
 import HomePage from './components/HomePage';
-import AboutUs from './components/AboutUs';
+import Galleries from './components/Galleries';
 import ContactUs from './components/contacting/ContactUs';
 import Services from './components/Services';
 import FreeQuote from './components/contacting/FreeQuote';
@@ -16,17 +16,30 @@ import RequestCallBack from './components/contacting/RequestCallBack';
 import HomeAssistance from './components/contacting/HomeAssistance'; 
 import OurSuppliers from './components/OurSuppliers';
 
+const paths = {
+  home: "/",
+  galleries: "/galleries", 
+   contact: "/contact",
+  services: "/services",
+  suppliers: "/our-suppliers",
+  quote: "/quote",
+  kitchen: "/kitchen",
+  livingRoom: "/livingroom",
+  bathroom: "/bathroom",
+  requestCallBack: "/request-call-back",
+  homeAssistance: "/home-assistance"
+};
+
 const MainContent = () => {
   const location = useLocation();
 
-  // Define the paths where QuoteTab should not be displayed
   const hiddenQuoteTabPaths = [
-    '/contact',
-    '/quote',
-    '/livingroom',
-    '/bathroom',
-    '/request-call-back',
-    '/home-assistance'
+    paths.contact,
+    paths.quote,
+    paths.livingRoom,
+    paths.bathroom,
+    paths.requestCallBack,
+    paths.homeAssistance
   ];
 
   const shouldShowQuoteTab = !hiddenQuoteTabPaths.includes(location.pathname);
@@ -34,19 +47,19 @@ const MainContent = () => {
   return (
     <>
       <WhatsAppTab />
-      {shouldShowQuoteTab && <QuoteTab />} {/* Conditionally render QuoteTab */}
+      {shouldShowQuoteTab && <QuoteTab />}
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/contact" element={<ContactUs />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/our-suppliers" element={<OurSuppliers />} />
-        <Route path="/quote" element={<FreeQuote />} />
-        <Route path="/kitchen" element={<Kitchen />} />
-        <Route path="/livingroom" element={<LivingRoom />} />
-        <Route path="/bathroom" element={<Bathroom />} />
-        <Route path="/request-call-back" element={<RequestCallBack />} />
-        <Route path="/home-assistance" element={<HomeAssistance />} />
+        <Route path={paths.home} element={<HomePage />} />
+        <Route path={paths.galleries} element={<Galleries />} />
+        <Route path={paths.contact} element={<ContactUs />} />
+        <Route path={paths.services} element={<Services />} />
+        <Route path={paths.suppliers} element={<OurSuppliers />} />
+        <Route path={paths.quote} element={<FreeQuote />} />
+        <Route path={paths.kitchen} element={<Kitchen />} />
+        <Route path={paths.livingRoom} element={<LivingRoom />} />
+        <Route path={paths.bathroom} element={<Bathroom />} />
+        <Route path={paths.requestCallBack} element={<RequestCallBack />} />
+        <Route path={paths.homeAssistance} element={<HomeAssistance />} />
       </Routes>
     </>
   );
@@ -57,11 +70,11 @@ const App = () => {
     <Router>
       <div className="app-container">
         <Header />
-        <MainContent /> {/* Extracted the main content logic */}
+        <MainContent />
         <Footer />
       </div>
     </Router>
   );
-}
+};
 
 export default App;

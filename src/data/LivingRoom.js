@@ -3,6 +3,7 @@ import { Row, Col, Pagination, Container, Spinner } from 'react-bootstrap';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { importAll } from '../Uteletis/ImageLoader'; // Correct the path based on your file structure
+import { Helmet } from 'react-helmet'; // Import Helmet
 
 // Use require.context to import all images from the specified folder
 const images = importAll(require.context('../Images/livingrooms/', false, /\.(heic|jpg|jpeg|png)$/i));
@@ -80,6 +81,23 @@ const LivingRoom = () => {
 
   return (
     <div className="body">
+     <Helmet>
+  <title>Glamstone - Living Room Gallery</title>
+  <meta
+    name="description"
+    content="Browse our collection of bespoke living room designs, crafted with premium materials and tailored to bring style and elegance to your space."
+  />
+  <meta
+    name="keywords"
+    content="living room gallery, custom living rooms, living room design, bespoke living rooms, modern living rooms, interior craftsmanship"
+  />
+  <meta property="og:title" content="Glamstone | Living Room Gallery" />
+  <meta
+    property="og:description"
+    content="Explore our gallery of custom living room designs, meticulously crafted to add comfort and sophistication to your home."
+  />
+</Helmet>
+
       <Container className="section2">
         <br />
         <h1 className="hstyle text-center">Living Rooms</h1>

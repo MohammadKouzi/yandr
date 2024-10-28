@@ -3,6 +3,7 @@ import { Row, Col, Pagination, Container, Spinner } from 'react-bootstrap';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { importAll } from '../Uteletis/ImageLoader'; // Correct the path based on your file structure
+import { Helmet } from 'react-helmet'; // Import Helmet
 
 // Use require.context to import all images from the specified folder
 const images = importAll(require.context('../Images/bathrooms/', false, /\.(heic|jpg|jpeg|png)$/i));
@@ -80,6 +81,23 @@ const Bathroom = ({ title }) => {
 
   return (
     <div className="body">
+    <Helmet>
+  <title>Glamstone - Bathroom Gallery</title>
+  <meta
+    name="description"
+    content="Discover our collection of custom bathroom designs, featuring luxury materials and unique craftsmanship tailored to enhance any bathroom style."
+  />
+  <meta
+    name="keywords"
+    content="bathroom gallery, custom bathrooms, bathroom design, bespoke bathrooms, luxury bathrooms, bathroom craftsmanship"
+  />
+  <meta property="og:title" content="Glamstone | Bathroom Gallery" />
+  <meta
+    property="og:description"
+    content="Explore our gallery of custom bathroom designs, crafted with attention to detail to elevate your bathroom space."
+  />
+</Helmet>
+
       <Container className="section2">
       <br></br>
 

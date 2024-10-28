@@ -98,8 +98,7 @@ const WhyUsPage = () => {
       </Helmet>
 
       <Container className="section2 text-center">
-        <br />
-        <h1 className="hstyle">Why Us</h1>
+         <h1 className="hstyle">Why Us</h1>
         <br />
         <Row>
           {cardItems.map((item, index) => (

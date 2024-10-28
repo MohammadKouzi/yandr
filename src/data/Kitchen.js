@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Row, Col, Pagination, Container, Spinner } from 'react-bootstrap';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { Helmet } from 'react-helmet'; // Import React Helmet for SEO
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { importAll } from '../Uteletis/ImageLoader'; // Correct the path based on your file structure
 
@@ -29,12 +30,11 @@ const Kitchen = () => {
   }, []);
 
   useEffect(() => {
-    // Simulate loading delay for images
     const timer = setTimeout(() => {
       setLoading(false);
     }, 1000); // Set delay time (e.g., 1000 ms)
 
-    return () => clearTimeout(timer); // Clear timeout on unmount
+    return () => clearTimeout(timer);
   }, []);
 
   const handleImageClick = (img, index) => {
@@ -65,7 +65,6 @@ const Kitchen = () => {
     }
   };
 
-  // Memoize the pagination logic to avoid re-renders unless `currentPage` or `photosPerPage` changes
   const currentPhotos = useMemo(() => {
     const indexOfLastPhoto = currentPage * photosPerPage;
     const indexOfFirstPhoto = indexOfLastPhoto - photosPerPage;
@@ -80,12 +79,29 @@ const Kitchen = () => {
 
   return (
     <div className="body">
+      <Helmet>
+        <title>Glamstone - Kitchens Gallery</title>
+        <meta
+          name="description"
+          content="Browse our collection of custom kitchen designs, featuring high-quality materials and unique craftsmanship tailored to suit any style."
+        />
+        <meta
+          name="keywords"
+          content="kitchen gallery, custom kitchens, kitchen design, bespoke kitchens, modern kitchens, kitchen craftsmanship"
+        />
+        <meta property="og:title" content=" Glamstone| Kitchens Gallery " />
+        <meta
+          property="og:description"
+          content="Explore our gallery of custom kitchen designs, crafted with care and precision to enhance your home."
+        />
+        
+      </Helmet>
+
       <Container className="section2">
         <br />
         <h1 className="hstyle text-center">Kitchens</h1>
         <br />
         <div className="image-grid">
-          {/* Loading state and image grid */}
           {loading ? (
             <Row className="mb-3">
               {Array.from({ length: photosPerPage }).map((_, index) => (
@@ -113,7 +129,7 @@ const Kitchen = () => {
                   <LazyLoadImage
                     src={img}
                     alt={`Gallery ${index + 1}`}
-                    className="photo service-image fade-in" // Add fade-in class
+                    className="photo service-image fade-in"
                     effect="blur"
                     onClick={() => handleImageClick(img, index)}
                   />
@@ -123,7 +139,6 @@ const Kitchen = () => {
           )}
         </div>
 
-        {/* Enlarged Image */}
         {enlargedImage && (
           <div className="enlarged-image active" onClick={handleCloseImage}>
             <img src={enlargedImage} alt="Enlarged view" />
@@ -139,7 +154,6 @@ const Kitchen = () => {
           </div>
         )}
 
-        {/* Pagination fixed to the bottom */}
         <Row className="fixed-pagination">
           <Pagination className="d-flex justify-content-center mt-3">
             {Array.from({ length: totalPages }).map((_, i) => (

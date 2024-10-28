@@ -44,14 +44,8 @@ const Header = () => {
             >
               Home
             </Nav.Link>
-            <Nav.Link 
-              as={NavLink} 
-              to="/our-suppliers" 
-              className="headerLink" 
-              onClick={handleNavItemClick}
-            >
-              Our Suppliers
-            </Nav.Link>
+         
+           
             <Nav.Link 
               as={NavLink} 
               to="/services" 
@@ -62,13 +56,20 @@ const Header = () => {
             </Nav.Link>
             <Nav.Link 
               as={NavLink} 
-              to="/about" 
+              to="/our-suppliers" 
               className="headerLink" 
               onClick={handleNavItemClick}
             >
-              About Us
+              Our Suppliers
             </Nav.Link>
-            
+            <Nav.Link 
+              as={NavLink} 
+              to="/galleries" 
+              className="headerLink" 
+              onClick={handleNavItemClick}
+            >
+              Galleries
+            </Nav.Link>
             <NavDropdown 
               title="Contact Us" 
               className="headerLink" 

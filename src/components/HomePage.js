@@ -2,9 +2,9 @@ import React from 'react';
 import { Helmet } from 'react-helmet';  
 import CarouselPage from './HomeComponents/CarouselPage';
 import WhyUsPage from './HomeComponents/WhyUsPage';
-import OurWorkPage from './HomeComponents/OurWorkPage';
-import GoogleReviews from './HomeComponents/GoogleReviews';
+ 
 import GoldenBanner from './HomeComponents/GoldenBanner';
+import AboutUs from './HomeComponents/AboutUs';
 
 const HomePage = () => {
   return (
@@ -17,9 +17,9 @@ const HomePage = () => {
       <div className="SiteContainer">
         <CarouselPage />
         <GoldenBanner />
+        <AboutUs/>
         <WhyUsPage />
-        <OurWorkPage />
-        <GoogleReviews />
+        
       </div>
     </div>
   );

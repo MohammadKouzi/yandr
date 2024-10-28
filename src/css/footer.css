@@ -49,10 +49,7 @@
     text-decoration: none;
   }
   
-  .footer-links a:hover {
-    text-decoration: underline;
-  }
-  
+ 
   /* Contact Information Section */
   .contact-info {
     display: flex;
