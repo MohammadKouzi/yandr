@@ -2,7 +2,7 @@
 .whatsapp-tab {
     position: fixed;
     left: 0px;
-    top: 80%;
+    top: 70%;
     transform: translateY(-50%);
     background-color: #25d366;
     padding: 2px;
@@ -33,7 +33,7 @@
 /* QuoteTab.css */
 .quote-tab {
     position: fixed;
-    bottom: 80px;
+    bottom: 160px;
     right: 16px;
     background-color: darkgoldenrod;
     color: white;
