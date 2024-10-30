@@ -1,46 +1,74 @@
 import React, { useState } from 'react';
-import { Helmet } from 'react-helmet'; // Import React Helmet for SEO
+import { Helmet } from 'react-helmet';
 import { Container, Row, Col, Tabs, Tab } from 'react-bootstrap';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import serviceImage from '../Images/service.jpg'; 
+import fabricationImage from '../Images/service.png';
+import templatingImage from '../Images/service2.png';
+import installationImage from '../Images/service3.png';
 
 const Services = () => {
-  const [activeTab, setActiveTab] = useState('Precision Cutting');
-  const [animationClass, setAnimationClass] = useState('zoom-in'); // Control animation
+  const [activeTab, setActiveTab] = useState('Fabrication');
+  const [animationClass, setAnimationClass] = useState('zoom-in');
 
-  // Handle tab switching with zoom-out effect first
   const handleTabSelect = (key) => {
-    // Add zoom-out effect before changing the tab content
     setAnimationClass('zoom-out');
-
-    // Delay the tab switch to let the zoom-out animation finish
     setTimeout(() => {
       setActiveTab(key);
-      setAnimationClass('zoom-in'); // Reset to zoom-in effect for new tab
-    }, 300); // Match the animation duration (0.3s)
+      setAnimationClass('zoom-in');
+    }, 300);
   };
 
-  // Render tab content based on the active tab
   const renderTabContent = () => {
     switch (activeTab) {
-      case 'Precision Cutting':
+      case 'Fabrication':
         return (
           <p className={`servicep pstyle ${animationClass}`}>
-            We offer meticulous cutting services for quartz, porcelain, granite, and marble. Whether it’s custom shapes, detailed edging, or precise cutouts for sinks, vanities, and fixtures, our work is defined by accuracy and a keen eye for detail.
-          </p>
+            We  produce meticulously crafted products using only the highest quality materials. Skilled artisans on our team ensure that each piece is manufactured to stringent standards. We utilize modern techniques to guarantee both dimensional accuracy and beautiful finishing, resulting in durable, stunning products. With the capability to create a wide variety of designs, we cater to each client's unique needs. We see every project as an opportunity to showcase our craftsmanship and creativity. At GlamStone, you can trust that each product we create enhances the beauty of your spaces.</p>
         );
-      case 'Quartz & Porcelain for Floors, Walls, and Vanities':
+      case 'Templating':
         return (
           <p className={`servicep pstyle ${animationClass}`}>
-            Beyond worktops, we provide specialized cutting services for quartz and porcelain floors, walls, and vanities. These durable and elegant materials are perfect for enhancing kitchens, bathrooms, living spaces, and any other area of your home.
-          </p>
+            We deliver precise design services to ensure a perfect fit for all surfaces we manufacture. Utilizing advanced measurement techniques, our team guarantees exceptional results. We view templating as a crucial step in the fabrication process, defining design details and bringing them to life. By paying close attention to every angle and dimension, we ensure cohesion in each project. Our goal is to exceed client expectations and realize their vision with accuracy and care. At GlamStone, we take pride in innovating with every project we undertake. </p>
         );
-      case 'Professional Installation':
+      case 'Installation':
         return (
           <p className={`servicep pstyle ${animationClass}`}>
-            Our team of professionals ensures that your chosen materials are installed with precision and care. From worktops to floors, walls, and vanities, we handle the entire installation process, leaving you with a flawless and beautiful finish.
-          </p>
+           We prioritize delivering a professional service that meets the highest quality standards. Our trained team installs each piece with precision, ensuring it aligns perfectly with the design specifications. We pay meticulous attention to detail during installation, enhancing the overall client experience. Our commitment to deadlines and effective communication ensures a smooth process from start to finish. We view each installation as an opportunity to foster lasting relationships with our clients. At GlamStone, we strive for complete customer satisfaction through flawless installations.</p>
+        );
+      default:
+        return null;
+    }
+  };
+
+  const renderTabImage = () => {
+    switch (activeTab) {
+      case 'Fabrication':
+        return (
+          <LazyLoadImage
+            src={fabricationImage}
+            alt="Fabrication Service"
+            className="service-image img-fluid p-0"
+            effect="blur"
+          />
+        );
+      case 'Templating':
+        return (
+          <LazyLoadImage
+            src={templatingImage}
+            alt="Templating Service"
+            className="service-image img-fluid p-0"
+            effect="blur"
+          />
+        );
+      case 'Installation':
+        return (
+          <LazyLoadImage
+            src={installationImage}
+            alt="Installation Service"
+            className="service-image img-fluid p-0"
+            effect="blur"
+          />
         );
       default:
         return null;
@@ -49,16 +77,10 @@ const Services = () => {
 
   return (
     <div className='body'>
-      {/* SEO using React Helmet */}
       <Helmet>
         <title>GlamStone - Our Services</title>
-        <meta name="description" content="Explore the expert services offered by GlamStone, including precision cutting for quartz and porcelain, and professional installation for all your worktop and tile needs." />
-        <meta 
-          name="keywords" 
-          content="
-            precision cutting, quartz cutting, porcelain cutting, floor tiles, wall tiles, vanities, professional installation, home improvement, custom shapes, luxury kitchen design, durable materials, expert craftsmanship, UK services
-          " 
-        />
+        <meta name="description" content="Explore the expert services offered by GlamStone..." />
+        <meta name="keywords" content="precision cutting, quartz cutting, porcelain cutting..." />
       </Helmet>
 
       <Container className='section2'>
@@ -67,34 +89,28 @@ const Services = () => {
         <br />
         <Row>
           <Col md={12}>
-            {/* Tabs and tab content */}
             <Tabs
               id="service-tabs"
               activeKey={activeTab}
-              onSelect={(key) => handleTabSelect(key)} // Call custom handler
+              onSelect={(key) => handleTabSelect(key)}
               className="mb-4 custom-tabs"
               justify
             >
-              <Tab eventKey="Precision Cutting" title="Precision Cutting"></Tab>
-              <Tab eventKey="Quartz & Porcelain for Floors, Walls, and Vanities" title="Quartz & Porcelain for Floors, Walls, and Vanities"></Tab>
-              <Tab eventKey="Professional Installation" title="Professional Installation"></Tab>
+              <Tab eventKey="Fabrication" title="Fabrication"></Tab>
+              <Tab eventKey="Templating" title="Templating"></Tab>
+              <Tab eventKey="Installation" title="Installation"></Tab>
             </Tabs>
           </Col>
         </Row>
 
         <Row>
-          {/* Static image and tab content together */}
           <Col md={6}>
-            <LazyLoadImage
-              src={serviceImage} // Using the imported image
-              alt="Service"
-              className="service-image img-fluid p-0"
-              effect="blur"
-            />
+            {/* عرض الصورة المرتبطة بالتبويب النشط */}
+            {renderTabImage()}
           </Col>
 
           <Col md={6}>
-            {/* Display the active tab content */}
+            {/* عرض محتوى التبويب النشط */}
             {renderTabContent()}
           </Col>
         </Row>
